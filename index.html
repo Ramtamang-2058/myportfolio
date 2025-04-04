@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header and Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .nav-item a.active {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1a1a1a;
+        }
+
+        /* Common Section Styles */
+        section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .section-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .section-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .section-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .text-box {
+            background: rgba(26, 26, 26, 0.8);
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+        }
+
+        .text-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .text-box p {
+            color: #dddddd;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #ffffff;
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #dddddd;
+        }
+
+        /* Directional Content Layouts */
+        .content-left .text-box {
+            margin-right: auto;
+            flex: 0 0 40%;
+        }
+
+        .content-right .text-box {
+            margin-left: auto;
+            flex: 0 0 40%;
+        }
+
+        .content-center .text-box {
+            margin: 0 auto;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        #home {
+            padding-top: 0;
+        }
+
+        #home .content-wrapper {
+            height: 100vh;
+        }
+
+        #home .text-box h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Projects Section - Overlay Cards */
+        .project-cards {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .project-card {
+            flex: 1;
+            min-width: 280px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: #1a1a1a;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            margin-top: 1rem;
+        }
+
+        .project-links a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 600;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-links a:hover {
+            color: #666666;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: #1a1a1a;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: #1a1a1a;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .achievement-card:hover .achievement-image img {
+            transform: scale(1.1);
+        }
+
+        .achievement-info {
+            padding: 1.5rem;
+        }
+
+        .achievement-info h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: #1a1a1a;
+            margin-top: 2rem;
+            max-width: 600px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-btn {
+            background: #1a1a1a;
+            color: #ffffff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #333333;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #cccccc;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .content-left .text-box,
+            .content-right .text-box {
+                flex: 0 0 60%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                justify-content: space-between;
+            }
+
+            .nav-wrapper {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 1rem 0;
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-wrapper.active {
+                transform: scaleY(1);
+            }
+
+            .content-left .text-box,
+            .content-right .text-box {
+                flex: 0 0 80%;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .project-cards,
+            .services-grid,
+            .achievements-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .text-box h2,
+            #home .text-box h1 {
+                font-size: 2rem;
+            }
+
+            .content-left .text-box,
+            .content-right .text-box {
+                flex: 0 0 90%;
+                padding: 2rem;
+            }
+        }
+
+        /* Slide Animation */
+        .slide-transition {
+            animation: slideIn 1s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <nav>
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+            <div class="nav-wrapper">
+                <div class="nav-item"><a href="#home" class="active">Home</a></div>
+                <div class="nav-item"><a href="#projects">Projects</a></div>
+                <div class="nav-item"><a href="#services">Services</a></div>
+                <div class="nav-item"><a href="#achievements">Achievements</a></div>
+                <div class="nav-item"><a href="#contact">Contact</a></div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home">
+    <div class="section-background">
+        <img src="images/me3.jpeg" alt="Hero Background">
+    </div>
+    <div class="overlay"></div>
+    <div class="container section-content">
+        <div class="content-wrapper content-left">
+            <div class="text-box slide-transition">
+                <h1>I'm a <span id="title-span">Creative Developer</span></h1>
+                <p id="description">Building sleek, user-focused digital experiences with a passion for design and code.</p>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects">
+    <div class="section-background">
+        <img src="images/me8.JPG" alt="Projects Background">
+    </div>
+    <div class="overlay"></div>
+    <div class="container section-content">
+        <div class="content-wrapper content-right">
+            <div class="text-box slide-transition">
+                <h2>Projects</h2>
+                <p>A showcase of my recent work in web development and design.</p>
+
+                <div class="project-cards">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/me3.jpeg" alt="E-commerce Website">
+                        </div>
+                        <div class="project-info">
+                            <h3>E-commerce Platform</h3>
+                            <p>A responsive online store with advanced features.</p>
+                            <div class="project-links">
+                                <a href="#">Live Demo</a>
+                                <a href="#">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/me4.png" alt="Portfolio Website">
+                        </div>
+                        <div class="project-info">
+                            <h3>Portfolio Template</h3>
+                            <p>A sleek template for creatives.</p>
+                            <div class="project-links">
+                                <a href="#">Live Demo</a>
+                                <a href="#">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="images/me5.jpg" alt="Weather App">
+                        </div>
+                        <div class="project-info">
+                            <h3>Weather Dashboard</h3>
+                            <p>Real-time weather data visualization.</p>
+                            <div class="project-links">
+                                <a href="#">Live Demo</a>
+                                <a href="#">Source Code</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services">
+    <div class="section-background">
+        <img src="images/me8.JPG" alt="Services Background">
+    </div>
+    <div class="overlay"></div>
+    <div class="container section-content">
+        <div class="content-wrapper content-left">
+            <div class="text-box slide-transition">
+                <h2>Services</h2>
+                <p>Offering solutions to elevate your digital presence.</p>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                        <p>Custom websites built with precision.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>UI/UX Design</h3>
+                        <p>Intuitive and beautiful interfaces.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Responsive Design</h3>
+                        <p>Websites that work on all devices.</p>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-search"></i>
+                        <h3>SEO Optimization</h3>
+                        <p>Improve your site's visibility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section id="achievements">
+    <div class="section-background">
+        <img src="images/me9.JPG" alt="Achievements Background">
+    </div>
+    <div class="overlay"></div>
+    <div class="container section-content">
+        <div class="content-wrapper content-right">
+            <div class="text-box slide-transition">
+                <h2>Achievements</h2>
+                <p>Milestones that define my journey.</p>
+
+                <div class="achievements-grid">
+                    <div class="achievement-card">
+                        <div class="achievement-image">
+                            <img src="images/me1.jpeg" alt="Award 1">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Best Web Innovation</h3>
+                            <p>Received in 2024 for a groundbreaking e-commerce solution.</p>
+                        </div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-image">
+                            <img src="images/me9.JPG" alt="Award 2">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>UI Excellence Award</h3>
+                            <p>Earned in 2023 for designing intuitive user interfaces.</p>
+                        </div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-image">
+                            <img src="images/me8.JPG" alt="Certificate">
+                        </div>
+                        <div class="achievement-info">
+                            <h3>Certified Developer</h3>
+                            <p>Achieved advanced certification in full-stack development.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+    <div class="section-background">
+        <img src="images/me11.jpg" alt="Contact Background">
+    </div>
+    <div class="overlay"></div>
+    <div class="container section-content">
+        <div class="content-wrapper content-center">
+            <div class="text-box slide-transition">
+                <h2>Let's Connect</h2>
+                <p>I'm always interested in new projects and collaborations. Get in touch!</p>
+
+                <div class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Your message"></textarea>
+                    </div>
+                    <button type="submit" class="contact-btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 My Portfolio. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Mobile Navigation Toggle
+    const toggle = document.querySelector('.mobile-toggle');
+    const nav = document.querySelector('.nav-wrapper');
+    toggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+
+    // Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('slide-transition');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.text-box').forEach(box => {
+        box.classList.remove('slide-transition');
+        observer.observe(box);
+    });
+
+    // Active Navigation Highlight
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-item a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').substring(1) === current) {
+                item.classList.add('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>
