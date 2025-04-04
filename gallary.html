@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Gallery | My Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header and Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .nav-item a.active {
+            background: #1a1a1a;
+            color: #ffffff;
+        }
+
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1a1a1a;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            position: relative;
+            min-height: 100vh;
+            padding-top: 80px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .gallery-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2;
+        }
+
+        .gallery-content {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            padding: 4rem 0;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #ffffff;
+        }
+
+        .gallery-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .gallery-header p {
+            font-size: 1.2rem;
+            color: #dddddd;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Futuristic Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+            margin-top: 1rem; /* Small default gap for all sizes */
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            color: #ffffff;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-info {
+            transform: translateY(0);
+        }
+
+        .gallery-info h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-info p {
+            font-size: 1rem;
+            color: #dddddd;
+        }
+
+        .gallery-info a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .gallery-info a:hover {
+            color: #cccccc;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #cccccc;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            nav {
+                justify-content: space-between;
+            }
+
+            .nav-wrapper {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.95);
+                flex-direction: column;
+                padding: 1rem 0;
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-wrapper.active {
+                transform: scaleY(1);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+
+            .gallery-image {
+                height: 300px;
+            }
+
+            .gallery-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .gallery-header {
+                margin-bottom: 5rem; /* Increased gap on desktop */
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-header h1 {
+                font-size: 2rem;
+            }
+
+            .gallery-header p {
+                font-size: 1rem;
+            }
+
+            .gallery-image {
+                height: 250px;
+            }
+        }
+
+        /* Animation */
+        .fade-in {
+            animation: fadeIn 1.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container">
+        <nav>
+            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
+            <div class="nav-wrapper">
+                <div class="nav-item"><a href="index.html">Home</a></div>
+                <div class="nav-item"><a href="#projects">Projects</a></div>
+                <div class="nav-item active"><a href="#">Gallery</a></div>
+                <div class="nav-item"><a href="#achievements">Achievements</a></div>
+                <div class="nav-item"><a href="#contact">Contact</a></div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- Gallery Section -->
+<section class="gallery-section">
+    <div class="gallery-background">
+        <img src="images/me11.jpg" style="height: 50rem" alt="Gallery Background">
+                <img src="images/me11.jpg" alt="Gallery Background">
+
+    </div>
+    <div class="gallery-overlay"></div>
+    <div class="container gallery-content">
+        <div class="gallery-header fade-in">
+            <h1>Explore My Gallery</h1>
+            <p>A futuristic collection of my creative works, showcasing innovation and imagination.</p>
+        </div>
+        <br><br>
+        <br>
+        <br><br>
+        <br>
+
+
+        <div class="gallery-grid">
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me10.png" alt="Gallery Item 1">
+                <div class="gallery-info">
+                    <h3>Cyber Horizon</h3>
+                    <p>A digital landscape inspired by sci-fi aesthetics.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me11.jpg" alt="Gallery Item 2">
+                <div class="gallery-info">
+                    <h3>Neon Pulse</h3>
+                    <p>Vibrant UI design with neon accents.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me9.jpg" alt="Gallery Item 3">
+                <div class="gallery-info">
+                    <h3>Quantum Grid</h3>
+                    <p>Interactive grid system for futuristic apps.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me01.jpeg" alt="Gallery Item 4">
+                <div class="gallery-info">
+                    <h3>Stellar Interface</h3>
+                    <p>A sleek dashboard for space exploration.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me03.jpeg" alt="Gallery Item 5">
+                <div class="gallery-info">
+                    <h3>Digital Odyssey</h3>
+                    <p>Exploration of 3D web design.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me02.jpeg" alt="Gallery Item 6">
+                <div class="gallery-info">
+                    <h3>Futuristic Portal</h3>
+                    <p>A gateway to immersive experiences.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me06.jpeg" alt="Gallery Item 4">
+                <div class="gallery-info">
+                    <h3>Stellar Interface</h3>
+                    <p>A sleek dashboard for space exploration.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me05.jpeg" alt="Gallery Item 5">
+                <div class="gallery-info">
+                    <h3>Digital Odyssey</h3>
+                    <p>Exploration of 3D web design.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me04.jpeg" alt="Gallery Item 6">
+                <div class="gallery-info">
+                    <h3>Futuristic Portal</h3>
+                    <p>A gateway to immersive experiences.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me09.jpeg" alt="Gallery Item 4">
+                <div class="gallery-info">
+                    <h3>Stellar Interface</h3>
+                    <p>A sleek dashboard for space exploration.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me08.jpeg" alt="Gallery Item 5">
+                <div class="gallery-info">
+                    <h3>Digital Odyssey</h3>
+                    <p>Exploration of 3D web design.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img class="gallery-image" src="images/me07.jpeg" alt="Gallery Item 6">
+                <div class="gallery-info">
+                    <h3>Futuristic Portal</h3>
+                    <p>A gateway to immersive experiences.</p>
+                    <a href="#">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>© 2025 My Portfolio. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Mobile Navigation Toggle
+    const toggle = document.querySelector('.mobile-toggle');
+    const nav = document.querySelector('.nav-wrapper');
+    toggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+    });
+
+    // Scroll Animation
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
+            }
+        });
+    }, {threshold: 0.1});
+
+    document.querySelectorAll('.gallery-item, .gallery-header').forEach(item => {
+        item.classList.remove('fade-in');
+        observer.observe(item);
+    });
+
+    // Active Navigation Highlight (optional, adjust hrefs if linking to portfolio page)
+    const sections = document.querySelectorAll('section');
+    const navItems = document.querySelectorAll('.nav-item a');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href').substring(1) === current) {
+                item.classList.add('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>
