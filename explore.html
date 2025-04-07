@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Adventures</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            background: #39ff14;
+            color: #000000;
+        }
+
+        .nav-item a.active {
+            background: #39ff14;
+            color: #000000;
+        }
+
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: url('images/wallpapersden.com_nepal-mountain_wxl.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
+            animation: glow 2s infinite alternate;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .explore-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #39ff14;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.7);
+        }
+
+        .explore-btn:hover {
+            background: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 1);
+        }
+
+        .worlds-section {
+            padding: 8rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            font-weight: 700;
+            position: relative;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: #39ff14;
+        }
+
+        .worlds-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .world-card {
+            position: relative;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
+        }
+
+        .world-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .world-image {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        .world-card:hover .world-image {
+            transform: scale(1.1);
+        }
+
+        .world-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        }
+
+        .world-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+        }
+
+        .world-description {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        .world-link {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background: #39ff14;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .world-link:hover {
+            background: #ffffff;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.7);
+        }
+
+        .video-section {
+            position: relative;
+            padding: 8rem 0;
+            background: #000000;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .placeholder-video {
+            width: 100%;
+            height: 562px;
+            background: #111111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-btn {
+            width: 100px;
+            height: 100px;
+            background: rgba(57, 255, 20, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            background: rgba(57, 255, 20, 1);
+            transform: scale(1.1);
+        }
+
+        .map-section {
+            padding: 8rem 0;
+            background: #0a0a0a;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: url('images/n5.jpg') center/cover no-repeat;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .map-point {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: rgba(57, 255, 20, 0.7);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #000000;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.7);
+        }
+
+        .map-point:nth-child(1) { top: 30%; left: 20%; }
+        .map-point:nth-child(2) { top: 50%; left: 40%; }
+        .map-point:nth-child(3) { top: 20%; left: 70%; }
+        .map-point:nth-child(4) { top: 70%; left: 60%; }
+        .map-point:nth-child(5) { top: 60%; left: 25%; }
+
+        .map-tooltip {
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .map-point:hover .map-tooltip {
+            opacity: 1;
+            visibility: visible;
+            bottom: 130%;
+        }
+
+        .creatures-section {
+            padding: 8rem 0;
+            background: url('https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg') center/cover fixed no-repeat;
+            position: relative;
+        }
+
+        .creatures-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .creatures-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .creatures-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .creature-card {
+            background: rgba(10, 10, 10, 0.8);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            transition: transform 0.5s ease;
+        }
+
+        .creature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(57, 255, 20, 0.3);
+        }
+
+        .creature-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .creature-info {
+            padding: 1.5rem;
+        }
+
+        .creature-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #39ff14;
+        }
+
+        .creature-description {
+            color: #cccccc;
+            margin-bottom: 1rem;
+        }
+
+        .creature-stat {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #39ff14;
+        }
+
+        .stat-label {
+            color: #999999;
+            font-size: 0.9rem;
+        }
+
+        .magic-section {
+            padding: 8rem 0;
+            background: #0a0a0a;
+        }
+
+        .spells-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .spell-card {
+            background: #111111;
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(57, 255, 20, 0.3);
+        }
+
+        .spell-card:hover {
+            border-color: #39ff14;
+            box-shadow: 0 15px 40px rgba(57, 255, 20, 0.3);
+        }
+
+        .spell-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(57, 255, 20, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #39ff14;
+        }
+
+        .spell-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #39ff14;
+        }
+
+        .spell-description {
+            color: #cccccc;
+            margin-bottom: 1.5rem;
+        }
+
+        .spell-effect {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .effect-icon {
+            margin-right: 0.5rem;
+            color: #39ff14;
+        }
+
+        footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #39ff14;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(57, 255, 20, 0.7); }
+            to { text-shadow: 0 0 20px rgba(57, 255, 20, 1), 0 0 30px rgba(57, 255, 20, 0.7); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); }
+            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(57, 255, 20, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(57, 255, 20, 0); }
+        }
+
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3rem; }
+            .section-title { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2rem; }
+            .world-card { height: 400px; }
+            .creature-image { height: 200px; }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title { font-size: 2rem; }
+            .worlds-container, .creatures-container, .spells-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Music -->
+    <audio id="background-audio" loop>
+        <source src="audio/song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="nav-wrapper">
+                    <div class="nav-item"><a href="index.html">Home</a></div>
+                    <div class="nav-item"><a href="index.html#projects">Projects</a></div>
+                    <div class="nav-item"><a href="gallary.html">Gallery</a></div>
+                    <div class="nav-item"><a href="index.html#achievements">Achievements</a></div>
+                    <div class="nav-item"><a href="index.html#contact">Contact</a></div>
+                    <div class="nav-item"><a href="#" class="active">Explore</a></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Discover Magical Worlds</h1>
+            <p class="hero-subtitle">Embark on an extraordinary journey through ancient forests, prehistoric landscapes, and enchanted realms</p>
+            <a href="#worlds" class="explore-btn">Begin Adventure</a>
+        </div>
+    </section>
+
+    <!-- Worlds Section -->
+    <section id="worlds" class="worlds-section">
+        <div class="container">
+            <h2 class="section-title">Mystical Realms</h2>
+            <div class="worlds-container">
+                <div class="world-card">
+                    <img src="images/n1.jpg" alt="Ancient Forest" class="world-image">
+                    <div class="world-overlay">
+                        <h3 class="world-title">Ancient Forest</h3>
+                        <p class="world-description">Explore the primordial woodlands where ancient magic flows through every tree and mystical creatures roam freely.</p>
+                        <a href="#" class="world-link">Discover</a>
+                    </div>
+                </div>
+                <div class="world-card">
+                    <img src="images/n5.jpg" alt="Jurassic Valley" class="world-image">
+                    <div class="world-overlay">
+                        <h3 class="world-title">Jurassic Valley</h3>
+                        <p class="world-description">Step back in time to a lost world where magnificent dinosaurs rule the landscape and danger lurks around every corner.</p>
+                        <a href="#" class="world-link">Discover</a>
+                    </div>
+                </div>
+                <div class="world-card">
+                    <img src="images/n4.jpg" alt="Crystal Caves" class="world-image">
+                    <div class="world-overlay">
+                        <h3 class="world-title">Crystal Caves</h3>
+                        <p class="world-description">Venture into the glittering depths where magical crystals illuminate caverns and ancient secrets await discovery.</p>
+                        <a href="#" class="world-link">Discover</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">Experience The Adventure</h2>
+            <div class="video-container">
+                <div class="placeholder-video">
+                    <div class="play-btn">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <h2 class="section-title">Adventure Map</h2>
+            <div class="map-container">
+                <div class="map-point">
+                    <i class="fas fa-tree"></i>
+                    <div class="map-tooltip">
+                        <h4>Enchanted Grove</h4>
+                        <p>Ancient trees infused with powerful magic</p>
+                    </div>
+                </div>
+                <div class="map-point">
+                    <i class="fas fa-mountain"></i>
+                    <div class="map-tooltip">
+                        <h4>Dragon's Peak</h4>
+                        <p>Home to the legendary fire dragons</p>
+                    </div>
+                </div>
+                <div class="map-point">
+                    <i class="fas fa-water"></i>
+                    <div class="map-tooltip">
+                        <h4>Mystic Falls</h4>
+                        <p>Waters with extraordinary healing powers</p>
+                    </div>
+                </div>
+                <div class="map-point">
+                    <i class="fas fa-skull"></i>
+                    <div class="map-tooltip">
+                        <h4>Raptor Valley</h4>
+                        <p>Territory of the fierce velociraptor packs</p>
+                    </div>
+                </div>
+                <div class="map-point">
+                    <i class="fas fa-gem"></i>
+                    <div class="map-tooltip">
+                        <h4>Crystal Caverns</h4>
+                        <p>Ancient caves filled with magical crystals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creatures Section -->
+    <section class="creatures-section">
+        <div class="creatures-overlay"></div>
+        <div class="container creatures-content">
+            <h2 class="section-title">Mythical Beasts</h2>
+            <div class="creatures-container">
+                <div class="creature-card">
+                    <img src="images/n2.jpeg" alt="T-Rex" class="creature-image">
+                    <div class="creature-info">
+                        <h3 class="creature-name">Tyrannosaurus Rex</h3>
+                        <p class="creature-description">The king of dinosaurs, a fearsome predator with unmatched power and terrifying speed.</p>
+                        <div class="creature-stat">
+                            <div class="stat-item">
+                                <div class="stat-value">90</div>
+                                <div class="stat-label">Strength</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">70</div>
+                                <div class="stat-label">Speed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">85</div>
+                                <div class="stat-label">Danger</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card">
+                    <img src="images/n2.jpeg" alt="Forest Dragon" class="creature-image">
+                    <div class="creature-info">
+                        <h3 class="creature-name">Forest Dragon</h3>
+                        <p class="creature-description">Guardian of the ancient woods, capable of controlling nature and breathing emerald fire.</p>
+                        <div class="creature-stat">
+                            <div class="stat-item">
+                                <div class="stat-value">85</div>
+                                <div class="stat-label">Strength</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">75</div>
+                                <div class="stat-label">Magic</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">80</div>
+                                <div class="stat-label">Wisdom</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="creature-card">
+                    <img src="images/n3.webp" alt="Crystal Elemental" class="creature-image">
+                    <div class="creature-info">
+                        <h3 class="creature-name">Crystal Elemental</h3>
+                        <p class="creature-description">Beings formed from living crystal, harnessing the magical energies that flow through the caves.</p>
+                        <div class="creature-stat">
+                            <div class="stat-item">
+                                <div class="stat-value">65</div>
+                                <div class="stat-label">Strength</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">95</div>
+                                <div class="stat-label">Magic</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">50</div>
+                                <div class="stat-label">Speed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Magic Section -->
+    <section class="magic-section">
+        <div class="container">
+            <h2 class="section-title">Ancient Magic</h2>
+            <div class="spells-container">
+                <div class="spell-card">
+                    <div class="spell-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3 class="spell-name">Nature's Embrace</h3>
+                    <p class="spell-description">Harness the ancient power of the forest to heal wounds and strengthen allies.</p>
+                    <div class="spell-effect">
+                        <i class="fas fa-plus-circle effect-icon"></i>
+                        <span>Restores health over time</span>
+                    </div>
+                    <div class="spell-effect">
+                        <i class="fas fa-shield-alt effect-icon"></i>
+                        <span>Increases natural armor</span>
+                    </div>
+                </div>
+                <div class="spell-card">
+                    <div class="spell-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="spell-name">Primeval Flame</h3>
+                    <p class="spell-description">Conjure the ancient fire that once ruled the prehistoric world.</p>
+                    <div class="spell-effect">
+                        <i class="fas fa-burn effect-icon"></i>
+                        <span>Deals fire damage to enemies</span>
+                    </div>
+                    <div class="spell-effect">
+                        <i class="fas fa-radiation effect-icon"></i>
+                        <span>Creates a zone of destruction</span>
+                    </div>
+                </div>
+                <div class="spell-card">
+                    <div class="spell-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="spell-name">Crystal Resonance</h3>
+                    <p class="spell-description">Activate the hidden properties of magical crystals to reveal secrets and enhance perception.</p>
+                    <div class="spell-effect">
+                        <i class="fas fa-eye effect-icon"></i>
+                        <span>Reveals hidden objects</span>
+                    </div>
+                    <div class="spell-effect">
+                        <i class="fas fa-brain effect-icon"></i>
+                        <span>Enhances mental acuity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>© 2025 Adventure Explorer. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.spell-card, .creature-card, .world-card');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementPos = element.getBoundingClientRect().top;
+                if (elementPos < windowHeight - 150) {
+                    if (!element.classList.contains('animated')) {
+                        element.style.opacity = '0';
+                        element.style.transform = 'translateY(50px)';
+                        setTimeout(() => {
+                            element.style.transition = 'all 1s ease';
+                            element.style.opacity = '1';
+                            element.style.transform = 'translateY(0)';
+                            element.classList.add('animated');
+                        }, 100);
+                    }
+                }
+            });
+        }
+
+        const playBtn = document.querySelector('.play-btn');
+        playBtn.addEventListener('click', function() {
+            alert('Video playback would start here in a complete implementation.');
+        });
+
+        const mapPoints = document.querySelectorAll('.map-point');
+        mapPoints.forEach(point => {
+            point.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(57, 255, 20, 1)';
+            });
+            point.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'rgba(57, 255, 20, 0.7)';
+            });
+        });
+
+        // Audio Autoplay Fix
+        const audio = document.getElementById('background-audio');
+        audio.play().catch(() => {
+            document.body.addEventListener('click', () => {
+                audio.play();
+            }, { once: true });
+        });
+
+        window.addEventListener('load', animateOnScroll);
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
