@@ -530,7 +530,7 @@
 </head>
 <body>
     <!-- Background Music -->
-    <audio id="background-audio" loop>
+    <audio id="background-audio" loop autoplay>
         <source src="audio/song.mp3" type="audio/mp3">
         Your browser does not support the audio element.
     </audio>
@@ -599,11 +599,10 @@
         <div class="container">
             <h2 class="section-title">Experience The Adventure</h2>
             <div class="video-container">
-                <div class="placeholder-video">
-                    <div class="play-btn">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
+                <video id="adventure-video" width="100%" height="auto" controls>
+                    <source src="video/adventure.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     </section>
@@ -814,11 +813,24 @@
             });
         }
 
-        const playBtn = document.querySelector('.play-btn');
-        playBtn.addEventListener('click', function() {
-            alert('Video playback would start here in a complete implementation.');
-        });
+        // Video handling
+        const video = document.getElementById('adventure-video');
+        
+        // Audio handling with better autoplay
+        const audio = document.getElementById('background-audio');
+        
+        // Attempt to play audio immediately
+        const playAudio = () => {
+            audio.play().catch(error => {
+                console.log('Autoplay prevented:', error);
+                // Fallback: Play on first user interaction
+                document.body.addEventListener('click', () => {
+                    audio.play().catch(err => console.log('Audio play failed:', err));
+                }, { once: true });
+            });
+        };
 
+        // Map points interaction remains unchanged
         const mapPoints = document.querySelectorAll('.map-point');
         mapPoints.forEach(point => {
             point.addEventListener('mouseenter', function() {
@@ -829,16 +841,13 @@
             });
         });
 
-        // Audio Autoplay Fix
-        const audio = document.getElementById('background-audio');
-        audio.play().catch(() => {
-            document.body.addEventListener('click', () => {
-                audio.play();
-            }, { once: true });
+        // Event listeners
+        window.addEventListener('load', () => {
+            animateOnScroll();
+            playAudio();
         });
-
-        window.addEventListener('load', animateOnScroll);
         window.addEventListener('scroll', animateOnScroll);
+    </script>
     </script>
 </body>
 </html>
