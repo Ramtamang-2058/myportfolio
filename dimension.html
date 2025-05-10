@@ -3,305 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Explore original lyrics and poetry by [Your Name], blending technical creativity with artistic expression. Discover coding-inspired poems and songs.">
-    <meta name="keywords" content="poetry, lyrics, technical poetry, creative writing, coding poetry, [Your Name]">
-    <meta name="author" content="[Your Name]">
-    <!-- Open Graph Tags for Social Media -->
-    <meta property="og:title" content="Lyrics & Poetry Collection | [Your Name]">
-    <meta property="og:description" content="Discover [Your Name]'s unique blend of technical poetry and creative lyrics, where code meets art.">
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="description" content="Silent Echoes - A profound journey through poetry, lyrics, and philosophical reflections on silence, introspection, and the human experience.">
+    <meta name="keywords" content="poetry, philosophical poetry, introspective lyrics, silence poetry, mindfulness verse, contemplative writing, The Poet, creative expression">
+    <meta name="author" content="The Poet">
+    <!-- Rich Snippet Optimization -->
+    <meta property="og:title" content="Silent Echoes | Philosophical Poetry & Contemplative Lyrics">
+    <meta property="og:description" content="Immerse yourself in philosophical poetry and contemplative lyrics that explore the profound depths of silence and human introspection.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourwebsite.com">
-    <meta property="og:image" content="https://yourwebsite.com/og-image.jpg">
-    <!-- Twitter Card Tags -->
+    <meta property="og:url" content="https://silentechoes.com">
+    <meta property="og:image" content="https://silentechoes.com/images/silent-echoes-cover.jpg">
+    <!-- Twitter Card Optimization -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lyrics & Poetry Collection | [Your Name]">
-    <meta name="twitter:description" content="Explore [Your Name]'s coding-inspired poetry and lyrics.">
-    <meta name="twitter:image" content="https://yourwebsite.com/og-image.jpg">
-    <title>Lyrics & Poetry Collection | [Your Name]</title>
+    <meta name="twitter:title" content="Silent Echoes | Philosophical Poetry & Lyrics">
+    <meta name="twitter:description" content="Discover profound poetry and lyrics that explore the philosophical dimensions of silence and human consciousness.">
+    <meta name="twitter:image" content="https://silentechoes.com/images/silent-echoes-cover.jpg">
+    <title>Silent Echoes | Philosophical Poetry & Introspective Lyrics</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom styles for dark mode and animations */
-        .dark {
-            --bg-color: #1f2937;
-            --text-color: #e5e7eb;
-            --card-bg: #374151;
-            --border-color: #4b5563;
+        /* Custom typography and aesthetic enhancements */
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap');
+
+        :root {
+            --serif-font: 'Cormorant Garamond', serif;
+            --sans-font: 'Montserrat', sans-serif;
         }
+
+        body {
+            font-family: var(--sans-font);
+            line-height: 1.7;
+            letter-spacing: 0.01em;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: var(--serif-font);
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .poem-text {
+            font-family: var(--serif-font);
+            line-height: 1.8;
+            letter-spacing: 0.03em;
+            white-space: pre-wrap;
+        }
+
+        /* Theme-specific styles */
+        .light-theme {
+            --bg-primary: #f8f7f3;
+            --bg-secondary: #ffffff;
+            --text-primary: #252525;
+            --text-secondary: #4a4a4a;
+            --accent-primary: #546a7b;
+            --accent-secondary: #9cafa3;
+            --border-color: #e0ded8;
+        }
+
+        .dark-theme {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #e6e6e6;
+            --text-secondary: #b0b0b0;
+            --accent-primary: #8499a8;
+            --accent-secondary: #637d71;
+            --border-color: #2a2a2a;
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dark theme specific styles */
+        .dark-theme .card-hover:hover {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Fade-in animation */
         .fade-in {
-            animation: fadeIn 0.5s ease-in;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .lyrics-content {
-            transition: max-height 0.3s ease;
+
+        /* Animation delay cascade */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+
+        /* Custom styling for categories */
+        .category-tag {
+            transition: all 0.3s ease;
+        }
+
+        /* Poem content transition */
+        .poem-content {
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            overflow: hidden;
+        }
+
+        /* Theme transition */
+        body, .theme-transition {
+            transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
         }
     </style>
 </head>
-<body class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-    <div class="container mx-auto px-4 py-8">
-        <!-- Header -->
-        <header class="text-center border-b border-gray-200 dark:border-gray-600 pb-6 mb-8">
-            <h1 class="text-4xl font-bold mb-2">Lyrics & Poetry Collection</h1>
-            <p class="text-lg text-gray-600 dark:text-gray-400">Where Coding Meets Creativity</p>
-        </header>
 
-        <!-- Intro Section -->
-        <section class="max-w-2xl mx-auto text-center mb-12 fade-in">
-            <p class="text-lg">Welcome to my collection of original poetry and lyrics, where I blend my technical background with creative expression. Explore the intersection of code and art through my words.</p>
-        </section>
-
-        <!-- Thoughts Section -->
-        <section class="max-w-3xl mx-auto mb-12 fade-in">
-            <h2 class="text-2xl font-semibold mb-4">My Thoughts</h2>
-            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow">
-                <p class="mb-4">As a coder and a poet, I find inspiration in the logic of programming and the freedom of creative writing. Each piece in this collection reflects my journey of translating complex emotions into structured yet expressive forms, much like writing clean code. My goal is to create a space where technology and art coexist, sparking curiosity and connection.</p>
-                <p>Feel free to explore my work and share your thoughts—I'd love to hear how these pieces resonate with you!</p>
+<body class="light-theme bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <!-- Navigation -->
+    <nav class="border-b border-[var(--border-color)] theme-transition">
+        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center mb-4 md:mb-0">
+                <h1 class="text-3xl font-semibold tracking-wider">Silent Echoes</h1>
             </div>
-        </section>
-
-        <!-- Filter Buttons -->
-        <div class="flex justify-center flex-wrap gap-4 mb-8">
-            <button class="filter-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition active" data-filter="all">All</button>
-            <button class="filter-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition" data-filter="poetry">Poetry</button>
-            <button class="filter-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition" data-filter="lyrics">Lyrics</button>
-            <button class="filter-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition" data-filter="technical">Technical</button>
+            <div class="flex items-center space-x-6">
+                <a href="#poems" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition">Poems</a>
+                <a href="#lyrics" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition">Lyrics</a>
+                <a href="#about" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition">About</a>
+                <button id="theme-toggle" class="ml-2 p-2 rounded-full bg-[var(--accent-secondary)] bg-opacity-20 hover:bg-opacity-30 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 theme-icon-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 theme-icon-dark hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                </button>
+            </div>
         </div>
+    </nav>
 
-        <!-- Lyrics/Poetry Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lyrics-container">
-            <!-- Poem 1 -->
-            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="poetry technical">
-                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
-                    <h2 class="text-xl font-semibold">Digital Dreams</h2>
-                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>Technical Poetry</span>
-                        <span>March 2025</span>
+    <!-- Hero Section -->
+    <section class="py-20 px-4 bg-[var(--bg-secondary)] theme-transition">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h1 class="text-5xl md:text-6xl mb-6 leading-tight fade-in">Where Silence <span class="text-[var(--accent-primary)]">Speaks</span></h1>
+            <p class="text-xl md:text-2xl text-[var(--text-secondary)] mb-10 max-w-3xl mx-auto fade-in delay-100">
+                A philosophical journey through the quiet moments that shape our existence, captured in verse and melody.
+            </p>
+            <div class="flex justify-center space-x-4 fade-in delay-200">
+                <a href="#poems" class="px-8 py-3 bg-[var(--accent-primary)] text-white rounded-md hover:bg-opacity-90 transition">Explore Poems</a>
+                <a href="#about" class="px-8 py-3 border border-[var(--accent-primary)] text-[var(--accent-primary)] rounded-md hover:bg-[var(--accent-primary)] hover:bg-opacity-10 transition">About</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Statement -->
+    <section id="about" class="py-16 px-4 theme-transition">
+        <div class="container mx-auto max-w-4xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl mb-2 fade-in">The Philosophy of Silence</h2>
+                <div class="w-20 h-1 bg-[var(--accent-secondary)] mx-auto mb-8 fade-in delay-100"></div>
+            </div>
+            <div class="prose prose-lg mx-auto text-[var(--text-secondary)] fade-in delay-200">
+                <p class="mb-6">
+                    In a world that never stops, I've come to find my peace in the pauses. Silent Echoes is a collection of poetry and lyrics that dive deep into those moments between thoughts, where clarity often hides. Here, silence isn't emptiness—it's a place to reconnect, to feel, and to understand.
+                </p>
+                <p class="mb-6">
+                    Each piece is a raw exploration of stillness, crafted not just with words, but with the weight of emotions that only quiet can hold. They are the echoes of contemplation, reverberating through the chambers of consciousness.
+                </p>
+                <p>
+                    Take your time, explore these spaces with me, and let the echo of each verse find a place within you. I believe in the power of shared silence, and I'm here to hear your thoughts in the quiet places too.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Quote -->
+    <section class="py-16 px-4 bg-[var(--accent-primary)] text-white theme-transition">
+        <div class="container mx-auto max-w-4xl text-center">
+            <blockquote class="text-2xl md:text-3xl font-light italic fade-in">
+                "In silence, truth begins to bloom<br>
+                A flower born in quiet's womb"
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 px-4 theme-transition">
+        <div class="container mx-auto max-w-6xl">
+            <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in">
+                <button class="filter-btn category-tag px-5 py-2 rounded-full bg-[var(--accent-primary)] text-white" data-filter="all">All Writings</button>
+                <button class="filter-btn category-tag px-5 py-2 rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)] hover:text-white transition" data-filter="poetry">Poetry</button>
+                <button class="filter-btn category-tag px-5 py-2 rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)] hover:text-white transition" data-filter="lyrics">Lyrics</button>
+                <button class="filter-btn category-tag px-5 py-2 rounded-full border border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--accent-primary)] hover:text-white transition" data-filter="introspective">Introspective</button>
+            </div>
+
+            <!-- Poems and Lyrics Grid -->
+            <div id="poems" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 poem-grid">
+                <!-- Poem 1 -->
+                <article class="poem-card bg-[var(--bg-secondary)] rounded-lg overflow-hidden shadow-md card-hover theme-transition fade-in delay-100" data-category="poetry introspective">
+                    <div class="p-6 border-b border-[var(--border-color)]">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-[var(--accent-primary)] uppercase tracking-wider">Introspective Poetry</span>
+                            <span class="text-sm text-[var(--text-secondary)]">May 2025</span>
+                        </div>
+                        <h3 class="text-2xl mb-2">The Silent Symphony</h3>
                     </div>
-                </div>
-                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
-In silicon valleys of thought
-Where binary rivers flow
-I write my soul in code
-Function by function, line by line
+                    <div class="poem-content p-6 max-h-48 overflow-hidden">
+                        <p class="poem-text text-[var(--text-secondary)]">In the hush of dawn's first light
+Where shadows dance with quiet might
+I hear a symphony, soft and clear
+A melody only silence can hear
 
-A recursive dream of possibilities
-An algorithm of passion
-Debug my heart
-Compile my spirit
-
-In the digital dawn
-My poetry compiles without errors
-A perfect syntax of emotion
-Running in the terminal of life
-                </div>
-                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
-            </article>
-
-            <!-- Poem 2 -->
-            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="poetry technical">
-                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
-                    <h2 class="text-xl font-semibold">Recursive Love</h2>
-                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>Technical Poetry</span>
-                        <span>January 2025</span>
+No notes are played, no strings are strung
+Yet music flows from a wordless tongue
+Each pause a chord, each breath a beat
+In silence, my soul and stillness meet</p>
                     </div>
-                </div>
-                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
-function love() {
-  if (you.smile) {
-    my.heart++;
-  }
+                    <button class="expand-btn w-full py-3 text-[var(--accent-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)] hover:bg-opacity-10 transition">Read More</button>
+                </article>
 
-  while (stars.shine) {
-    thoughts.of(you);
-  }
-
-  do {
-    say("I love you");
-  } while (eternity);
-
-  return love();
-}
-                </div>
-                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
-            </article>
-
-            <!-- Poem 3 -->
-            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="poetry technical">
-                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
-                    <h2 class="text-xl font-semibold">System.out.println("Feelings")</h2>
-                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>Technical Poetry</span>
-                        <span>April 2025</span>
+                <!-- Poem 2 -->
+                <article class="poem-card bg-[var(--bg-secondary)] rounded-lg overflow-hidden shadow-md card-hover theme-transition fade-in delay-200" data-category="poetry introspective">
+                    <div class="p-6 border-b border-[var(--border-color)]">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-[var(--accent-primary)] uppercase tracking-wider">Introspective Poetry</span>
+                            <span class="text-sm text-[var(--text-secondary)]">April 2025</span>
+                        </div>
+                        <h3 class="text-2xl mb-2">Whispers of the Void</h3>
                     </div>
-                </div>
-                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
-I tried to catch my feelings in a try-catch block
-But emotions don't compile that way
-My heart throws exceptions
-That no logic can handle
+                    <div class="poem-content p-6 max-h-48 overflow-hidden">
+                        <p class="poem-text text-[var(--text-secondary)]">The void speaks in whispers low
+In spaces where no echoes go
+A language carved in quiet's grace
+A canvas vast, an empty space
 
-I'm debugging memories
-Breaking at every painful line
-Refactoring my thoughts
-To optimize for happiness
-
-If only love had documentation
-Or a Stack Overflow thread
-Some pseudocode to guide me
-Through this infinite loop of longing
-                </div>
-                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
-            </article>
-
-            <!-- Lyrics 1 -->
-            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="lyrics">
-                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
-                    <h2 class="text-xl font-semibold">Code & Rhythm</h2>
-                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>Song Lyrics</span>
-                        <span>February 2025</span>
+I listen with a heart undone
+To secrets shared by no one
+In silence, truth begins to bloom
+A flower born in quiet's womb</p>
                     </div>
-                </div>
-                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
-Verse 1:
-Typing in the darkness
-Guided by the screen light
-Logic is my canvas
-Creating through the night
+                    <button class="expand-btn w-full py-3 text-[var(--accent-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)] hover:bg-opacity-10 transition">Read More</button>
+                </article>
+
+                <!-- Poem 3 -->
+                <article class="poem-card bg-[var(--bg-secondary)] rounded-lg overflow-hidden shadow-md card-hover theme-transition fade-in delay-300" data-category="poetry">
+                    <div class="p-6 border-b border-[var(--border-color)]">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-[var(--accent-primary)] uppercase tracking-wider">Poetry</span>
+                            <span class="text-sm text-[var(--text-secondary)]">March 2025</span>
+                        </div>
+                        <h3 class="text-2xl mb-2">The Pause Between</h3>
+                    </div>
+                    <div class="poem-content p-6 max-h-48 overflow-hidden">
+                        <p class="poem-text text-[var(--text-secondary)]">Life is lived in moments loud
+In laughter, tears, and crowded sound
+But truth resides in pauses brief
+A silent balm for joy or grief
+
+Between the words, the heartbeats' rush
+There lies a sacred, quiet hush
+In that space, I find my core
+The self I am, forevermore</p>
+                    </div>
+                    <button class="expand-btn w-full py-3 text-[var(--accent-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)] hover:bg-opacity-10 transition">Read More</button>
+                </article>
+
+                <!-- Lyrics 1 -->
+                <article id="lyrics" class="poem-card bg-[var(--bg-secondary)] rounded-lg overflow-hidden shadow-md card-hover theme-transition fade-in delay-400" data-category="lyrics introspective">
+                    <div class="p-6 border-b border-[var(--border-color)]">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-[var(--accent-primary)] uppercase tracking-wider">Introspective Lyrics</span>
+                            <span class="text-sm text-[var(--text-secondary)]">February 2025</span>
+                        </div>
+                        <h3 class="text-2xl mb-2">Silent Waves</h3>
+                    </div>
+                    <div class="poem-content p-6 max-h-48 overflow-hidden">
+                        <p class="poem-text text-[var(--text-secondary)]">Verse 1:
+In the quiet of the night
+Where stars alone give light
+I sail on waves of silent dreams
+Where nothing's what it seems
 
 Chorus:
-Code and rhythm, ones and zeroes
-Digital life in stereo
-Building worlds with every line
-Making music in my mind
-
-Verse 2:
-Debug until the morning
-Syntax is my melody
-Lost within the problem
-Finding harmony
-                </div>
-                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
-            </article>
-
-            <!-- Lyrics 2 -->
-            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="lyrics">
-                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
-                    <h2 class="text-xl font-semibold">Hello World</h2>
-                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>Song Lyrics</span>
-                        <span>May 2025</span>
+Silent waves, carry me
+To a place where I am free
+In the stillness, I will soar
+Finding peace forevermore</p>
                     </div>
-                </div>
-                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
-Verse:
-First line of code I ever wrote
-Was just to say hello
-To a world that didn't know
-The journey had begun
+                    <button class="expand-btn w-full py-3 text-[var(--accent-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)] hover:bg-opacity-10 transition">Read More</button>
+                </article>
+
+                <!-- Lyrics 2 -->
+                <article class="poem-card bg-[var(--bg-secondary)] rounded-lg overflow-hidden shadow-md card-hover theme-transition fade-in delay-500" data-category="lyrics">
+                    <div class="p-6 border-b border-[var(--border-color)]">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-[var(--accent-primary)] uppercase tracking-wider">Song Lyrics</span>
+                            <span class="text-sm text-[var(--text-secondary)]">January 2025</span>
+                        </div>
+                        <h3 class="text-2xl mb-2">Hush of the Heart</h3>
+                    </div>
+                    <div class="poem-content p-6 max-h-48 overflow-hidden">
+                        <p class="poem-text text-[var(--text-secondary)]">Verse:
+When the world is screaming loud
+And chaos forms a crowd
+I close my eyes, I turn within
+To where the hush begins
 
 Pre-chorus:
-One function call
-That started it all
-The compiler of my soul
-Running endlessly
+No words, no sound, just me
+A quiet eternity
 
 Chorus:
-Hello, world, can you hear me?
-Through the network of my dreams
-Hello, world, can you feel me?
-I'm more than what I seem
-                </div>
-                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
-            </article>
-
-            <!-- Poem 4 -->
-            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="poetry">
-                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
-                    <h2 class="text-xl font-semibold">The Algorithm of Life</h2>
-                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
-                        <span>Poetry</span>
-                        <span>December 2024</span>
+Hush of the heart, set me free
+In silence, I can truly be
+No echoes, just a gentle spark
+Lighting up my silent dark</p>
                     </div>
-                </div>
-                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
-We are but variables
-In the universal program
-Assigned and reassigned
-As we flow through life's loops
+                    <button class="expand-btn w-full py-3 text-[var(--accent-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)] hover:bg-opacity-10 transition">Read More</button>
+                </article>
 
-Some constants remain
-Unchanging through iterations
-While others mutate
-With each passing function
+                <!-- Poem 4 -->
+                <article class="poem-card bg-[var(--bg-secondary)] rounded-lg overflow-hidden shadow-md card-hover theme-transition fade-in delay-500" data-category="poetry introspective">
+                    <div class="p-6 border-b border-[var(--border-color)]">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-[var(--accent-primary)] uppercase tracking-wider">Introspective Poetry</span>
+                            <span class="text-sm text-[var(--text-secondary)]">December 2024</span>
+                        </div>
+                        <h3 class="text-2xl mb-2">The Silent Mirror</h3>
+                    </div>
+                    <div class="poem-content p-6 max-h-48 overflow-hidden">
+                        <p class="poem-text text-[var(--text-secondary)]">In silence, I face the mirror clear
+No masks, no noise, just truth sincere
+My reflection speaks in wordless grace
+A quiet soul, a timeless face
 
-What compiler created us?
-What IDE holds our universe?
-I am both the programmer
-And the program being run
-                </div>
-                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
-            </article>
+Each wrinkle tells of silent days
+Each glance reveals my heart's soft maze
+In stillness, I am whole, complete
+The mirror and I, in silence meet</p>
+                    </div>
+                    <button class="expand-btn w-full py-3 text-[var(--accent-primary)] bg-[var(--bg-secondary)] hover:bg-[var(--accent-primary)] hover:bg-opacity-10 transition">Read More</button>
+                </article>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Theme Toggle Button -->
-    <button class="theme-toggle fixed bottom-4 right-4 w-12 h-12 bg-blue-500 dark:bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-600 dark:hover:bg-blue-700 transition" aria-label="Toggle dark/light mode">
-        <span class="sun-icon">☀️</span>
-        <span class="moon-icon hidden">🌙</span>
-    </button>
+    <!-- Newsletter Section -->
+    <section class="py-16 px-4 bg-[var(--bg-secondary)] border-t border-[var(--border-color)] theme-transition">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-3xl mb-4 fade-in">Join the Silent Journey</h2>
+            <p class="text-[var(--text-secondary)] mb-8 max-w-2xl mx-auto fade-in delay-100">
+                Receive new poems and contemplative writings directly in your inbox.
+                A quiet space amidst the digital noise.
+            </p>
+            <form class="max-w-md mx-auto fade-in delay-200">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-md border border-[var(--border-color)] bg-[var(--bg-primary)] text-[var(--text-primary)] placeholder-[var(--text-secondary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]" required>
+                    <button type="submit" class="px-6 py-3 bg-[var(--accent-primary)] text-white rounded-md hover:bg-opacity-90 transition">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-    <!-- JSON-LD Schema for SEO -->
+    <!-- Footer -->
+    <footer class="py-10 px-4 border-t border-[var(--border-color)] theme-transition">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h2 class="text-2xl mb-2">Silent Echoes</h2>
+                    <p class="text-[var(--text-secondary)]">Where quiet moments resonate.</p>
+                </div>
+                <div class="flex space-x-8">
+                    <a href="#" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition">Privacy</a>
+                    <a href="#" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition">Terms</a>
+                    <a href="#" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition">Contact</a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm text-[var(--text-secondary)]">
+                &copy; 2025 Silent Echoes: Ram Tamang. All poetry and lyrics are original works by The Poet.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Rich Structured Data for SEO -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        "name": "Lyrics & Poetry Collection | [Your Name]",
-        "description": "A collection of original poetry and lyrics by [Your Name], blending technical creativity with artistic expression.",
-        "url": "https://yourwebsite.com",
+        "@type": "CreativeWorkSeries",
+        "name": "Silent Echoes",
+        "description": "A collection of philosophical poetry and introspective lyrics exploring the depths of silence and human consciousness.",
+        "url": "https://silentechoes.com",
         "author": {
             "@type": "Person",
-            "name": "[Your Name]"
+            "name": "The Poet"
         },
-        "mainEntity": [
+        "keywords": "philosophical poetry, introspective lyrics, silence poetry, mindfulness verse, contemplative writing",
+        "hasPart": [
             {
-                "@type": "CreativeWork",
-                "name": "Digital Dreams",
-                "description": "A technical poem exploring the intersection of coding and emotion.",
-                "datePublished": "2025-03-01"
-            },
-            {
-                "@type": "CreativeWork",
-                "name": "Recursive Love",
-                "description": "A poem structured as code, expressing love through programming metaphors.",
-                "datePublished": "2025-01-01"
-            },
-            {
-                "@type": "CreativeWork",
-                "name": "System.out.println(\"Feelings\")",
-                "description": "A technical poem about the challenges of expressing emotions through code.",
-                "datePublished": "2025-04-01"
-            },
-            {
-                "@type": "CreativeWork",
-                "name": "Code & Rhythm",
-                "description": "Song lyrics that blend coding with musical creativity.",
-                "datePublished": "2025-02-01"
-            },
-            {
-                "@type": "CreativeWork",
-                "name": "Hello World",
-                "description": "Lyrics inspired by the classic programming phrase, exploring beginnings and dreams.",
+                "@type": "Poem",
+                "name": "The Silent Symphony",
+                "author": "The Poet",
                 "datePublished": "2025-05-01"
             },
             {
-                "@type": "CreativeWork",
-                "name": "The Algorithm of Life",
-                "description": "A philosophical poem comparing life to a universal program.",
+                "@type": "Poem",
+                "name": "Whispers of the Void",
+                "author": "The Poet",
+                "datePublished": "2025-04-01"
+            },
+            {
+                "@type": "Poem",
+                "name": "The Pause Between",
+                "author": "The Poet",
+                "datePublished": "2025-03-01"
+            },
+            {
+                "@type": "MusicComposition",
+                "name": "Silent Waves",
+                "author": "The Poet",
+                "datePublished": "2025-02-01",
+                "musicCompositionForm": "Song"
+            },
+            {
+                "@type": "MusicComposition",
+                "name": "Hush of the Heart",
+                "author": "The Poet",
+                "datePublished": "2025-01-01",
+                "musicCompositionForm": "Song"
+            },
+            {
+                "@type": "Poem",
+                "name": "The Silent Mirror",
+                "author": "The Poet",
                 "datePublished": "2024-12-01"
             }
         ]
@@ -309,57 +446,97 @@ And the program being run
     </script>
 
     <script>
-        // Expand/collapse lyrics content
-        document.querySelectorAll('.expand-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.previousElementSibling;
-                const isExpanded = content.classList.toggle('max-h-full');
-                content.classList.toggle('max-h-48');
-                button.textContent = isExpanded ? 'Read Less' : 'Read More';
-            });
-        });
+        // Wait for DOM content to be loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const lightIcon = document.querySelector('.theme-icon-light');
+            const darkIcon = document.querySelector('.theme-icon-dark');
+            const body = document.body;
 
-        // Filter functionality
-        document.querySelectorAll('.filter-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                const filter = button.getAttribute('data-filter');
-                document.querySelectorAll('.lyrics-card').forEach(card => {
-                    card.classList.add('fade-in');
-                    card.style.display = filter === 'all' || card.getAttribute('data-category').includes(filter) ? 'block' : 'none';
+            // Check for saved theme preference or use user preference
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                body.classList.remove('light-theme');
+                body.classList.add('dark-theme');
+                lightIcon.classList.add('hidden');
+                darkIcon.classList.remove('hidden');
+            }
+
+            // Theme toggle event
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('light-theme');
+                body.classList.toggle('dark-theme');
+                lightIcon.classList.toggle('hidden');
+                darkIcon.classList.toggle('hidden');
+
+                // Save theme preference
+                localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark' : 'light');
+            });
+
+            // Expand/collapse poem content
+            document.querySelectorAll('.expand-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const content = this.previousElementSibling;
+                    const isExpanded = content.style.maxHeight !== '1000px';
+
+                    if (isExpanded) {
+                        content.style.maxHeight = '1000px';
+                        content.style.opacity = '1';
+                        this.textContent = 'Read Less';
+                    } else {
+                        content.style.maxHeight = '12rem';
+                        this.textContent = 'Read More';
+                    }
                 });
             });
-        });
 
-        // Dark/Light mode toggle with localStorage
-        const themeToggle = document.querySelector('.theme-toggle');
-        const sunIcon = themeToggle.querySelector('.sun-icon');
-        const moonIcon = themeToggle.querySelector('.moon-icon');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
-            document.body.classList.add('dark');
-            sunIcon.classList.add('hidden');
-            moonIcon.classList.remove('hidden');
-        }
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark');
-            const isDark = document.body.classList.contains('dark');
-            sunIcon.classList.toggle('hidden', isDark);
-            moonIcon.classList.toggle('hidden', !isDark);
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        });
+            // Filter functionality
+            document.querySelectorAll('.filter-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button style
+                    document.querySelectorAll('.filter-btn').forEach(btn => {
+                        btn.classList.remove('bg-[var(--accent-primary)]', 'text-white');
+                        if (btn !== this) {
+                            btn.classList.add('border', 'border-[var(--border-color)]', 'text-[var(--text-secondary)]');
+                        }
+                    });
 
-        // Lazy load cards on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in');
-                    observer.unobserve(entry.target);
-                }
+                    this.classList.add('bg-[var(--accent-primary)]', 'text-white');
+                    this.classList.remove('border', 'border-[var(--border-color)]', 'text-[var(--text-secondary)]');
+
+                    // Filter cards
+                    const filter = this.getAttribute('data-filter');
+                    document.querySelectorAll('.poem-card').forEach(card => {
+                        const categories = card.getAttribute('data-category');
+
+                        if (filter === 'all' || categories.includes(filter)) {
+                            card.style.display = 'block';
+                            // Re-trigger fade animation
+                            card.classList.remove('fade-in');
+                            void card.offsetWidth; // Trigger reflow
+                            card.classList.add('fade-in');
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
             });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.lyrics-card').forEach(card => observer.observe(card));
+
+            // Intersection Observer for fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        });
     </script>
 </body>
 </html>
