@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore original lyrics and poetry by [Your Name], blending technical creativity with artistic expression. Discover coding-inspired poems and songs.">
+    <meta name="keywords" content="poetry, lyrics, technical poetry, creative writing, coding poetry, [Your Name]">
+    <meta name="author" content="[Your Name]">
+    <!-- Open Graph Tags for Social Media -->
+    <meta property="og:title" content="Lyrics & Poetry Collection | [Your Name]">
+    <meta property="og:description" content="Discover [Your Name]'s unique blend of technical poetry and creative lyrics, where code meets art.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/og-image.jpg">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Lyrics & Poetry Collection | [Your Name]">
+    <meta name="twitter:description" content="Explore [Your Name]'s coding-inspired poetry and lyrics.">
+    <meta name="twitter:image" content="https://yourwebsite.com/og-image.jpg">
+    <title>Lyrics & Poetry Collection | [Your Name]</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for dark mode and animations */
+        .dark {
+            --bg-color: #1f2937;
+            --text-color: #e5e7eb;
+            --card-bg: #374151;
+            --border-color: #4b5563;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .lyrics-content {
+            transition: max-height 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="text-center border-b border-gray-200 dark:border-gray-600 pb-6 mb-8">
+            <h1 class="text-4xl font-bold mb-2">Lyrics & Poetry Collection</h1>
+            <p class="text-lg text-gray-600 dark:text-gray-400">Where Coding Meets Creativity</p>
+        </header>
+
+        <!-- Intro Section -->
+        <section class="max-w-2xl mx-auto text-center mb-12 fade-in">
+            <p class="text-lg">Welcome to my collection of original poetry and lyrics, where I blend my technical background with creative expression. Explore the intersection of code and art through my words.</p>
+        </section>
+
+        <!-- Thoughts Section -->
+        <section class="max-w-3xl mx-auto mb-12 fade-in">
+            <h2 class="text-2xl font-semibold mb-4">My Thoughts</h2>
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg shadow">
+                <p class="mb-4">As a coder and a poet, I find inspiration in the logic of programming and the freedom of creative writing. Each piece in this collection reflects my journey of translating complex emotions into structured yet expressive forms, much like writing clean code. My goal is to create a space where technology and art coexist, sparking curiosity and connection.</p>
+                <p>Feel free to explore my work and share your thoughts—I'd love to hear how these pieces resonate with you!</p>
+            </div>
+        </section>
+
+        <!-- Filter Buttons -->
+        <div class="flex justify-center flex-wrap gap-4 mb-8">
+            <button class="filter-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition active" data-filter="all">All</button>
+            <button class="filter-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition" data-filter="poetry">Poetry</button>
+            <button class="filter-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition" data-filter="lyrics">Lyrics</button>
+            <button class="filter-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 hover:bg-blue-500 hover:text-white dark:hover:bg-blue-600 transition" data-filter="technical">Technical</button>
+        </div>
+
+        <!-- Lyrics/Poetry Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lyrics-container">
+            <!-- Poem 1 -->
+            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="poetry technical">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
+                    <h2 class="text-xl font-semibold">Digital Dreams</h2>
+                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span>Technical Poetry</span>
+                        <span>March 2025</span>
+                    </div>
+                </div>
+                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
+In silicon valleys of thought
+Where binary rivers flow
+I write my soul in code
+Function by function, line by line
+
+A recursive dream of possibilities
+An algorithm of passion
+Debug my heart
+Compile my spirit
+
+In the digital dawn
+My poetry compiles without errors
+A perfect syntax of emotion
+Running in the terminal of life
+                </div>
+                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
+            </article>
+
+            <!-- Poem 2 -->
+            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="poetry technical">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
+                    <h2 class="text-xl font-semibold">Recursive Love</h2>
+                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span>Technical Poetry</span>
+                        <span>January 2025</span>
+                    </div>
+                </div>
+                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
+function love() {
+  if (you.smile) {
+    my.heart++;
+  }
+
+  while (stars.shine) {
+    thoughts.of(you);
+  }
+
+  do {
+    say("I love you");
+  } while (eternity);
+
+  return love();
+}
+                </div>
+                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
+            </article>
+
+            <!-- Poem 3 -->
+            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="poetry technical">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
+                    <h2 class="text-xl font-semibold">System.out.println("Feelings")</h2>
+                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span>Technical Poetry</span>
+                        <span>April 2025</span>
+                    </div>
+                </div>
+                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
+I tried to catch my feelings in a try-catch block
+But emotions don't compile that way
+My heart throws exceptions
+That no logic can handle
+
+I'm debugging memories
+Breaking at every painful line
+Refactoring my thoughts
+To optimize for happiness
+
+If only love had documentation
+Or a Stack Overflow thread
+Some pseudocode to guide me
+Through this infinite loop of longing
+                </div>
+                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
+            </article>
+
+            <!-- Lyrics 1 -->
+            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="lyrics">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
+                    <h2 class="text-xl font-semibold">Code & Rhythm</h2>
+                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span>Song Lyrics</span>
+                        <span>February 2025</span>
+                    </div>
+                </div>
+                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
+Verse 1:
+Typing in the darkness
+Guided by the screen light
+Logic is my canvas
+Creating through the night
+
+Chorus:
+Code and rhythm, ones and zeroes
+Digital life in stereo
+Building worlds with every line
+Making music in my mind
+
+Verse 2:
+Debug until the morning
+Syntax is my melody
+Lost within the problem
+Finding harmony
+                </div>
+                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
+            </article>
+
+            <!-- Lyrics 2 -->
+            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="lyrics">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
+                    <h2 class="text-xl font-semibold">Hello World</h2>
+                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span>Song Lyrics</span>
+                        <span>May 2025</span>
+                    </div>
+                </div>
+                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
+Verse:
+First line of code I ever wrote
+Was just to say hello
+To a world that didn't know
+The journey had begun
+
+Pre-chorus:
+One function call
+That started it all
+The compiler of my soul
+Running endlessly
+
+Chorus:
+Hello, world, can you hear me?
+Through the network of my dreams
+Hello, world, can you feel me?
+I'm more than what I seem
+                </div>
+                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
+            </article>
+
+            <!-- Poem 4 -->
+            <article class="lyrics-card bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg shadow hover:shadow-lg transition transform hover:-translate-y-1 fade-in" data-category="poetry">
+                <div class="p-4 border-b border-gray-200 dark:border-gray-600">
+                    <h2 class="text-xl font-semibold">The Algorithm of Life</h2>
+                    <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                        <span>Poetry</span>
+                        <span>December 2024</span>
+                    </div>
+                </div>
+                <div class="lyrics-content p-4 max-h-48 overflow-hidden" style="white-space: pre-wrap;">
+We are but variables
+In the universal program
+Assigned and reassigned
+As we flow through life's loops
+
+Some constants remain
+Unchanging through iterations
+While others mutate
+With each passing function
+
+What compiler created us?
+What IDE holds our universe?
+I am both the programmer
+And the program being run
+                </div>
+                <button class="expand-btn w-full py-2 text-blue-500 dark:text-blue-400 border-t border-gray-200 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-600 transition">Read More</button>
+            </article>
+        </div>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle fixed bottom-4 right-4 w-12 h-12 bg-blue-500 dark:bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-600 dark:hover:bg-blue-700 transition" aria-label="Toggle dark/light mode">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon hidden">🌙</span>
+    </button>
+
+    <!-- JSON-LD Schema for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Lyrics & Poetry Collection | [Your Name]",
+        "description": "A collection of original poetry and lyrics by [Your Name], blending technical creativity with artistic expression.",
+        "url": "https://yourwebsite.com",
+        "author": {
+            "@type": "Person",
+            "name": "[Your Name]"
+        },
+        "mainEntity": [
+            {
+                "@type": "CreativeWork",
+                "name": "Digital Dreams",
+                "description": "A technical poem exploring the intersection of coding and emotion.",
+                "datePublished": "2025-03-01"
+            },
+            {
+                "@type": "CreativeWork",
+                "name": "Recursive Love",
+                "description": "A poem structured as code, expressing love through programming metaphors.",
+                "datePublished": "2025-01-01"
+            },
+            {
+                "@type": "CreativeWork",
+                "name": "System.out.println(\"Feelings\")",
+                "description": "A technical poem about the challenges of expressing emotions through code.",
+                "datePublished": "2025-04-01"
+            },
+            {
+                "@type": "CreativeWork",
+                "name": "Code & Rhythm",
+                "description": "Song lyrics that blend coding with musical creativity.",
+                "datePublished": "2025-02-01"
+            },
+            {
+                "@type": "CreativeWork",
+                "name": "Hello World",
+                "description": "Lyrics inspired by the classic programming phrase, exploring beginnings and dreams.",
+                "datePublished": "2025-05-01"
+            },
+            {
+                "@type": "CreativeWork",
+                "name": "The Algorithm of Life",
+                "description": "A philosophical poem comparing life to a universal program.",
+                "datePublished": "2024-12-01"
+            }
+        ]
+    }
+    </script>
+
+    <script>
+        // Expand/collapse lyrics content
+        document.querySelectorAll('.expand-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.previousElementSibling;
+                const isExpanded = content.classList.toggle('max-h-full');
+                content.classList.toggle('max-h-48');
+                button.textContent = isExpanded ? 'Read Less' : 'Read More';
+            });
+        });
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filter = button.getAttribute('data-filter');
+                document.querySelectorAll('.lyrics-card').forEach(card => {
+                    card.classList.add('fade-in');
+                    card.style.display = filter === 'all' || card.getAttribute('data-category').includes(filter) ? 'block' : 'none';
+                });
+            });
+        });
+
+        // Dark/Light mode toggle with localStorage
+        const themeToggle = document.querySelector('.theme-toggle');
+        const sunIcon = themeToggle.querySelector('.sun-icon');
+        const moonIcon = themeToggle.querySelector('.moon-icon');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
+            document.body.classList.add('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        }
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            sunIcon.classList.toggle('hidden', isDark);
+            moonIcon.classList.toggle('hidden', !isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Lazy load cards on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.lyrics-card').forEach(card => observer.observe(card));
+    </script>
+</body>
+</html>
