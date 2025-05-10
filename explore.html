@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover magical worlds and embark on extraordinary adventures through ancient forests, prehistoric landscapes, and enchanted realms.">
+    <meta name="keywords" content="adventure, magical worlds, fantasy, exploration">
+    <meta name="author" content="Adventure Explorer">
     <title>Explore Adventures</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -68,6 +71,75 @@
         .nav-item a.active {
             background: #39ff14;
             color: #000000;
+        }
+
+        /* Shining Blue Fire Effect for My Silent World */
+        .nav-item.silent-world {
+            position: relative;
+        }
+
+        .nav-item.silent-world a {
+            position: relative;
+            z-index: 2;
+            color: #00d4ff;
+            border: 2px solid transparent;
+            animation: glowBorder 2s infinite ease-in-out;
+        }
+
+        .nav-item.silent-world::before,
+        .nav-item.silent-world::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #00d4ff;
+            border-radius: 50%;
+            opacity: 0.7;
+            z-index: 1;
+            animation: orbit 3s infinite linear;
+        }
+
+        .nav-item.silent-world::before {
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0s;
+        }
+
+        .nav-item.silent-world::after {
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 1.5s;
+        }
+
+        @keyframes glowBorder {
+            0% {
+                box-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff;
+                border-color: rgba(0, 212, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 15px #00d4ff, 0 0 20px #00d4ff;
+                border-color: rgba(0, 212, 255, 1);
+            }
+            100% {
+                box-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff;
+                border-color: rgba(0, 212, 255, 0.5);
+            }
+        }
+
+        @keyframes orbit {
+            0% {
+                transform: translateX(-50%) translateY(0) rotate(0deg) translateX(20px);
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) translateY(0) rotate(360deg) translateX(20px);
+                opacity: 0.7;
+            }
         }
 
         .hero {
@@ -512,6 +584,7 @@
         @media (max-width: 992px) {
             .hero-title { font-size: 3rem; }
             .section-title { font-size: 2.5rem; }
+            .nav-wrapper { gap: 1.5rem; }
         }
 
         @media (max-width: 768px) {
@@ -520,11 +593,15 @@
             .section-title { font-size: 2rem; }
             .world-card { height: 400px; }
             .creature-image { height: 200px; }
+            .nav-wrapper { flex-wrap: wrap; gap: 1rem; }
         }
 
         @media (max-width: 576px) {
             .hero-title { font-size: 2rem; }
             .worlds-container, .creatures-container, .spells-container { grid-template-columns: 1fr; }
+            .nav-wrapper { flex-direction: column; align-items: center; }
+            .nav-item.silent-world::before,
+            .nav-item.silent-world::after { display: none; } /* Hide orbiting particles on small screens */
         }
     </style>
 </head>
@@ -546,6 +623,7 @@
                     <div class="nav-item"><a href="index.html#achievements">Achievements</a></div>
                     <div class="nav-item"><a href="index.html#contact">Contact</a></div>
                     <div class="nav-item"><a href="#" class="active">Explore</a></div>
+                    <div class="nav-item silent-world"><a href="my-silent-world.html">My Silent World</a></div>
                 </div>
             </nav>
         </div>
@@ -815,10 +893,10 @@
 
         // Video handling
         const video = document.getElementById('adventure-video');
-        
+
         // Audio handling with better autoplay
         const audio = document.getElementById('background-audio');
-        
+
         // Attempt to play audio immediately
         const playAudio = () => {
             audio.play().catch(error => {
@@ -847,7 +925,6 @@
             playAudio();
         });
         window.addEventListener('scroll', animateOnScroll);
-    </script>
     </script>
 </body>
 </html>
