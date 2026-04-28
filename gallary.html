@@ -3,1013 +3,629 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Gallery | My Portfolio</title>
+    <meta name="description" content="Ram Tamang's Gallery — moments from life in Nepal."/>
+    <title>Gallery — Ram Tamang</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-            font-family: 'Inter', sans-serif;
+        :root {
+            --bg: #0d1117;
+            --bg2: #161b22;
+            --bg3: #21262d;
+            --blue: #58a6ff;
+            --green: #3fb950;
+            --text: #e6edf3;
+            --text2: #8b949e;
+            --muted: #6e7681;
+            --border: #30363d;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            background: #ffffff;
-            color: #1a1a1a;
-            line-height: 1.6;
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
         }
 
-        /* Header and Navigation */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+        /* NAV */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+            position: fixed; top: 0; width: 100%;
+            z-index: 100;
+            background: rgba(13,17,23,0.96);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 0;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .nav-wrap {
+            max-width: 1200px; margin: 0 auto;
             padding: 0 2rem;
-            position: relative;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem; color: var(--text); text-decoration: none;
+        }
+        .nav-logo .g { color: var(--green); }
+
+        .nav-links { display: flex; gap: 0.2rem; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text2); text-decoration: none;
+            font-size: 0.87rem; font-weight: 500;
+            padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--bg3); }
+        .nav-links .btn { color: var(--bg) !important; background: var(--blue); font-weight: 600; }
+        .nav-links .btn:hover { background: #79b8ff; }
+
+        .hamburger { display: none; cursor: pointer; color: var(--text); font-size: 1.2rem; }
+
+        /* PAGE HERO */
+        .page-hero {
+            padding: 7.5rem 0 4rem;
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            text-align: center;
         }
 
-        .nav-wrapper {
-            display: flex;
-            gap: 3rem;
+        .page-hero .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; color: var(--blue);
+            text-transform: uppercase; letter-spacing: 2.5px;
+            margin-bottom: 0.6rem;
         }
 
-        .nav-item a {
-            text-decoration: none;
-            color: #1a1a1a;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
+        .page-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 0.75rem; }
+
+        .page-hero p { color: var(--text2); font-size: 1rem; max-width: 500px; margin: 0 auto 1.5rem; }
+
+        /* FILTER TABS */
+        .filter-bar {
+            display: flex; justify-content: center; gap: 0.5rem;
+            padding: 2rem 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.4rem 1.1rem;
             border-radius: 20px;
-            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text2);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.83rem; font-weight: 500;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
+        .filter-btn.active { background: var(--blue); border-color: var(--blue); color: var(--bg); }
+
+        /* GALLERY GRID */
+        .gallery-wrap {
+            max-width: 1400px; margin: 0 auto;
+            padding: 2rem 2rem 4rem;
         }
 
-        .nav-item a:hover {
-            background: #1a1a1a;
-            color: #ffffff;
+        .gallery-grid {
+            columns: 4 280px;
+            column-gap: 1rem;
         }
 
-        .nav-item a.active {
-            background: #1a1a1a;
-            color: #ffffff;
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #1a1a1a;
-        }
-
-        /* Gallery Section */
-        .gallery-section {
-            position: relative;
-            min-height: 100vh;
-            padding-top: 80px;
+        .g-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            border-radius: 10px;
             overflow: hidden;
-            display: flex;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .g-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+
+        .g-item img,
+        .g-item video {
+            width: 100%;
+            display: block;
+            transition: filter 0.3s ease;
+        }
+
+        .g-item:hover img,
+        .g-item:hover video { filter: brightness(0.75); }
+
+        .g-overlay {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+            color: #fff; font-size: 1.8rem;
+        }
+        .g-item:hover .g-overlay { opacity: 1; }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.92);
+            z-index: 9999;
             align-items: center;
             justify-content: center;
         }
+        .lightbox.open { display: flex; }
 
-        .gallery-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .gallery-background img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.5);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 2;
-        }
-
-        .gallery-content {
+        .lb-inner {
             position: relative;
-            z-index: 3;
-            width: 100%;
-            padding: 4rem 0;
+            max-width: 90vw;
+            max-height: 90vh;
         }
 
-        .gallery-header {
-            text-align: center;
-            margin-bottom: 3rem;
-            color: #ffffff;
+        .lb-inner img,
+        .lb-inner video {
+            max-width: 90vw;
+            max-height: 90vh;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            display: block;
         }
 
-        .gallery-header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .lb-close {
+            position: fixed; top: 1.5rem; right: 1.5rem;
+            width: 42px; height: 42px;
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--text); font-size: 1.1rem;
+            transition: all 0.2s;
         }
+        .lb-close:hover { background: var(--bg3); color: var(--blue); }
 
-        .gallery-header p {
-            font-size: 1.2rem;
-            color: #dddddd;
-            max-width: 700px;
-            margin: 0 auto;
+        .lb-prev, .lb-next {
+            position: fixed; top: 50%; transform: translateY(-50%);
+            width: 46px; height: 46px;
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; color: var(--text); font-size: 1rem;
+            transition: all 0.2s;
         }
+        .lb-prev { left: 1.5rem; }
+        .lb-next { right: 1.5rem; }
+        .lb-prev:hover, .lb-next:hover { background: var(--blue); border-color: var(--blue); color: var(--bg); }
 
-        /* Futuristic Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            padding: 0 2rem;
-            margin-top: 1rem; /* Small default gap for all sizes */
-        }
-
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover .gallery-image {
-            transform: scale(1.05);
-        }
-
-        .gallery-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
-            color: #ffffff;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover .gallery-info {
-            transform: translateY(0);
-        }
-
-        .gallery-info h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .gallery-info p {
-            font-size: 1rem;
-            color: #dddddd;
-        }
-
-        .gallery-info a {
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 0.5rem;
-            display: inline-block;
-            transition: color 0.3s ease;
-        }
-
-        .gallery-info a:hover {
-            color: #cccccc;
-        }
-
-        /* Footer */
+        /* FOOTER */
         footer {
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 3rem 0;
-            text-align: center;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
         }
-
-        .social-links {
-            margin-bottom: 1.5rem;
+        .foot-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem;
         }
-
-        .social-links a {
-            color: #ffffff;
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: all 0.3s ease;
+        .foot-text { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); }
+        .foot-text .g { color: var(--green); }
+        .socials { display: flex; gap: 0.5rem; }
+        .socials a {
+            width: 34px; height: 34px;
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 7px; display: flex; align-items: center; justify-content: center;
+            color: var(--text2); font-size: 0.85rem; text-decoration: none;
+            transition: all 0.2s;
         }
+        .socials a:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-3px); }
 
-        .social-links a:hover {
-            color: #cccccc;
-        }
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.55s ease; }
+        .reveal.on { opacity: 1; transform: translateY(0); }
 
-        /* Responsive Styles */
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .mobile-toggle {
-                display: block;
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(13,17,23,0.98);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem 2rem; gap: 0.5rem;
             }
-
-            nav {
-                justify-content: space-between;
-            }
-
-            .nav-wrapper {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(255, 255, 255, 0.95);
-                flex-direction: column;
-                padding: 1rem 0;
-                transform: scaleY(0);
-                transform-origin: top;
-                transition: all 0.3s ease;
-                backdrop-filter: blur(10px);
-            }
-
-            .nav-wrapper.active {
-                transform: scaleY(1);
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
-
-            .gallery-image {
-                height: 300px;
-            }
-
-            .gallery-header h1 {
-                font-size: 2.5rem;
-            }
+            .hamburger { display: block; }
+            .gallery-grid { columns: 2 160px; }
         }
 
-        @media (min-width: 769px) {
-            .gallery-header {
-                margin-bottom: 5rem; /* Increased gap on desktop */
-            }
-        }
-
-        @media (max-width: 576px) {
-            .gallery-header h1 {
-                font-size: 2rem;
-            }
-
-            .gallery-header p {
-                font-size: 1rem;
-            }
-
-            .gallery-image {
-                height: 250px;
-            }
-        }
-
-        /* Animation */
-        .fade-in {
-            animation: fadeIn 1.5s ease forwards;
-            opacity: 0;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
+        @media (max-width: 480px) {
+            .gallery-grid { columns: 1; }
         }
     </style>
 </head>
 <body>
-<!-- Header -->
+
+<!-- NAV -->
 <header>
-    <div class="container">
-        <nav>
-            <div class="mobile-toggle"><i class="fas fa-bars"></i></div>
-            <div class="nav-wrapper">
-                <div class="nav-item"><a href="index.html">Home</a></div>
-                <div class="nav-item"><a href="#projects">Projects</a></div>
-                <div class="nav-item active"><a href="#">Gallery</a></div>
-                <div class="nav-item"><a href="#achievements">Achievements</a></div>
-                <div class="nav-item"><a href="#contact">Contact</a></div>
-            </div>
-        </nav>
+    <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">ram<span class="g">@</span>tamang<span class="g">:~$</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="gallary.html" class="active">Gallery</a></li>
+            <li><a href="dimension.html">Poetry</a></li>
+            <li><a href="index.html#contact" class="btn">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
     </div>
 </header>
 
-<!-- Gallery Section -->
-<section class="gallery-section">
-    <div class="gallery-background">
-        <img src="images/me11.jpg" style="height: 50rem" alt="Gallery Background">
-                <img src="images/me11.jpg" alt="Gallery Background">
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <div class="label">// gallery</div>
+    <h1>Frames from My World</h1>
+    <p>Moments, places, and people captured along the way — life in Nepal and beyond.</p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="photo">Photos</button>
+    <button class="filter-btn" data-filter="video">Videos</button>
+</div>
+
+<!-- GALLERY -->
+<div class="gallery-wrap">
+    <div class="gallery-grid" id="gallery">
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me11.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me10.png" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me3.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me1.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me4.png" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me01.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me03.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me04.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me05.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me06.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me07.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me08.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me11.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me12.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/me13.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/001.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/002.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/003.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/004.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/005.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/007.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/008.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/009.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/012.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/014.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/015.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/016.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/017.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/018.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/021.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/024.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/025.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/026.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/029.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/031.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/033.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/1.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/2.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/3.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/9.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/11.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/12.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/13.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/14.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/15.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/n1.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/n2.jpeg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/n4.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="photo">
+            <img src="images/wallpapersden.com_nepal-mountain_wxl.jpg" alt="" loading="lazy">
+            <div class="g-overlay"><i class="fas fa-expand"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="video">
+            <video autoplay muted loop playsinline>
+                <source src="images/022.mp4" type="video/mp4">
+            </video>
+            <div class="g-overlay"><i class="fas fa-play"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="video">
+            <video autoplay muted loop playsinline>
+                <source src="images/18.mp4" type="video/mp4">
+            </video>
+            <div class="g-overlay"><i class="fas fa-play"></i></div>
+        </div>
+
+        <div class="g-item reveal" data-type="video">
+            <video autoplay muted loop playsinline>
+                <source src="images/17.mp4" type="video/mp4">
+            </video>
+            <div class="g-overlay"><i class="fas fa-play"></i></div>
+        </div>
 
     </div>
-    <div class="gallery-overlay"></div>
-    <div class="container gallery-content">
-        <div class="gallery-header fade-in">
-            <h1>Explore My Gallery</h1>
-            <p>A futuristic collection of my creative works, showcasing innovation and imagination.</p>
-        </div>
-        <br><br>
-        <br>
-        <br><br>
-        <br>
+</div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <div class="lb-close" id="lbClose"><i class="fas fa-times"></i></div>
+    <div class="lb-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></div>
+    <div class="lb-inner" id="lbInner"></div>
+    <div class="lb-next" id="lbNext"><i class="fas fa-chevron-right"></i></div>
+</div>
 
-        <div class="gallery-grid">
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me11.jpg" alt="Gallery Item 1">
-                <div class="gallery-info">
-                    <h3>Cyber Horizon</h3>
-                    <p>A digital landscape inspired by sci-fi aesthetics.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me10.png" alt="Gallery Item 1">
-                <div class="gallery-info">
-                    <h3>Cyber Horizon</h3>
-                    <p>A digital landscape inspired by sci-fi aesthetics.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/1.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me10.jpeg" alt="Gallery Item 4">
-                <div class="gallery-info">
-                    <h3>Stellar Interface</h3>
-                    <p>A sleek dashboard for space exploration.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me12.jpeg" alt="Gallery Item 5">
-                <div class="gallery-info">
-                    <h3>Digital Odyssey</h3>
-                    <p>Exploration of 3D web design.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me11.jpeg" alt="Gallery Item 6">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <!-- Gallery Item 001 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/001.jpeg" alt="Gallery Item 1">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 002 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/002.jpeg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 003 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/003.jpeg" alt="Gallery Item 3">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 004 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/50.png" alt="Gallery Item 4">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 005 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/005.jpeg" alt="Gallery Item 5">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 006 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/006.jpeg" alt="Gallery Item 6">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 007 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/007.jpeg" alt="Gallery Item 7">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 008 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/008.jpeg" alt="Gallery Item 8">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 009 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/009.jpeg" alt="Gallery Item 9">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 010 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/010.jpeg" alt="Gallery Item 10">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 011 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/011.jpeg" alt="Gallery Item 11">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 012 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/012.jpeg" alt="Gallery Item 12">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 014 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/014.jpeg" alt="Gallery Item 14">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 015 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/015.jpeg" alt="Gallery Item 15">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 016 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/016.jpeg" alt="Gallery Item 16">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 017 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/017.jpeg" alt="Gallery Item 17">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 018 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/018.jpeg" alt="Gallery Item 18">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 020 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/020.jpeg" alt="Gallery Item 20">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-
-
-            <!-- Gallery Item 022 (Video) -->
-            <div class="gallery-item fade-in">
-                <video class="gallery-image" autoplay muted>
-                    <source src="images/022.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 023 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/023.jpeg" alt="Gallery Item 23">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 024 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/024.jpeg" alt="Gallery Item 24">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 025 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/025.jpeg" alt="Gallery Item 25">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 026 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/026.jpeg" alt="Gallery Item 26">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 027 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/027.jpeg" alt="Gallery Item 27">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 028 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/028.jpeg" alt="Gallery Item 28">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 029 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/029.jpeg" alt="Gallery Item 29">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 030 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/030.jpeg" alt="Gallery Item 30">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 031 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/031.jpeg" alt="Gallery Item 31">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 032 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/032.jpeg" alt="Gallery Item 32">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 033 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/033.jpeg" alt="Gallery Item 33">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <!-- Gallery Item 034 -->
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/034.jpeg" alt="Gallery Item 34">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/9.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/10.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/09.png" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="gallery-item fade-in">
-                <video class="gallery-image" autoplay muted loop>
-                    <source src="images/18.mp4" type="video/mp4">
-                </video>
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/6.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/5.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/4.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/3.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/2.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me9.jpg" alt="Gallery Item 3">
-                <div class="gallery-info">
-                    <h3>Quantum Grid</h3>
-                    <p>Interactive grid system for futuristic apps.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me01.jpeg" alt="Gallery Item 4">
-                <div class="gallery-info">
-                    <h3>Stellar Interface</h3>
-                    <p>A sleek dashboard for space exploration.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me03.jpeg" alt="Gallery Item 5">
-                <div class="gallery-info">
-                    <h3>Digital Odyssey</h3>
-                    <p>Exploration of 3D web design.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me02.jpeg" alt="Gallery Item 6">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me06.jpeg" alt="Gallery Item 4">
-                <div class="gallery-info">
-                    <h3>Stellar Interface</h3>
-                    <p>A sleek dashboard for space exploration.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me05.jpeg" alt="Gallery Item 5">
-                <div class="gallery-info">
-                    <h3>Digital Odyssey</h3>
-                    <p>Exploration of 3D web design.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/2.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/4.jpg" alt="Gallery Item 6">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me09.jpeg" alt="Gallery Item 4">
-                <div class="gallery-info">
-                    <h3>Stellar Interface</h3>
-                    <p>A sleek dashboard for space exploration.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me08.jpeg" alt="Gallery Item 5">
-                <div class="gallery-info">
-                    <h3>Digital Odyssey</h3>
-                    <p>Exploration of 3D web design.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me07.jpeg" alt="Gallery Item 6">
-                <div class="gallery-info">
-                    <h3>Futuristic Portal</h3>
-                    <p>A gateway to immersive experiences.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/3.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-
-            <div class="gallery-item fade-in">
-                <video class="gallery-image" autoplay muted loop>
-                    <source src="images/17.mp4" type="video/mp4">
-                </video>
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/16.jpeg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/14.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/15.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me12.jpeg" alt="Gallery Item 5">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/me11.jpeg" alt="Gallery Item 6">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/7.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-            <div class="gallery-item fade-in">
-                <img class="gallery-image" src="images/8.jpg" alt="Gallery Item 2">
-                <div class="gallery-info">
-                    <h3>Neon Pulse</h3>
-                    <p>Vibrant UI design with neon accents.</p>
-                    <a href="#">View Details</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
+<!-- FOOTER -->
 <footer>
-    <div class="container">
-        <div class="social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
+    <div class="foot-inner">
+        <p class="foot-text">// <span class="g">gallery</span> · Ram Tamang</p>
+        <div class="socials">
+            <a href="https://github.com/Ramtamang-2058" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-        <p>© 2025 My Portfolio. All Rights Reserved.</p>
     </div>
 </footer>
 
 <script>
-    // Mobile Navigation Toggle
-    const toggle = document.querySelector('.mobile-toggle');
-    const nav = document.querySelector('.nav-wrapper');
-    toggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
+    // Mobile nav
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
     });
 
-    // Scroll Animation
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-            }
-        });
-    }, {threshold: 0.1});
+    // Reveal
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-    document.querySelectorAll('.gallery-item, .gallery-header').forEach(item => {
-        item.classList.remove('fade-in');
-        observer.observe(item);
+    // Filter
+    const items = Array.from(document.querySelectorAll('.g-item'));
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            items.forEach(item => {
+                item.style.display = (f === 'all' || item.dataset.type === f) ? 'block' : 'none';
+            });
+        });
     });
 
-    // Active Navigation Highlight (optional, adjust hrefs if linking to portfolio page)
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-item a');
+    // Lightbox (photos only)
+    const photoItems = items.filter(i => i.dataset.type === 'photo');
+    let current = 0;
+    const lb = document.getElementById('lightbox');
+    const lbInner = document.getElementById('lbInner');
 
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
+    function openLb(idx) {
+        current = idx;
+        const src = photoItems[idx].querySelector('img').src;
+        lbInner.innerHTML = `<img src="${src}" alt="">`;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
 
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').substring(1) === current) {
-                item.classList.add('active');
-            }
-        });
+    function closeLb() {
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    photoItems.forEach((item, i) => {
+        item.addEventListener('click', () => openLb(i));
+    });
+
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    document.getElementById('lbPrev').addEventListener('click', () => openLb((current - 1 + photoItems.length) % photoItems.length));
+    document.getElementById('lbNext').addEventListener('click', () => openLb((current + 1) % photoItems.length));
+
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+
+    document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('open')) return;
+        if (e.key === 'Escape') closeLb();
+        if (e.key === 'ArrowLeft') openLb((current - 1 + photoItems.length) % photoItems.length);
+        if (e.key === 'ArrowRight') openLb((current + 1) % photoItems.length);
     });
 </script>
 </body>

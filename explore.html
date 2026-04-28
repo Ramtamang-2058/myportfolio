@@ -3,928 +3,575 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover magical worlds and embark on extraordinary adventures through ancient forests, prehistoric landscapes, and enchanted realms.">
-    <meta name="keywords" content="adventure, magical worlds, fantasy, exploration">
-    <meta name="author" content="Adventure Explorer">
-    <title>Explore Adventures</title>
+    <meta name="description" content="Adventures beyond the code — Ram Tamang explores Nepal's mountains and magical worlds.">
+    <title>Adventures — Ram Tamang</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
+        :root {
+            --bg: #0d1117;
+            --bg2: #161b22;
+            --bg3: #21262d;
+            --blue: #58a6ff;
+            --green: #3fb950;
+            --orange: #f0883e;
+            --text: #e6edf3;
+            --text2: #8b949e;
+            --muted: #6e7681;
+            --border: #30363d;
         }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-            line-height: 1.6;
+            font-family: 'Space Grotesk', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             overflow-x: hidden;
         }
 
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+        /* NAV */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+            position: fixed; top: 0; width: 100%;
+            z-index: 100;
+            background: rgba(13,17,23,0.96);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0.9rem 0;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            position: relative;
+        .nav-wrap {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        nav {
-            display: flex;
-            justify-content: center;
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem; color: var(--text); text-decoration: none;
+        }
+        .nav-logo .g { color: var(--green); }
+
+        .nav-links { display: flex; gap: 0.2rem; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text2); text-decoration: none;
+            font-size: 0.87rem; font-weight: 500;
+            padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--bg3); }
+        .nav-links .btn { color: var(--bg) !important; background: var(--blue); font-weight: 600; }
+        .nav-links .btn:hover { background: #79b8ff; }
+        .hamburger { display: none; cursor: pointer; color: var(--text); font-size: 1.2rem; }
+
+        /* HERO */
+        .explore-hero {
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            position: relative; overflow: hidden;
+            padding: 7rem 2rem 5rem;
         }
 
-        .nav-wrapper {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .nav-item a {
-            text-decoration: none;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-item a:hover {
-            background: #39ff14;
-            color: #000000;
-        }
-
-        .nav-item a.active {
-            background: #39ff14;
-            color: #000000;
-        }
-
-        /* Shining Blue Fire Effect for My Silent World */
-        .nav-item.silent-world {
-            position: relative;
-        }
-
-        .nav-item.silent-world a {
-            position: relative;
-            z-index: 2;
-            color: #00d4ff;
-            border: 2px solid transparent;
-            animation: glowBorder 2s infinite ease-in-out;
-        }
-
-        .nav-item.silent-world::before,
-        .nav-item.silent-world::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: #00d4ff;
-            border-radius: 50%;
-            opacity: 0.7;
-            z-index: 1;
-            animation: orbit 3s infinite linear;
-        }
-
-        .nav-item.silent-world::before {
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation-delay: 0s;
-        }
-
-        .nav-item.silent-world::after {
-            bottom: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation-delay: 1.5s;
-        }
-
-        @keyframes glowBorder {
-            0% {
-                box-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff;
-                border-color: rgba(0, 212, 255, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 15px #00d4ff, 0 0 20px #00d4ff;
-                border-color: rgba(0, 212, 255, 1);
-            }
-            100% {
-                box-shadow: 0 0 5px #00d4ff, 0 0 10px #00d4ff;
-                border-color: rgba(0, 212, 255, 0.5);
-            }
-        }
-
-        @keyframes orbit {
-            0% {
-                transform: translateX(-50%) translateY(0) rotate(0deg) translateX(20px);
-                opacity: 0.7;
-            }
-            50% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(-50%) translateY(0) rotate(360deg) translateX(20px);
-                opacity: 0.7;
-            }
-        }
-
-        .hero {
-            height: 100vh;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
+        .explore-hero-bg {
+            position: absolute; inset: 0;
             background: url('images/wallpapersden.com_nepal-mountain_wxl.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            filter: brightness(0.2);
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+        .explore-hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to bottom, rgba(13,17,23,0.3) 0%, rgba(13,17,23,0.7) 100%);
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-        }
+        .explore-hero-inner { position: relative; z-index: 2; max-width: 750px; }
 
-        .hero-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 4rem;
-            font-weight: 700;
+        .explore-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; color: var(--orange);
+            text-transform: uppercase; letter-spacing: 2.5px;
             margin-bottom: 1rem;
-            text-shadow: 0 0 10px rgba(57, 255, 20, 0.7);
-            animation: glow 2s infinite alternate;
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        .explore-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700; line-height: 1.1;
+            margin-bottom: 1.25rem;
         }
 
-        .explore-btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: #39ff14;
-            color: #000000;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.7);
+        .explore-hero h1 span { color: var(--orange); }
+
+        .explore-hero p {
+            font-size: 1.1rem; color: var(--text2);
+            line-height: 1.8; margin-bottom: 2.5rem;
         }
 
-        .explore-btn:hover {
-            background: #ffffff;
-            transform: translateY(-5px);
-            box-shadow: 0 0 30px rgba(57, 255, 20, 1);
-        }
-
-        .worlds-section {
-            padding: 8rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 4rem;
-            font-weight: 700;
-            position: relative;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
+        .explore-scroll {
+            position: absolute; bottom: 2rem; left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: #39ff14;
+            z-index: 2; color: var(--muted);
+            font-size: 0.75rem;
+            display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+            animation: bob 2.5s ease-in-out infinite;
         }
 
-        .worlds-container {
+        @keyframes bob {
+            0%,100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
+        }
+
+        /* SHARED */
+        .c { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 5.5rem 0; }
+
+        .s-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem; color: var(--orange);
+            text-transform: uppercase; letter-spacing: 2.5px;
+            margin-bottom: 0.6rem;
+        }
+
+        .s-title { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; margin-bottom: 0.75rem; }
+        .s-sub { color: var(--text2); font-size: 1rem; max-width: 560px; }
+        .s-head { margin-bottom: 3.5rem; }
+
+        /* WORLDS */
+        #worlds { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+        .worlds-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.25rem;
         }
 
         .world-card {
-            position: relative;
-            height: 500px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.5s ease;
+            position: relative; height: 420px;
+            border-radius: 12px; overflow: hidden;
+            border: 1px solid var(--border);
+            cursor: pointer; transition: all 0.4s;
         }
+        .world-card:hover { transform: translateY(-6px); box-shadow: 0 24px 48px rgba(0,0,0,0.6); }
 
-        .world-card:hover {
-            transform: translateY(-10px);
+        .world-card img {
+            width: 100%; height: 100%;
+            object-fit: cover; transition: transform 0.6s ease;
         }
-
-        .world-image {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            transition: transform 1s ease;
-        }
-
-        .world-card:hover .world-image {
-            transform: scale(1.1);
-        }
+        .world-card:hover img { transform: scale(1.07); }
 
         .world-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+            position: absolute; bottom: 0; left: 0; right: 0;
             padding: 2rem;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            background: linear-gradient(to top, rgba(13,17,23,0.95) 0%, transparent 100%);
         }
 
-        .world-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+        .world-overlay h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .world-overlay p { font-size: 0.88rem; color: var(--text2); line-height: 1.6; margin-bottom: 1rem; }
+
+        .world-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.4rem 1rem;
+            background: rgba(240,136,62,0.15);
+            border: 1px solid rgba(240,136,62,0.4);
+            border-radius: 20px;
+            color: var(--orange);
+            font-size: 0.8rem; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
+        }
+        .world-btn:hover { background: rgba(240,136,62,0.25); }
+
+        /* CREATURES */
+        #creatures {
+            background: var(--bg);
         }
 
-        .world-description {
-            color: #cccccc;
-            margin-bottom: 1rem;
+        .creatures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 1.25rem;
         }
 
-        .world-link {
-            display: inline-block;
-            padding: 0.7rem 1.5rem;
-            background: #39ff14;
-            color: #000000;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .world-link:hover {
-            background: #ffffff;
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.7);
-        }
-
-        .video-section {
-            position: relative;
-            padding: 8rem 0;
-            background: #000000;
-        }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-            border-radius: 15px;
+        .creature-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            transition: all 0.3s;
+        }
+        .creature-card:hover { border-color: var(--orange); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+
+        .creature-img { width: 100%; height: 220px; object-fit: cover; }
+
+        .creature-body { padding: 1.4rem; }
+        .creature-body h3 { font-size: 1.1rem; font-weight: 600; color: var(--orange); margin-bottom: 0.4rem; }
+        .creature-body p { font-size: 0.87rem; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; }
+
+        .creature-stats {
+            display: flex; gap: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
         }
 
-        .placeholder-video {
-            width: 100%;
-            height: 562px;
-            background: #111111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+        .cstat { text-align: center; }
+        .cstat .val { display: block; font-size: 1.3rem; font-weight: 700; color: var(--orange); font-family: 'JetBrains Mono', monospace; }
+        .cstat .lbl { font-size: 0.74rem; color: var(--muted); }
+
+        /* MAGIC SECTION */
+        #magic {
+            background: var(--bg2);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
-        .play-btn {
-            width: 100px;
-            height: 100px;
-            background: rgba(57, 255, 20, 0.7);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #ffffff;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .magic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
         }
 
-        .play-btn:hover {
-            background: rgba(57, 255, 20, 1);
-            transform: scale(1.1);
+        .magic-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: all 0.3s;
+        }
+        .magic-card:hover { border-color: var(--orange); transform: translateY(-4px); }
+
+        .magic-icon {
+            width: 48px; height: 48px;
+            background: rgba(240,136,62,0.1);
+            border: 1px solid rgba(240,136,62,0.2);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; color: var(--orange);
+            margin-bottom: 1.25rem;
         }
 
-        .map-section {
-            padding: 8rem 0;
-            background: #0a0a0a;
+        .magic-card h3 { font-size: 1.15rem; font-weight: 600; color: var(--orange); margin-bottom: 0.5rem; }
+        .magic-card p { font-size: 0.88rem; color: var(--text2); line-height: 1.7; margin-bottom: 1rem; }
+
+        .effect {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 0.83rem; color: var(--text2);
+            margin-bottom: 0.35rem;
         }
+        .effect i { color: var(--orange); font-size: 0.7rem; }
+
+        /* MAP */
+        #map-section { background: var(--bg); }
 
         .map-container {
             position: relative;
             width: 100%;
-            height: 600px;
-            background: url('images/n5.jpg') center/cover no-repeat;
-            border-radius: 15px;
+            height: 500px;
+            background: url('images/n1.jpg') center/cover no-repeat;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--border);
         }
+
+        .map-overlay { position: absolute; inset: 0; background: rgba(13,17,23,0.45); }
 
         .map-point {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            background: rgba(57, 255, 20, 0.7);
+            width: 38px; height: 38px;
+            background: rgba(240,136,62,0.8);
+            border: 2px solid var(--orange);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: #000000;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; color: var(--bg);
             cursor: pointer;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 20px rgba(57, 255, 20, 0.7);
-        }
-
-        .map-point:nth-child(1) { top: 30%; left: 20%; }
-        .map-point:nth-child(2) { top: 50%; left: 40%; }
-        .map-point:nth-child(3) { top: 20%; left: 70%; }
-        .map-point:nth-child(4) { top: 70%; left: 60%; }
-        .map-point:nth-child(5) { top: 60%; left: 25%; }
-
-        .map-tooltip {
-            position: absolute;
-            bottom: 120%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .map-point:hover .map-tooltip {
-            opacity: 1;
-            visibility: visible;
-            bottom: 130%;
-        }
-
-        .creatures-section {
-            padding: 8rem 0;
-            background: url('https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg') center/cover fixed no-repeat;
-            position: relative;
-        }
-
-        .creatures-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-        }
-
-        .creatures-content {
-            position: relative;
+            animation: mapPulse 2.5s infinite;
             z-index: 2;
         }
 
-        .creatures-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+        @keyframes mapPulse {
+            0%,100% { box-shadow: 0 0 0 0 rgba(240,136,62,0.5); }
+            50% { box-shadow: 0 0 0 12px rgba(240,136,62,0); }
         }
 
-        .creature-card {
-            background: rgba(10, 10, 10, 0.8);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
-            transition: transform 0.5s ease;
-        }
+        .map-point:nth-child(2) { top: 28%; left: 18%; }
+        .map-point:nth-child(3) { top: 52%; left: 38%; }
+        .map-point:nth-child(4) { top: 22%; left: 68%; }
+        .map-point:nth-child(5) { top: 68%; left: 58%; }
+        .map-point:nth-child(6) { top: 60%; left: 22%; }
 
-        .creature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(57, 255, 20, 0.3);
-        }
-
-        .creature-image {
-            height: 250px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .creature-info {
-            padding: 1.5rem;
-        }
-
-        .creature-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #39ff14;
-        }
-
-        .creature-description {
-            color: #cccccc;
-            margin-bottom: 1rem;
-        }
-
-        .creature-stat {
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1rem;
-        }
-
-        .stat-item {
+        .map-tooltip {
+            position: absolute; bottom: 120%; left: 50%;
+            transform: translateX(-50%);
+            min-width: 160px;
+            background: rgba(13,17,23,0.95);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem;
             text-align: center;
+            opacity: 0; visibility: hidden;
+            transition: all 0.25s;
+            pointer-events: none;
         }
+        .map-tooltip h4 { font-size: 0.85rem; color: var(--orange); margin-bottom: 0.25rem; }
+        .map-tooltip p { font-size: 0.75rem; color: var(--text2); }
+        .map-point:hover .map-tooltip { opacity: 1; visibility: visible; bottom: 130%; }
 
-        .stat-value {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #39ff14;
-        }
-
-        .stat-label {
-            color: #999999;
-            font-size: 0.9rem;
-        }
-
-        .magic-section {
-            padding: 8rem 0;
-            background: #0a0a0a;
-        }
-
-        .spells-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .spell-card {
-            background: #111111;
-            border-radius: 15px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(57, 255, 20, 0.3);
-        }
-
-        .spell-card:hover {
-            border-color: #39ff14;
-            box-shadow: 0 15px 40px rgba(57, 255, 20, 0.3);
-        }
-
-        .spell-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(57, 255, 20, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            color: #39ff14;
-        }
-
-        .spell-name {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #39ff14;
-        }
-
-        .spell-description {
-            color: #cccccc;
-            margin-bottom: 1.5rem;
-        }
-
-        .spell-effect {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .effect-icon {
-            margin-right: 0.5rem;
-            color: #39ff14;
-        }
-
+        /* FOOTER */
         footer {
-            background: #000000;
-            color: #ffffff;
-            padding: 3rem 0;
-            text-align: center;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 2rem 0;
         }
-
-        .social-links {
-            margin-bottom: 1.5rem;
+        .foot-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem;
         }
-
-        .social-links a {
-            color: #ffffff;
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            transition: all 0.3s ease;
+        .foot-text { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); }
+        .foot-text .g { color: var(--green); }
+        .socials { display: flex; gap: 0.5rem; }
+        .socials a {
+            width: 34px; height: 34px;
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 7px; display: flex; align-items: center; justify-content: center;
+            color: var(--text2); font-size: 0.85rem; text-decoration: none;
+            transition: all 0.2s;
         }
+        .socials a:hover { border-color: var(--orange); color: var(--orange); transform: translateY(-3px); }
 
-        .social-links a:hover {
-            color: #39ff14;
-        }
+        /* REVEAL */
+        .reveal { opacity: 0; transform: translateY(24px); transition: all 0.6s ease; }
+        .reveal.on { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.1s; }
+        .d2 { transition-delay: 0.2s; }
+        .d3 { transition-delay: 0.3s; }
 
-        @keyframes glow {
-            from { text-shadow: 0 0 10px rgba(57, 255, 20, 0.7); }
-            to { text-shadow: 0 0 20px rgba(57, 255, 20, 1), 0 0 30px rgba(57, 255, 20, 0.7); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(57, 255, 20, 0.7); }
-            70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(57, 255, 20, 0); }
-            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(57, 255, 20, 0); }
-        }
-
-        @media (max-width: 992px) {
-            .hero-title { font-size: 3rem; }
-            .section-title { font-size: 2.5rem; }
-            .nav-wrapper { gap: 1.5rem; }
-        }
-
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-subtitle { font-size: 1.2rem; }
-            .section-title { font-size: 2rem; }
-            .world-card { height: 400px; }
-            .creature-image { height: 200px; }
-            .nav-wrapper { flex-wrap: wrap; gap: 1rem; }
-        }
-
-        @media (max-width: 576px) {
-            .hero-title { font-size: 2rem; }
-            .worlds-container, .creatures-container, .spells-container { grid-template-columns: 1fr; }
-            .nav-wrapper { flex-direction: column; align-items: center; }
-            .nav-item.silent-world::before,
-            .nav-item.silent-world::after { display: none; } /* Hide orbiting particles on small screens */
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: rgba(13,17,23,0.98);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem 2rem; gap: 0.5rem;
+            }
+            .hamburger { display: block; }
+            .worlds-grid, .creatures-grid, .magic-grid { grid-template-columns: 1fr; }
+            .world-card { height: 340px; }
         }
     </style>
 </head>
 <body>
-    <!-- Background Music -->
-    <audio id="background-audio" loop autoplay>
-        <source src="audio/song.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="nav-wrapper">
-                    <div class="nav-item"><a href="index.html">Home</a></div>
-                    <div class="nav-item"><a href="index.html#projects">Projects</a></div>
-                    <div class="nav-item"><a href="gallary.html">Gallery</a></div>
-                    <div class="nav-item"><a href="index.html#achievements">Achievements</a></div>
-                    <div class="nav-item"><a href="index.html#contact">Contact</a></div>
-                    <div class="nav-item"><a href="#" class="active">Explore</a></div>
-                    <div class="nav-item silent-world"><a href="dimension.html">My Silent World</a></div>
+<!-- NAV -->
+<header>
+    <div class="nav-wrap">
+        <a href="index.html" class="nav-logo">ram<span class="g">@</span>tamang<span class="g">:~$</span></a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="gallary.html">Gallery</a></li>
+            <li><a href="dimension.html">Poetry</a></li>
+            <li><a href="index.html#contact" class="btn">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="explore-hero">
+    <div class="explore-hero-bg"></div>
+    <div class="explore-hero-overlay"></div>
+    <div class="explore-hero-inner">
+        <div class="explore-label">// adventures</div>
+        <h1>Discover <span>Magical</span> Worlds</h1>
+        <p>Beyond the terminal — exploring ancient forests, mystical realms, and the breathtaking landscapes of Nepal. Every adventure is a story waiting to be told.</p>
+        <a href="#worlds" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.6rem;background:var(--orange);color:var(--bg);text-decoration:none;border-radius:8px;font-weight:600;font-size:0.9rem;transition:all 0.2s;">
+            Begin Adventure <i class="fas fa-compass"></i>
+        </a>
+    </div>
+    <div class="explore-scroll">
+        <span>scroll</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</section>
+
+<!-- WORLDS -->
+<section id="worlds">
+    <div class="c">
+        <div class="s-head reveal">
+            <div class="s-label">// realms</div>
+            <h2 class="s-title">Mystical Realms</h2>
+            <p class="s-sub">Places that spark imagination and demand exploration.</p>
+        </div>
+        <div class="worlds-grid">
+            <div class="world-card reveal d1">
+                <img src="images/n1.jpg" alt="Ancient Forest">
+                <div class="world-overlay">
+                    <h3>Ancient Forest</h3>
+                    <p>Primordial woodlands where ancient magic flows through every tree and mystical creatures roam freely.</p>
+                    <a href="#" class="world-btn"><i class="fas fa-compass"></i> Discover</a>
                 </div>
-            </nav>
+            </div>
+            <div class="world-card reveal d2">
+                <img src="images/n4.jpg" alt="Crystal Caves">
+                <div class="world-overlay">
+                    <h3>Crystal Caves</h3>
+                    <p>Glittering depths where magical crystals illuminate caverns and ancient secrets await discovery.</p>
+                    <a href="#" class="world-btn"><i class="fas fa-compass"></i> Discover</a>
+                </div>
+            </div>
+            <div class="world-card reveal d3">
+                <img src="images/wallpapersden.com_nepal-mountain_wxl.jpg" alt="Himalayan Peak">
+                <div class="world-overlay">
+                    <h3>Himalayan Peaks</h3>
+                    <p>The roof of the world — where sky meets earth and every breath is an act of courage.</p>
+                    <a href="#" class="world-btn"><i class="fas fa-compass"></i> Discover</a>
+                </div>
+            </div>
         </div>
-    </header>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Discover Magical Worlds</h1>
-            <p class="hero-subtitle">Embark on an extraordinary journey through ancient forests, prehistoric landscapes, and enchanted realms</p>
-            <a href="#worlds" class="explore-btn">Begin Adventure</a>
+<!-- CREATURES -->
+<section id="creatures">
+    <div class="c">
+        <div class="s-head reveal">
+            <div class="s-label">// mythical beasts</div>
+            <h2 class="s-title">Legendary Creatures</h2>
+            <p class="s-sub">Beings of myth and power that inhabit these magical worlds.</p>
         </div>
-    </section>
-
-    <!-- Worlds Section -->
-    <section id="worlds" class="worlds-section">
-        <div class="container">
-            <h2 class="section-title">Mystical Realms</h2>
-            <div class="worlds-container">
-                <div class="world-card">
-                    <img src="images/n1.jpg" alt="Ancient Forest" class="world-image">
-                    <div class="world-overlay">
-                        <h3 class="world-title">Ancient Forest</h3>
-                        <p class="world-description">Explore the primordial woodlands where ancient magic flows through every tree and mystical creatures roam freely.</p>
-                        <a href="#" class="world-link">Discover</a>
+        <div class="creatures-grid">
+            <div class="creature-card reveal d1">
+                <img src="images/n2.jpeg" alt="Forest Guardian" class="creature-img">
+                <div class="creature-body">
+                    <h3>Tyrannosaurus Rex</h3>
+                    <p>The king of prehistoric worlds — a fearsome predator with unmatched power and a legendary presence.</p>
+                    <div class="creature-stats">
+                        <div class="cstat"><span class="val">90</span><span class="lbl">Strength</span></div>
+                        <div class="cstat"><span class="val">70</span><span class="lbl">Speed</span></div>
+                        <div class="cstat"><span class="val">85</span><span class="lbl">Danger</span></div>
                     </div>
                 </div>
-                <div class="world-card">
-                    <img src="images/n5.jpg" alt="Jurassic Valley" class="world-image">
-                    <div class="world-overlay">
-                        <h3 class="world-title">Jurassic Valley</h3>
-                        <p class="world-description">Step back in time to a lost world where magnificent dinosaurs rule the landscape and danger lurks around every corner.</p>
-                        <a href="#" class="world-link">Discover</a>
+            </div>
+            <div class="creature-card reveal d2">
+                <img src="images/n2.jpeg" alt="Forest Dragon" class="creature-img">
+                <div class="creature-body">
+                    <h3>Forest Dragon</h3>
+                    <p>Guardian of the ancient woods, capable of controlling nature and breathing emerald fire.</p>
+                    <div class="creature-stats">
+                        <div class="cstat"><span class="val">85</span><span class="lbl">Strength</span></div>
+                        <div class="cstat"><span class="val">75</span><span class="lbl">Magic</span></div>
+                        <div class="cstat"><span class="val">80</span><span class="lbl">Wisdom</span></div>
                     </div>
                 </div>
-                <div class="world-card">
-                    <img src="images/n4.jpg" alt="Crystal Caves" class="world-image">
-                    <div class="world-overlay">
-                        <h3 class="world-title">Crystal Caves</h3>
-                        <p class="world-description">Venture into the glittering depths where magical crystals illuminate caverns and ancient secrets await discovery.</p>
-                        <a href="#" class="world-link">Discover</a>
+            </div>
+            <div class="creature-card reveal d3">
+                <img src="images/n4.jpg" alt="Crystal Elemental" class="creature-img">
+                <div class="creature-body">
+                    <h3>Crystal Elemental</h3>
+                    <p>Beings formed from living crystal, harnessing magical energies that flow through the caves.</p>
+                    <div class="creature-stats">
+                        <div class="cstat"><span class="val">65</span><span class="lbl">Strength</span></div>
+                        <div class="cstat"><span class="val">95</span><span class="lbl">Magic</span></div>
+                        <div class="cstat"><span class="val">50</span><span class="lbl">Speed</span></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Video Section -->
-    <section class="video-section">
-        <div class="container">
-            <h2 class="section-title">Experience The Adventure</h2>
-            <div class="video-container">
-                <video id="adventure-video" width="100%" height="auto" controls>
-                    <source src="video/adventure.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+<!-- MAGIC -->
+<section id="magic">
+    <div class="c">
+        <div class="s-head reveal">
+            <div class="s-label">// abilities</div>
+            <h2 class="s-title">Ancient Magic</h2>
+            <p class="s-sub">Powers drawn from the oldest forces in these mystical worlds.</p>
+        </div>
+        <div class="magic-grid">
+            <div class="magic-card reveal d1">
+                <div class="magic-icon"><i class="fas fa-leaf"></i></div>
+                <h3>Nature's Embrace</h3>
+                <p>Harness the ancient power of the forest to heal wounds and strengthen allies with living energy.</p>
+                <div class="effect"><i class="fas fa-circle"></i><span>Restores health over time</span></div>
+                <div class="effect"><i class="fas fa-circle"></i><span>Increases natural armor</span></div>
+            </div>
+            <div class="magic-card reveal d2">
+                <div class="magic-icon"><i class="fas fa-fire"></i></div>
+                <h3>Primeval Flame</h3>
+                <p>Conjure the ancient fire that once ruled the prehistoric world — raw and uncontrollable power.</p>
+                <div class="effect"><i class="fas fa-circle"></i><span>Deals fire damage to enemies</span></div>
+                <div class="effect"><i class="fas fa-circle"></i><span>Creates a zone of destruction</span></div>
+            </div>
+            <div class="magic-card reveal d3">
+                <div class="magic-icon"><i class="fas fa-gem"></i></div>
+                <h3>Crystal Resonance</h3>
+                <p>Activate the hidden properties of magical crystals to reveal secrets and enhance perception.</p>
+                <div class="effect"><i class="fas fa-circle"></i><span>Reveals hidden objects</span></div>
+                <div class="effect"><i class="fas fa-circle"></i><span>Enhances mental acuity</span></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Interactive Map Section -->
-    <section class="map-section">
-        <div class="container">
-            <h2 class="section-title">Adventure Map</h2>
-            <div class="map-container">
-                <div class="map-point">
-                    <i class="fas fa-tree"></i>
-                    <div class="map-tooltip">
-                        <h4>Enchanted Grove</h4>
-                        <p>Ancient trees infused with powerful magic</p>
-                    </div>
-                </div>
-                <div class="map-point">
-                    <i class="fas fa-mountain"></i>
-                    <div class="map-tooltip">
-                        <h4>Dragon's Peak</h4>
-                        <p>Home to the legendary fire dragons</p>
-                    </div>
-                </div>
-                <div class="map-point">
-                    <i class="fas fa-water"></i>
-                    <div class="map-tooltip">
-                        <h4>Mystic Falls</h4>
-                        <p>Waters with extraordinary healing powers</p>
-                    </div>
-                </div>
-                <div class="map-point">
-                    <i class="fas fa-skull"></i>
-                    <div class="map-tooltip">
-                        <h4>Raptor Valley</h4>
-                        <p>Territory of the fierce velociraptor packs</p>
-                    </div>
-                </div>
-                <div class="map-point">
-                    <i class="fas fa-gem"></i>
-                    <div class="map-tooltip">
-                        <h4>Crystal Caverns</h4>
-                        <p>Ancient caves filled with magical crystals</p>
-                    </div>
-                </div>
+<!-- MAP -->
+<section id="map-section">
+    <div class="c">
+        <div class="s-head reveal">
+            <div class="s-label">// adventure map</div>
+            <h2 class="s-title">Explore the Map</h2>
+            <p class="s-sub">Hover over the markers to discover locations.</p>
+        </div>
+        <div class="map-container reveal">
+            <div class="map-overlay"></div>
+            <div class="map-point">
+                <i class="fas fa-tree"></i>
+                <div class="map-tooltip"><h4>Enchanted Grove</h4><p>Ancient trees infused with powerful magic</p></div>
+            </div>
+            <div class="map-point">
+                <i class="fas fa-mountain"></i>
+                <div class="map-tooltip"><h4>Dragon's Peak</h4><p>Home to the legendary fire dragons</p></div>
+            </div>
+            <div class="map-point">
+                <i class="fas fa-water"></i>
+                <div class="map-tooltip"><h4>Mystic Falls</h4><p>Waters with extraordinary healing powers</p></div>
+            </div>
+            <div class="map-point">
+                <i class="fas fa-skull"></i>
+                <div class="map-tooltip"><h4>Raptor Valley</h4><p>Territory of the fierce velociraptor packs</p></div>
+            </div>
+            <div class="map-point">
+                <i class="fas fa-gem"></i>
+                <div class="map-tooltip"><h4>Crystal Caverns</h4><p>Ancient caves filled with magical crystals</p></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Creatures Section -->
-    <section class="creatures-section">
-        <div class="creatures-overlay"></div>
-        <div class="container creatures-content">
-            <h2 class="section-title">Mythical Beasts</h2>
-            <div class="creatures-container">
-                <div class="creature-card">
-                    <img src="images/n2.jpeg" alt="T-Rex" class="creature-image">
-                    <div class="creature-info">
-                        <h3 class="creature-name">Tyrannosaurus Rex</h3>
-                        <p class="creature-description">The king of dinosaurs, a fearsome predator with unmatched power and terrifying speed.</p>
-                        <div class="creature-stat">
-                            <div class="stat-item">
-                                <div class="stat-value">90</div>
-                                <div class="stat-label">Strength</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">70</div>
-                                <div class="stat-label">Speed</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">85</div>
-                                <div class="stat-label">Danger</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="creature-card">
-                    <img src="images/n2.jpeg" alt="Forest Dragon" class="creature-image">
-                    <div class="creature-info">
-                        <h3 class="creature-name">Forest Dragon</h3>
-                        <p class="creature-description">Guardian of the ancient woods, capable of controlling nature and breathing emerald fire.</p>
-                        <div class="creature-stat">
-                            <div class="stat-item">
-                                <div class="stat-value">85</div>
-                                <div class="stat-label">Strength</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">75</div>
-                                <div class="stat-label">Magic</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">80</div>
-                                <div class="stat-label">Wisdom</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="creature-card">
-                    <img src="images/n3.webp" alt="Crystal Elemental" class="creature-image">
-                    <div class="creature-info">
-                        <h3 class="creature-name">Crystal Elemental</h3>
-                        <p class="creature-description">Beings formed from living crystal, harnessing the magical energies that flow through the caves.</p>
-                        <div class="creature-stat">
-                            <div class="stat-item">
-                                <div class="stat-value">65</div>
-                                <div class="stat-label">Strength</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">95</div>
-                                <div class="stat-label">Magic</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">50</div>
-                                <div class="stat-label">Speed</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- FOOTER -->
+<footer>
+    <div class="foot-inner">
+        <p class="foot-text">// <span class="g">adventures</span> · Ram Tamang · Nepal</p>
+        <div class="socials">
+            <a href="https://github.com/Ramtamang-2058" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-    </section>
+    </div>
+</footer>
 
-    <!-- Magic Section -->
-    <section class="magic-section">
-        <div class="container">
-            <h2 class="section-title">Ancient Magic</h2>
-            <div class="spells-container">
-                <div class="spell-card">
-                    <div class="spell-icon">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3 class="spell-name">Nature's Embrace</h3>
-                    <p class="spell-description">Harness the ancient power of the forest to heal wounds and strengthen allies.</p>
-                    <div class="spell-effect">
-                        <i class="fas fa-plus-circle effect-icon"></i>
-                        <span>Restores health over time</span>
-                    </div>
-                    <div class="spell-effect">
-                        <i class="fas fa-shield-alt effect-icon"></i>
-                        <span>Increases natural armor</span>
-                    </div>
-                </div>
-                <div class="spell-card">
-                    <div class="spell-icon">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <h3 class="spell-name">Primeval Flame</h3>
-                    <p class="spell-description">Conjure the ancient fire that once ruled the prehistoric world.</p>
-                    <div class="spell-effect">
-                        <i class="fas fa-burn effect-icon"></i>
-                        <span>Deals fire damage to enemies</span>
-                    </div>
-                    <div class="spell-effect">
-                        <i class="fas fa-radiation effect-icon"></i>
-                        <span>Creates a zone of destruction</span>
-                    </div>
-                </div>
-                <div class="spell-card">
-                    <div class="spell-icon">
-                        <i class="fas fa-gem"></i>
-                    </div>
-                    <h3 class="spell-name">Crystal Resonance</h3>
-                    <p class="spell-description">Activate the hidden properties of magical crystals to reveal secrets and enhance perception.</p>
-                    <div class="spell-effect">
-                        <i class="fas fa-eye effect-icon"></i>
-                        <span>Reveals hidden objects</span>
-                    </div>
-                    <div class="spell-effect">
-                        <i class="fas fa-brain effect-icon"></i>
-                        <span>Enhances mental acuity</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+    document.getElementById('hamburger').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p>© 2025 Adventure Explorer. All Rights Reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.spell-card, .creature-card, .world-card');
-            const windowHeight = window.innerHeight;
-
-            elements.forEach(element => {
-                const elementPos = element.getBoundingClientRect().top;
-                if (elementPos < windowHeight - 150) {
-                    if (!element.classList.contains('animated')) {
-                        element.style.opacity = '0';
-                        element.style.transform = 'translateY(50px)';
-                        setTimeout(() => {
-                            element.style.transition = 'all 1s ease';
-                            element.style.opacity = '1';
-                            element.style.transform = 'translateY(0)';
-                            element.classList.add('animated');
-                        }, 100);
-                    }
-                }
-            });
-        }
-
-        // Video handling
-        const video = document.getElementById('adventure-video');
-
-        // Audio handling with better autoplay
-        const audio = document.getElementById('background-audio');
-
-        // Attempt to play audio immediately
-        const playAudio = () => {
-            audio.play().catch(error => {
-                console.log('Autoplay prevented:', error);
-                // Fallback: Play on first user interaction
-                document.body.addEventListener('click', () => {
-                    audio.play().catch(err => console.log('Audio play failed:', err));
-                }, { once: true });
-            });
-        };
-
-        // Map points interaction remains unchanged
-        const mapPoints = document.querySelectorAll('.map-point');
-        mapPoints.forEach(point => {
-            point.addEventListener('mouseenter', function() {
-                this.style.backgroundColor = 'rgba(57, 255, 20, 1)';
-            });
-            point.addEventListener('mouseleave', function() {
-                this.style.backgroundColor = 'rgba(57, 255, 20, 0.7)';
-            });
-        });
-
-        // Event listeners
-        window.addEventListener('load', () => {
-            animateOnScroll();
-            playAudio();
-        });
-        window.addEventListener('scroll', animateOnScroll);
-    </script>
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+    }, { threshold: 0.07 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
