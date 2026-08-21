@@ -461,6 +461,12 @@
             transition: color .2s, border-color .2s;
         }
         .also-build a:hover { color: var(--accent); border-color: var(--accent); }
+        .also-build { align-items: flex-start; }
+        .ab-item { display: flex; flex-direction: column; gap: 2px; }
+        .ab-item small {
+            font-family: var(--mono); font-size: 0.62rem;
+            letter-spacing: 0.04em; color: var(--ink-3);
+        }
 
         /* ── PULL QUOTE ── */
         .quote-sec { padding: 96px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -555,7 +561,7 @@
             <li><a href="#library">Library</a></li>
             <li><a href="#journal">Journal</a></li>
             <li><a href="gallary.html">Gallery</a></li>
-            <li><a href="dimension.html">Poetry</a></li>
+            <li><a href="dimension.html">Marginalia</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="Ram_Kumar_Tamang_cv.pdf" class="cv-link">CV ↓</a></li>
         </ul>
@@ -594,9 +600,18 @@
 
         <div class="also-build li" style="--d:.65s">
             <span>Also building with</span>
-            <a href="https://www.nirvixtech.com/" target="_blank" rel="noopener">Nirvix Technology</a>
-            <a href="https://hightechpioneer.com.np/" target="_blank" rel="noopener">High Tech Pioneer Nepal</a>
-            <a href="https://safalai.com.np/" target="_blank" rel="noopener">Safal AI</a>
+            <div class="ab-item">
+                <a href="https://www.nirvixtech.com/" target="_blank" rel="noopener">Nirvix Technology</a>
+                <small>engineering lead — guiding the juniors who built it</small>
+            </div>
+            <div class="ab-item">
+                <a href="https://hightechpioneer.com.np/" target="_blank" rel="noopener">High Tech Pioneer Nepal</a>
+                <small>robotics software lead · est. 1984</small>
+            </div>
+            <div class="ab-item">
+                <a href="https://safalai.com.np/" target="_blank" rel="noopener">Safal AI</a>
+                <small>AI training collabs — IME Group, teachers &amp; researchers</small>
+            </div>
         </div>
     </div>
 </div>
@@ -959,6 +974,22 @@
             <figure class="book">
                 <img src="images/books/lean-startup.jpg" alt="The Lean Startup by Eric Ries" loading="lazy"/>
                 <figcaption><b>The Lean Startup</b><span>Eric Ries</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/screw-business-as-usual.jpg" alt="Screw Business as Usual by Richard Branson" loading="lazy"/>
+                <figcaption><b>Screw Business as Usual</b><span>Richard Branson</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/geography-of-bliss.jpg" alt="The Geography of Bliss by Eric Weiner" loading="lazy"/>
+                <figcaption><b>The Geography of Bliss</b><span>Eric Weiner</span><em class="met">met the author at Boudha</em></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/80-20-principle.jpg" alt="The 80/20 Principle by Richard Koch" loading="lazy"/>
+                <figcaption><b>The 80/20 Principle</b><span>Richard Koch</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/million-dollar-weekend.jpg" alt="Million Dollar Weekend by Noah Kagan" loading="lazy"/>
+                <figcaption><b>Million Dollar Weekend</b><span>Noah Kagan</span></figcaption>
             </figure>
         </div>
 

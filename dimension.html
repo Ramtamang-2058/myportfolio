@@ -3,37 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Silent Echoes — philosophical poetry and introspective lyrics by Ram Tamang.">
-    <title>Silent Echoes — Ram Tamang</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <meta name="description" content="Marginalia — lines worth keeping, from the books Ram Tamang reads.">
+    <title>Marginalia — Ram Tamang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #FAF9F6;
-            --bg2: #F2EFE9;
-            --bg3: #E9E4DA;
-            --blue: #20503C;
-            --green: #20503C;
-            --purple: #8A5A44;
-            --text: #1C1A17;
-            --text2: #55504A;
-            --muted: #8A837B;
-            --border: #E3DFD6;
+            --paper: #FAF9F6;
+            --paper-2: #F2EFE9;
+            --ink: #1C1A17;
+            --ink-2: #55504A;
+            --ink-3: #8A837B;
+            --line: #E3DFD6;
+            --accent: #20503C;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background: var(--paper);
+            color: var(--ink);
             overflow-x: hidden;
             line-height: 1.7;
         }
 
+        ::selection { background: rgba(32,80,60,0.15); }
         ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-track { background: var(--paper); }
+        ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
 
         /* NAV */
         header {
@@ -41,7 +40,7 @@
             z-index: 100;
             background: rgba(250,249,246,0.92);
             backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--line);
             padding: 0.9rem 0;
         }
 
@@ -52,224 +51,188 @@
 
         .nav-logo {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 1rem; color: var(--text); text-decoration: none;
+            font-size: 1rem; color: var(--ink); text-decoration: none;
         }
-        .nav-logo .g { color: var(--green); }
+        .nav-logo em { color: var(--accent); }
 
         .nav-links { display: flex; gap: 0.2rem; list-style: none; align-items: center; }
         .nav-links a {
-            color: var(--text2); text-decoration: none;
+            color: var(--ink-2); text-decoration: none;
             font-size: 0.87rem; font-weight: 500;
             padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--bg3); }
-        .nav-links .btn { color: var(--bg) !important; background: var(--blue); font-weight: 600; }
-        .nav-links .btn:hover { background: #79b8ff; }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); background: var(--paper-2); }
+        .nav-links .btn { color: var(--paper) !important; background: var(--accent); font-weight: 600; }
+        .nav-links .btn:hover { background: #16382A; }
 
-        .hamburger { display: none; cursor: pointer; color: var(--text); font-size: 1.2rem; }
+        .hamburger { display: none; cursor: pointer; color: var(--ink); font-size: 1.2rem; background: none; border: none; }
 
         /* HERO */
-        .poetry-hero {
-            min-height: 60vh;
+        .hero {
+            min-height: 58vh;
             display: flex; align-items: center; justify-content: center;
             text-align: center;
-            padding: 8rem 2rem 5rem;
+            padding: 8rem 2rem 4.5rem;
             position: relative;
-            overflow: hidden;
         }
 
-        .poetry-hero-bg {
-            position: absolute; inset: 0;
-            background: radial-gradient(ellipse 70% 60% at 50% 40%, rgba(188,140,255,0.06) 0%, transparent 70%);
-        }
+        .hero-inner { max-width: 720px; }
 
-        .hero-stars {
-            position: absolute; inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
-            background-size: 60px 60px;
-        }
-
-        .poetry-hero-inner { position: relative; z-index: 2; max-width: 700px; }
-
-        .poetry-label {
+        .hero-label {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem; color: var(--purple);
+            font-size: 0.75rem; color: var(--accent);
             text-transform: uppercase; letter-spacing: 2.5px;
             margin-bottom: 1rem;
         }
 
-        .poetry-hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 8vw, 5.5rem);
+        .hero h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.6rem, 6.5vw, 4.8rem);
             font-weight: 400;
-            letter-spacing: 0.03em;
-            color: var(--text);
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
+            letter-spacing: -0.01em;
+            line-height: 1.08;
+            margin-bottom: 1.4rem;
         }
 
-        .poetry-hero h1 span { color: var(--purple); font-style: italic; }
+        .hero h1 em { font-style: italic; color: var(--accent); }
 
-        .poetry-hero p {
-            color: var(--text2);
+        .hero p {
+            color: var(--ink-2);
             font-size: 1.05rem;
             line-height: 1.85;
-            margin-bottom: 2rem;
         }
 
         /* QUOTE BAR */
         .quote-bar {
-            background: linear-gradient(135deg, rgba(188,140,255,0.08), rgba(88,166,255,0.08));
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            background: var(--paper-2);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
             padding: 3rem 2rem;
             text-align: center;
         }
 
         .quote-bar blockquote {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.3rem, 3vw, 1.9rem);
+            font-family: 'Fraunces', serif;
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
             font-style: italic;
-            color: var(--text2);
+            color: var(--ink-2);
             max-width: 700px;
             margin: 0 auto;
-            line-height: 1.7;
+            line-height: 1.65;
         }
 
-        .quote-bar blockquote span { color: var(--purple); }
+        .quote-bar cite {
+            display: block; margin-top: 1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-style: normal; font-size: 0.72rem;
+            letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--ink-3);
+        }
 
         /* FILTER */
         .filter-bar {
             display: flex; justify-content: center; gap: 0.5rem;
-            padding: 3rem 2rem 1.5rem;
+            padding: 3rem 2rem 1.25rem;
             flex-wrap: wrap;
         }
 
         .filter-btn {
             padding: 0.4rem 1.1rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
+            border-radius: 999px;
+            border: 1px solid var(--line);
             background: transparent;
-            color: var(--text2);
+            color: var(--ink-2);
             font-family: 'Inter', sans-serif;
             font-size: 0.83rem; font-weight: 500;
             cursor: pointer; transition: all 0.2s;
         }
-        .filter-btn:hover { border-color: var(--purple); color: var(--purple); }
-        .filter-btn.active { background: var(--purple); border-color: var(--purple); color: var(--bg); }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .filter-btn.active { background: var(--accent); border-color: var(--accent); color: var(--paper); }
 
-        /* POEMS GRID */
-        .poems-wrap {
+        /* CARDS GRID */
+        .cards-wrap {
             max-width: 1200px; margin: 0 auto;
-            padding: 1.5rem 2rem 5rem;
+            padding: 1.25rem 2rem 5rem;
         }
 
-        .poems-grid {
+        .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1.25rem;
         }
 
-        .poem-card {
-            background: var(--bg2);
-            border: 1px solid var(--border);
+        .card {
+            background: var(--paper-2);
+            border: 1px solid var(--line);
             border-radius: 12px;
-            overflow: hidden;
+            padding: 1.6rem 1.6rem 1.4rem;
             transition: all 0.3s;
             display: flex; flex-direction: column;
         }
-        .poem-card:hover { border-color: rgba(188,140,255,0.4); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(28,26,23,0.12); }
-
-        .poem-header {
-            padding: 1.4rem 1.4rem 1rem;
-            border-bottom: 1px solid var(--border);
+        .card:hover {
+            border-color: rgba(32,80,60,0.35);
+            transform: translateY(-4px);
+            box-shadow: 0 16px 40px rgba(28,26,23,0.10);
         }
 
-        .poem-meta {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .poem-type {
+        .card-meta {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 0.5rem;
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.7rem; color: var(--purple);
-            text-transform: uppercase; letter-spacing: 1.5px;
+            font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 1.1rem;
         }
+        .card-meta b { color: var(--accent); font-weight: 500; }
 
-        .poem-date { font-size: 0.78rem; color: var(--muted); }
-
-        .poem-card h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-weight: 500;
-            letter-spacing: 0.02em;
-        }
-
-        .poem-body {
-            padding: 1.25rem 1.4rem;
+        .card blockquote {
+            font-family: 'Fraunces', serif;
+            font-size: 1.18rem;
+            font-style: italic;
+            line-height: 1.55;
+            color: var(--ink);
             flex: 1;
         }
 
-        .poem-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1rem;
-            line-height: 1.9;
-            color: var(--text2);
-            white-space: pre-wrap;
-            letter-spacing: 0.02em;
+        .card .note {
+            margin-top: 1.2rem; padding-top: 1rem;
+            border-top: 1px solid var(--line);
+            font-size: 0.88rem;
+            color: var(--ink-2);
+            line-height: 1.7;
+        }
+        .card .note b {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500; font-size: 0.66rem;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--ink-3); display: block; margin-bottom: 0.3rem;
         }
 
-        .poem-expand {
-            width: 100%;
-            padding: 0.85rem;
-            background: transparent;
-            border: none;
-            border-top: 1px solid var(--border);
-            color: var(--purple);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.82rem; font-weight: 500;
-            cursor: pointer; transition: all 0.2s;
-        }
-        .poem-expand:hover { background: rgba(188,140,255,0.06); }
-
-        .poem-collapse { max-height: 160px; overflow: hidden; position: relative; }
-        .poem-collapse::after {
-            content: '';
-            position: absolute; bottom: 0; left: 0; right: 0;
-            height: 50px;
-            background: linear-gradient(transparent, var(--bg2));
-        }
-        .poem-collapse.expanded { max-height: none; }
-        .poem-collapse.expanded::after { display: none; }
-
-        /* ABOUT SECTION */
-        .about-poetry {
-            background: var(--bg2);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+        /* ABOUT */
+        .about {
+            background: var(--paper-2);
+            border-top: 1px solid var(--line);
             padding: 5rem 0;
         }
 
-        .about-poetry-inner {
-            max-width: 760px; margin: 0 auto; padding: 0 2rem;
-        }
+        .about-inner { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
 
-        .about-poetry-inner .label {
+        .about-inner .label {
             font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.75rem; color: var(--purple);
+            font-size: 0.75rem; color: var(--accent);
             text-transform: uppercase; letter-spacing: 2.5px;
             margin-bottom: 0.75rem;
         }
 
-        .about-poetry-inner h2 {
-            font-family: 'Cormorant Garamond', serif;
+        .about-inner h2 {
+            font-family: 'Fraunces', serif;
             font-size: clamp(1.8rem, 4vw, 2.5rem);
             font-weight: 400;
             margin-bottom: 1.5rem;
         }
 
-        .about-poetry-inner p {
-            color: var(--text2);
+        .about-inner p {
+            color: var(--ink-2);
             line-height: 1.9;
             margin-bottom: 1.25rem;
             font-size: 1.02rem;
@@ -277,8 +240,8 @@
 
         /* FOOTER */
         footer {
-            background: var(--bg);
-            border-top: 1px solid var(--border);
+            background: var(--paper);
+            border-top: 1px solid var(--line);
             padding: 2rem 0;
         }
         .foot-inner {
@@ -286,21 +249,25 @@
             display: flex; justify-content: space-between; align-items: center;
             flex-wrap: wrap; gap: 1rem;
         }
-        .foot-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--muted); }
-        .foot-text .g { color: var(--green); }
+        .foot-text { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-3); }
+        .foot-text em { color: var(--accent); }
         .socials { display: flex; gap: 0.5rem; }
         .socials a {
             width: 34px; height: 34px;
-            background: var(--bg2); border: 1px solid var(--border);
+            background: var(--paper-2); border: 1px solid var(--line);
             border-radius: 7px; display: flex; align-items: center; justify-content: center;
-            color: var(--text2); font-size: 0.85rem; text-decoration: none;
+            color: var(--ink-2); font-size: 0.85rem; text-decoration: none;
             transition: all 0.2s;
         }
-        .socials a:hover { border-color: var(--purple); color: var(--purple); transform: translateY(-3px); }
+        .socials a:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
 
         /* REVEAL */
         .reveal { opacity: 0; transform: translateY(20px); transition: all 0.6s ease; }
         .reveal.on { opacity: 1; transform: translateY(0); }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { opacity: 1; transform: none; transition: none; }
+        }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
@@ -308,12 +275,12 @@
             .nav-links.open {
                 display: flex; flex-direction: column;
                 position: absolute; top: 100%; left: 0; right: 0;
-                background: rgba(250,249,246,0.96);
-                border-bottom: 1px solid var(--border);
+                background: rgba(250,249,246,0.97);
+                border-bottom: 1px solid var(--line);
                 padding: 1rem 2rem; gap: 0.5rem;
             }
             .hamburger { display: block; }
-            .poems-grid { grid-template-columns: 1fr; }
+            .cards-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -322,286 +289,170 @@
 <!-- NAV -->
 <header>
     <div class="nav-wrap">
-        <a href="index.html" class="nav-logo">Ram Kumar <span class="g"><em>Tamang</em></span></a>
+        <a href="index.html" class="nav-logo">Ram Kumar <em>Tamang</em></a>
         <ul class="nav-links" id="navLinks">
             <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
-            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#work">Work</a></li>
+            <li><a href="index.html#library">Library</a></li>
             <li><a href="gallary.html">Gallery</a></li>
-            <li><a href="dimension.html" class="active">Poetry</a></li>
+            <li><a href="dimension.html" class="active">Marginalia</a></li>
             <li><a href="index.html#contact" class="btn">Contact</a></li>
         </ul>
-        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
     </div>
 </header>
 
 <!-- HERO -->
-<section class="poetry-hero">
-    <div class="poetry-hero-bg"></div>
-    <div class="hero-stars"></div>
-    <div class="poetry-hero-inner">
-        <div class="poetry-label">// silent echoes</div>
-        <h1>Where Silence <span>Speaks</span></h1>
-        <p>A philosophical journey through quiet moments — poetry and lyrics that explore the depths of stillness and the human experience.</p>
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-label">// marginalia</div>
+        <h1>What the books <em>left behind.</em></h1>
+        <p>Lines I underlined at 2&nbsp;a.m., pages with folded corners, sentences that survived
+        the highlighter. Not reviews — just the fragments that keep arguing in my head,
+        and why they stayed.</p>
     </div>
 </section>
 
 <!-- QUOTE BAR -->
 <div class="quote-bar">
     <blockquote>
-        "In silence, truth begins to bloom<br>
-        <span>A flower born in quiet's womb</span>"
+        &ldquo;When we are no longer able to change a situation,
+        we are challenged to change ourselves.&rdquo;
     </blockquote>
+    <cite>Viktor E. Frankl — Man's Search for Meaning</cite>
 </div>
 
 <!-- FILTER -->
 <div class="filter-bar">
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="poetry">Poetry</button>
-    <button class="filter-btn" data-filter="lyrics">Lyrics</button>
-    <button class="filter-btn" data-filter="introspective">Introspective</button>
+    <button class="filter-btn" data-filter="meaning">Meaning</button>
+    <button class="filter-btn" data-filter="stoic">The stoic mind</button>
+    <button class="filter-btn" data-filter="work">Money &amp; work</button>
+    <button class="filter-btn" data-filter="fiction">Fiction</button>
 </div>
 
-<!-- POEMS -->
-<div class="poems-wrap">
-    <div class="poems-grid">
+<!-- CARDS -->
+<div class="cards-wrap">
+    <div class="cards-grid">
 
-        <article class="poem-card reveal" data-cat="poetry introspective">
-            <div class="poem-header">
-                <div class="poem-meta">
-                    <span class="poem-type">Introspective Poetry</span>
-                    <span class="poem-date">May 2025</span>
-                </div>
-                <h3>The Silent Symphony</h3>
-            </div>
-            <div class="poem-body">
-                <div class="poem-collapse">
-                    <p class="poem-text">In the hush of dawn's first light
-Where shadows dance with quiet might
-I hear a symphony, soft and clear
-A melody only silence can hear
-
-No notes are played, no strings are strung
-Yet music flows from a wordless tongue
-Each pause a chord, each breath a beat
-In silence, my soul and stillness meet</p>
-                </div>
-            </div>
-            <button class="poem-expand">Read More</button>
+        <article class="card reveal" data-cat="meaning">
+            <div class="card-meta"><b>Man's Search for Meaning</b><span>Viktor E. Frankl</span></div>
+            <blockquote>&ldquo;Everything can be taken from a man but one thing: the last of the human freedoms — to choose one's attitude in any given set of circumstances.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>A concentration-camp survivor writing about freedom of attitude rearranged how I think about hard weeks. There is always one variable left under my control.</div>
         </article>
 
-        <article class="poem-card reveal" data-cat="poetry introspective">
-            <div class="poem-header">
-                <div class="poem-meta">
-                    <span class="poem-type">Introspective Poetry</span>
-                    <span class="poem-date">April 2025</span>
-                </div>
-                <h3>Whispers of the Void</h3>
-            </div>
-            <div class="poem-body">
-                <div class="poem-collapse">
-                    <p class="poem-text">The void speaks in whispers low
-In spaces where no echoes go
-A language carved in quiet's grace
-A canvas vast, an empty space
-
-I listen with a heart undone
-To secrets shared by no one
-In silence, truth begins to bloom
-A flower born in quiet's womb</p>
-                </div>
-            </div>
-            <button class="poem-expand">Read More</button>
+        <article class="card reveal" data-cat="stoic">
+            <div class="card-meta"><b>Meditations</b><span>Marcus Aurelius</span></div>
+            <blockquote>&ldquo;The impediment to action advances action. What stands in the way becomes the way.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>Every production incident is this sentence with a timestamp. The blocker isn't blocking the work — it is the work.</div>
         </article>
 
-        <article class="poem-card reveal" data-cat="poetry">
-            <div class="poem-header">
-                <div class="poem-meta">
-                    <span class="poem-type">Poetry</span>
-                    <span class="poem-date">March 2025</span>
-                </div>
-                <h3>The Pause Between</h3>
-            </div>
-            <div class="poem-body">
-                <div class="poem-collapse">
-                    <p class="poem-text">Life is lived in moments loud
-In laughter, tears, and crowded sound
-But truth resides in pauses brief
-A silent balm for joy or grief
-
-Between the words, the heartbeats' rush
-There lies a sacred, quiet hush
-In that space, I find my core
-The self I am, forevermore</p>
-                </div>
-            </div>
-            <button class="poem-expand">Read More</button>
+        <article class="card reveal" data-cat="stoic">
+            <div class="card-meta"><b>Antifragile</b><span>Nassim Nicholas Taleb</span></div>
+            <blockquote>&ldquo;Wind extinguishes a candle and energizes fire.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>Same chaos, two outcomes — the difference is what you're made of. I want to be the thing that gets stronger when the plan breaks.</div>
         </article>
 
-        <article class="poem-card reveal" data-cat="lyrics introspective">
-            <div class="poem-header">
-                <div class="poem-meta">
-                    <span class="poem-type">Introspective Lyrics</span>
-                    <span class="poem-date">February 2025</span>
-                </div>
-                <h3>Silent Waves</h3>
-            </div>
-            <div class="poem-body">
-                <div class="poem-collapse">
-                    <p class="poem-text">Verse 1:
-In the quiet of the night
-Where stars alone give light
-I sail on waves of silent dreams
-Where nothing's what it seems
-
-Chorus:
-Silent waves, carry me
-To a place where I am free
-In the stillness, I will soar
-Finding peace forevermore</p>
-                </div>
-            </div>
-            <button class="poem-expand">Read More</button>
+        <article class="card reveal" data-cat="work">
+            <div class="card-meta"><b>The Psychology of Money</b><span>Morgan Housel</span></div>
+            <blockquote>&ldquo;Wealth is what you don't see.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>The loudest purchases are usually the quietest bank accounts. Saved me from confusing income with wealth — in money and in attention.</div>
         </article>
 
-        <article class="poem-card reveal" data-cat="lyrics">
-            <div class="poem-header">
-                <div class="poem-meta">
-                    <span class="poem-type">Song Lyrics</span>
-                    <span class="poem-date">January 2025</span>
-                </div>
-                <h3>Hush of the Heart</h3>
-            </div>
-            <div class="poem-body">
-                <div class="poem-collapse">
-                    <p class="poem-text">Verse:
-When the world is screaming loud
-And chaos forms a crowd
-I close my eyes, I turn within
-To where the hush begins
-
-Pre-chorus:
-No words, no sound, just me
-A quiet eternity
-
-Chorus:
-Hush of the heart, set me free
-In silence, I can truly be
-No echoes, just a gentle spark
-Lighting up my silent dark</p>
-                </div>
-            </div>
-            <button class="poem-expand">Read More</button>
+        <article class="card reveal" data-cat="work">
+            <div class="card-meta"><b>Zero to One</b><span>Peter Thiel</span></div>
+            <blockquote>&ldquo;Every moment in business happens only once.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>The next Bill Gates won't build an operating system, and the next NAXA won't build another geoportal. Copying removes the value; the moment is the moat.</div>
         </article>
 
-        <article class="poem-card reveal" data-cat="poetry introspective">
-            <div class="poem-header">
-                <div class="poem-meta">
-                    <span class="poem-type">Introspective Poetry</span>
-                    <span class="poem-date">December 2024</span>
-                </div>
-                <h3>The Silent Mirror</h3>
-            </div>
-            <div class="poem-body">
-                <div class="poem-collapse">
-                    <p class="poem-text">In silence, I face the mirror clear
-No masks, no noise, just truth sincere
-My reflection speaks in wordless grace
-A quiet soul, a timeless face
-
-Each wrinkle tells of silent days
-Each glance reveals my heart's soft maze
-In stillness, I am whole, complete
-The mirror and I, in silence meet</p>
-                </div>
-            </div>
-            <button class="poem-expand">Read More</button>
+        <article class="card reveal" data-cat="fiction">
+            <div class="card-meta"><b>Notes from Underground</b><span>Fyodor Dostoevsky</span></div>
+            <blockquote>&ldquo;I am a sick man&hellip; I am a spiteful man. I am an unattractive man. I believe my liver is diseased.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>The most honest opening line in literature. Everyone has an underground man — mine talks mostly at 2&nbsp;a.m., right after I say I'll sleep early.</div>
         </article>
 
-        <article class="poem-card reveal" data-cat="lyrics">
-            <div class="poem-header">
-                <div class="poem-meta">
-                    <span class="poem-type">Nepali Song</span>
-                    <span class="poem-date">May 2025</span>
-                </div>
-                <h3>Bhanna Sakinna — Neetesh Jung Kunwar</h3>
-            </div>
-            <div class="poem-body">
-                <div class="poem-collapse">
-                    <p class="poem-text">Deurali ko chiso chiso hawale
-Mori timilai ankha laako saarale
-Kaile kahi ma tira ni bato moda hai
-Gaule keti chaiyo bhanchin aama le
+        <article class="card reveal" data-cat="fiction">
+            <div class="card-meta"><b>The Picture of Dorian Gray</b><span>Oscar Wilde</span></div>
+            <blockquote>&ldquo;The only way to get rid of a temptation is to yield to it.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>Beautiful, logical, and completely wrong — which is exactly why it's terrifying. Wilde writes warnings that sound like invitations.</div>
+        </article>
 
-Timra lagi bhaka pani surilo
-Timra baa lai adha dharni kurilo
-Dhani bada auchan arey haat magnalai
-Paune chainau ma jati gunilo
+        <article class="card reveal" data-cat="stoic">
+            <div class="card-meta"><b>Beyond Good and Evil</b><span>Friedrich Nietzsche</span></div>
+            <blockquote>&ldquo;He who fights with monsters should see to it that he himself does not become a monster.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>Written for anyone who has fought bad process with harsher process, or answered a rude code review with a ruder one. The abyss also reads pull requests.</div>
+        </article>
 
-Tara gaathey bhanna sakinna
-Mero nabanaye samma pachi hatinna
-timilai
-Mero nabanaye samma pachi hatinna
+        <article class="card reveal" data-cat="meaning">
+            <div class="card-meta"><b>Socrates Express</b><span>Eric Weiner</span></div>
+            <blockquote>&ldquo;The unexamined life may not be worth living, but the over-examined life is no picnic either.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>Philosophy as a practical toolkit, not a museum. Bonus memory: I met Eric Weiner at Boudha — told him this book rode every bus in Kathmandu with me.</div>
+        </article>
 
-Janya kuro etinai ho
-Jindagani gaarai raicha
-Kahani ma chhoto jhai ho
-Parepachi laamai raicha
+        <article class="card reveal" data-cat="work">
+            <div class="card-meta"><b>The 80/20 Principle</b><span>Richard Koch</span></div>
+            <blockquote>&ldquo;A minority of causes, inputs, or effort usually lead to a majority of the results, outputs, or rewards.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>Twenty percent of the code causes eighty percent of the incidents — I've lived this table of contents. Profile before you optimise, in systems and in weeks.</div>
+        </article>
 
-Batti gayo ghar ma mero diyo bali dinchau ki
-Bharr hunna re GenZ haru ko
-Jyanai khosi linchau ki
+        <article class="card reveal" data-cat="work">
+            <div class="card-meta"><b>Million Dollar Weekend</b><span>Noah Kagan</span></div>
+            <blockquote>&ldquo;Validation is finding three customers in forty-eight hours who will give you money for your idea.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>The antidote to building in secret for six months. Ask first, build second — the same reason I ship an ugly working demo before writing a single design doc.</div>
+        </article>
 
-Thatta garya timi kina risaako
-Khallo chiya ma halka chini misaako
-Neta bani ayena ma bhot magnalai
-Sasu aama byarthai ma chisaako
+        <article class="card reveal" data-cat="work">
+            <div class="card-meta"><b>Screw Business as Usual</b><span>Richard Branson</span></div>
+            <blockquote>&ldquo;Screw it, let's do it.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>Two words that beat a hundred planning meetings. I watched this exact energy turn hackathon wins into an actual company — my juniors didn't wait for permission, and neither should anyone.</div>
+        </article>
 
-Tei bhayera ta bhanna sakinna
-Mero nabanaye samma pachi hatinna
-timilai
-Mero nabanaye samma pachi hatinna
+        <article class="card reveal" data-cat="meaning">
+            <div class="card-meta"><b>The Geography of Bliss</b><span>Eric Weiner</span></div>
+            <blockquote>&ldquo;Happiness is not a noun or verb. It's a conjunction. Connective tissue.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>A grump travelling the world to find happy places, and the finding is always the same: people. Explains why my best work days involve a full room, and why I met this very author at Boudha and talked his ear off.</div>
+        </article>
 
-Khyal gara mayalu sabai kurautey
-Chinta le bhaye ma ta sikri churotey
-
-Deurali ko chiso chiso hawale
-Mori timilai ankha laako saarale
-Kaile kahi ma tira ni bato moda hai
-Gaule keti chaiyo bhanchin aama le
-
-Tara gaathey bhanna sakinna
-Mero nabanaye samma pachi hatinna
-timilai
-Afno nabanaye samma Tissai katinna
-Timilai mero nabanaye samma Tissai katinna</p>
-                </div>
-            </div>
-            <button class="poem-expand">Read More</button>
+        <article class="card reveal" data-cat="work">
+            <div class="card-meta"><b>21 Lessons for the 21st Century</b><span>Yuval Noah Harari</span></div>
+            <blockquote>&ldquo;In a world deluged by irrelevant information, clarity is power.&rdquo;</blockquote>
+            <div class="note"><b>Why it stayed</b>Could be the tagline for every data pipeline I've built. Most systems don't fail from missing data — they drown in the irrelevant kind.</div>
         </article>
 
     </div>
 </div>
 
-<!-- ABOUT POETRY -->
-<section class="about-poetry">
-    <div class="about-poetry-inner">
-        <div class="label">// the philosophy</div>
-        <h2>The Philosophy of Silence</h2>
-        <p>In a world that never stops, I've come to find my peace in the pauses. Silent Echoes is a collection of poetry and lyrics that dive deep into those moments between thoughts, where clarity often hides. Here, silence isn't emptiness — it's a place to reconnect, to feel, and to understand.</p>
-        <p>Each piece is a raw exploration of stillness, crafted not just with words, but with the weight of emotions that only quiet can hold. They are the echoes of contemplation, reverberating through the chambers of consciousness.</p>
-        <p>Take your time, explore these spaces, and let the echo of each verse find a place within you.</p>
+<!-- ABOUT -->
+<section class="about">
+    <div class="about-inner">
+        <div class="label">// why marginalia</div>
+        <h2>Reading is a conversation.</h2>
+        <p>I read the way I debug — slowly, with a pen. A book only finishes when something
+        from it survives into how I think on Monday morning. These are the survivors:
+        lines copied into notebooks, phone notes, and eventually into code reviews,
+        standups, and 2&nbsp;a.m. decisions.</p>
+        <p>Frankl handed me the why before the how. Taleb taught me to stop resenting
+        volatility. Housel separated money from noise, Harari separated signal from flood.
+        Dostoevsky, honestly, just keeps me company.</p>
+        <p>If one of these lines starts an argument in your head too — good. That argument
+        is the point. Bring it to me over coffee; the best conversations start in the margins.</p>
     </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
     <div class="foot-inner">
-        <p class="foot-text">// <span class="g">silent echoes</span> · Ram Tamang · Nepal</p>
+        <p class="foot-text">// <em>marginalia</em> · Ram Kumar Tamang · Nepal</p>
         <div class="socials">
-            <a href="https://github.com/Ramtamang-2058" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/Ramtamang-2058" target="_blank" rel="noopener" aria-label="GitHub">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/ram-tamang-a73241198" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/ram_unlimited/" target="_blank" rel="noopener" aria-label="Instagram">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+            </a>
         </div>
     </div>
 </footer>
@@ -611,29 +462,18 @@ Timilai mero nabanaye samma Tissai katinna</p>
         document.getElementById('navLinks').classList.toggle('open');
     });
 
-    // Filter
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const f = btn.dataset.filter;
-            document.querySelectorAll('.poem-card').forEach(card => {
+            document.querySelectorAll('.card').forEach(card => {
                 const cats = card.dataset.cat || '';
                 card.style.display = (f === 'all' || cats.includes(f)) ? 'flex' : 'none';
             });
         });
     });
 
-    // Expand/collapse
-    document.querySelectorAll('.poem-expand').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const collapse = btn.previousElementSibling.querySelector('.poem-collapse');
-            const expanded = collapse.classList.toggle('expanded');
-            btn.textContent = expanded ? 'Read Less' : 'Read More';
-        });
-    });
-
-    // Reveal
     const obs = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
     }, { threshold: 0.08 });
