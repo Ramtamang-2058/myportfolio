@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Marginalia — lines worth keeping, from the books Ram Tamang reads.">
     <title>Marginalia — Ram Tamang</title>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Marginalia — Ram Tamang"/>
+    <meta property="og:description" content="Lines worth keeping, from the books Ram Tamang reads."/>
+    <meta property="og:image" content="https://ram-tamang.com.np/images/art/pencil-sketchbook.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -33,6 +39,8 @@
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: var(--paper); }
         ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .032; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
         /* NAV */
         header {
@@ -442,7 +450,7 @@
 <!-- FOOTER -->
 <footer>
     <div class="foot-inner">
-        <p class="foot-text">// <em>marginalia</em> · Ram Kumar Tamang · Nepal</p>
+        <p class="foot-text">// <em>marginalia</em> · Ram Kumar Tamang · Nepal · <span id="npt">–:–– NPT</span></p>
         <div class="socials">
             <a href="https://github.com/Ramtamang-2058" target="_blank" rel="noopener" aria-label="GitHub">
                 <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -478,6 +486,18 @@
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+<script>
+    (function () {
+        var el = document.getElementById('npt');
+        if (!el) return;
+        function tick() {
+            try {
+                el.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit' }).format(new Date()) + ' NPT';
+            } catch (e) {}
+        }
+        tick(); setInterval(tick, 15000);
+    })();
 </script>
 </body>
 </html>

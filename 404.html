@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Ram Tamang</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --paper:#FAF9F6; --ink:#1C1A17; --ink-2:#55504A; --ink-3:#8A837B; --line:#E3DFD6; --accent:#20503C; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family:'Inter',sans-serif; background:var(--paper); color:var(--ink);
+            min-height:100vh; display:flex; align-items:center; justify-content:center;
+            text-align:center; padding:2rem; line-height:1.7;
+        }
+        .no { font-family:'IBM Plex Mono',monospace; font-size:.75rem; letter-spacing:.25em; color:var(--accent); text-transform:uppercase; margin-bottom:1.2rem; }
+        h1 { font-family:'Fraunces',serif; font-weight:400; font-size:clamp(3rem,9vw,5.5rem); line-height:1.05; letter-spacing:-.01em; margin-bottom:1.2rem; }
+        h1 em { font-style:italic; color:var(--accent); }
+        p { color:var(--ink-2); max-width:440px; margin:0 auto 2rem; }
+        a.btn {
+            display:inline-block; padding:.85rem 1.7rem; border:1px solid var(--ink);
+            color:var(--ink); text-decoration:none; font-weight:500; font-size:.92rem;
+            transition:all .2s;
+        }
+        a.btn:hover { background:var(--ink); color:var(--paper); }
+        .hint { margin-top:2.2rem; font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+    </style>
+</head>
+<body>
+    <main>
+        <div class="no">// error 404</div>
+        <h1>This page wandered<br><em>off the trail.</em></h1>
+        <p>The link is broken or the page moved — but every good run has a way back. Let's reroute.</p>
+        <a class="btn" href="/">Back to base camp</a>
+        <div class="hint">Kathmandu, Nepal · 27.7172° N, 85.3240° E</div>
+    </main>
+</body>
+</html>

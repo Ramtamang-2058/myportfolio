@@ -2,9 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Gallery — moments from Ram Tamang's world: Jhapa and Ilam diaries, robotics lab notes, portraits, and travel frames across Nepal."/>
     <title>Gallery — Ram Kumar Tamang</title>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Gallery — Ram Tamang"/>
+    <meta property="og:description" content="Field journal in frames: Jhapa, Ilam, robotics, portraits, travel — and pencil art."/>
+    <meta property="og:image" content="https://ram-tamang.com.np/images/art/pencil-sketchbook.jpg"/>
+    <meta name="twitter:card" content="summary_large_image"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -473,10 +479,10 @@
 <!-- FOOTER -->
 <footer>
     <div class="wrap foot">
-        <span>© 2026 Ram Kumar Tamang — Kathmandu, Nepal</span>
+        <span>© 2026 Ram Kumar Tamang — Kathmandu, Nepal · <span id="npt">–:–– NPT</span></span>
         <span><a href="mailto:ram.tamang2058@gmail.com">Email</a> · <a href="https://github.com/Ramtamang-2058" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/ram-tamang-a73241198" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.instagram.com/ram_unlimited/" target="_blank" rel="noopener">Instagram</a></span>
     </div>
-</footer>
+
 
 <script>
     // Mobile nav
@@ -568,6 +574,18 @@
         if (e.key === 'ArrowLeft') step(-1);
         if (e.key === 'ArrowRight') step(1);
     });
+</script>
+<script>
+    (function () {
+        var el = document.getElementById('npt');
+        if (!el) return;
+        function tick() {
+            try {
+                el.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit' }).format(new Date()) + ' NPT';
+            } catch (e) {}
+        }
+        tick(); setInterval(tick, 15000);
+    })();
 </script>
 </body>
 </html>

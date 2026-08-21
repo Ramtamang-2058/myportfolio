@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Ram Kumar Tamang — Python Backend Engineer specialising in Django, FastAPI, and geospatial systems for disaster risk management. Based in Kathmandu, Nepal."/>
     <title>Ram Kumar Tamang — Backend Engineer</title>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="Ram Kumar Tamang — Python Backend Engineer"/>
+    <meta property="og:description" content="Building Nepal's national weather forecast system at NAXA. Software lead on the country's first open-source humanoid robot. Kathmandu."/>
+    <meta property="og:image" content="https://ram-tamang.com.np/images/jhapa_diary/reciving_token_of_love_from_mayer_and_predent_of_HISSAN.jpeg"/>
+    <meta property="og:url" content="https://ram-tamang.com.np/"/>
+    <meta name="twitter:card" content="summary_large_image"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -467,6 +474,9 @@
             font-family: var(--mono); font-size: 0.62rem;
             letter-spacing: 0.04em; color: var(--ink-3);
         }
+
+body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .032; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+        ::selection { background: rgba(32,80,60,0.16); }
 
         /* ── PULL QUOTE ── */
         .quote-sec { padding: 96px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -1193,7 +1203,7 @@
 <!-- FOOTER -->
 <footer>
     <div class="wrap foot">
-        <span>© 2026 Ram Kumar Tamang — Kathmandu, Nepal</span>
+        <span>© 2026 Ram Kumar Tamang — Kathmandu, Nepal · <span id="npt">–:–– NPT</span></span>
         <span><a href="mailto:ram.tamang2058@gmail.com">Email</a> · <a href="https://github.com/Ramtamang-2058" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/ram-tamang-a73241198" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.instagram.com/ram_unlimited/" target="_blank" rel="noopener">Instagram</a></span>
     </div>
 </footer>
@@ -1229,6 +1239,18 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+</script>
+<script>
+    (function () {
+        var el = document.getElementById('npt');
+        if (!el) return;
+        function tick() {
+            try {
+                el.textContent = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kathmandu', hour: '2-digit', minute: '2-digit' }).format(new Date()) + ' NPT';
+            } catch (e) {}
+        }
+        tick(); setInterval(tick, 15000);
+    })();
 </script>
 </body>
 </html>
