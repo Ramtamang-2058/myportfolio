@@ -328,7 +328,24 @@
             box-shadow: 0 1px 2px rgba(28,26,23,0.12), 0 8px 20px rgba(28,26,23,0.10);
             transition: transform .25s ease, box-shadow .25s ease;
         }
-        .book:hover img { transform: translateY(-5px); box-shadow: 0 2px 3px rgba(28,26,23,0.12), 0 16px 32px rgba(28,26,23,0.14); }
+        .book:hover img, .book:hover .type-cover { transform: translateY(-5px); box-shadow: 0 2px 3px rgba(28,26,23,0.12), 0 16px 32px rgba(28,26,23,0.14); }
+
+        /* typographic covers — for books with no printed jacket online */
+        .book .type-cover {
+            width: 128px; height: 192px; border-radius: 2px;
+            display: flex; flex-direction: column;
+            padding: 13px 12px 11px;
+            box-shadow: 0 1px 2px rgba(28,26,23,0.12), 0 8px 20px rgba(28,26,23,0.10);
+            transition: transform .25s ease, box-shadow .25s ease;
+        }
+        .type-cover .tc-top { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.75; }
+        .type-cover .tc-title { font-family: var(--serif); font-style: italic; font-size: 1.05rem; line-height: 1.25; margin: auto 0; }
+        .type-cover .tc-title.np-title { font-style: normal; font-size: 1.3rem; }
+        .type-cover .tc-author { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; border-top: 1px solid currentColor; padding-top: 8px; opacity: 0.85; }
+        .tc-green { background: linear-gradient(160deg, #2A6249, #1C4433); color: #F2EFE9; }
+        .tc-earth { background: linear-gradient(160deg, #96684F, #74492F); color: #FAF9F6; }
+        .tc-paper { background: linear-gradient(160deg, #F2EFE9, #E0D9CB); color: #1C1A17; }
+        .np-label { color: var(--accent); }
         .book b {
             display: block; font-size: 0.8rem; font-weight: 600;
             line-height: 1.35; margin-top: 12px;
@@ -443,8 +460,8 @@
 
         /* book shelf — hand-placed feel */
         .lib-row .book:nth-child(odd) img { transform: rotate(-1.6deg); }
-        .lib-row .book:nth-child(even) img { transform: rotate(1.3deg); }
-        .lib-row .book:hover img { transform: rotate(0) translateY(-6px); }
+        .lib-row .book:nth-child(even) img, .lib-row .book:nth-child(even) .type-cover { transform: rotate(1.3deg); }
+        .lib-row .book:hover img, .lib-row .book:hover .type-cover { transform: rotate(0) translateY(-6px); }
 
         .book .met {
             display: inline-block; font-family: var(--mono); font-style: normal;
@@ -880,7 +897,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         </div>
         <p class="lib-intro rv">
             A physical book goes everywhere I do — café corners, bus rides, lunch breaks. I read slowly,
-            argue with authors, and turn the best ideas into something usable. Here's the current shelf.
+            argue with authors, and turn the best ideas into something usable. Here's the current shelf — thirty-five volumes and counting.
         </p>
 
         <div class="lib-status rv">Reading now</div>
@@ -1000,6 +1017,35 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             <figure class="book">
                 <img src="images/books/million-dollar-weekend.jpg" alt="Million Dollar Weekend by Noah Kagan" loading="lazy"/>
                 <figcaption><b>Million Dollar Weekend</b><span>Noah Kagan</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/to-sell-is-human.jpg" alt="To Sell Is Human by Daniel H. Pink" loading="lazy"/>
+                <figcaption><b>To Sell Is Human</b><span>Daniel H. Pink</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/side-hustle.jpg" alt="Side Hustle by Chris Guillebeau" loading="lazy"/>
+                <figcaption><b>Side Hustle</b><span>Chris Guillebeau</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/foolproof.jpg" alt="Foolproof by Sander van der Linden" loading="lazy"/>
+                <figcaption><b>Foolproof</b><span>Sander van der Linden</span></figcaption>
+            </figure>
+        </div>
+
+        <div class="lib-status rv" style="margin-top: 56px;">The Nepal shelf &nbsp;&middot;&nbsp; <span class="np-label">&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; &#2323;&#2335;</span></div>
+        <p class="lib-intro rv" style="margin-top: -8px;">Home ground &mdash; hills, saints, and stories from right here.</p>
+        <div class="lib-row rv">
+            <figure class="book">
+                <div class="type-cover tc-green"><span class="tc-top">A NOVEL</span><span class="tc-title">Rockin&rsquo; Rollin&rsquo; Rolpa</span><span class="tc-author">Mahendra P. Joshi</span></div>
+                <figcaption><b>Rockin' Rollin' Rolpa</b><span>Mahendra P. Joshi</span></figcaption>
+            </figure>
+            <figure class="book">
+                <div class="type-cover tc-earth"><span class="tc-top">&#2343;&#2381;&#2351;&#2366;&#2344; &middot; &#2360;&#2366;&#2343;&#2344;&#2366;</span><span class="tc-title np-title">&#2326;&#2346;&#2381;&#2340;&#2337; &#2348;&#2366;&#2348;&#2366;</span><span class="tc-author">&#2360;&#2381;&#2357;&#2366;&#2350;&#2368; &#2360;&#2330;&#2381;&#2330;&#2367;&#2342;&#2366;&#2344;&#2344;&#2381;&#2342;</span></div>
+                <figcaption><b>&#2326;&#2346;&#2381;&#2340;&#2337; &#2348;&#2366;&#2348;&#2366;</b><span>Swami Sachchidananda</span></figcaption>
+            </figure>
+            <figure class="book">
+                <div class="type-cover tc-paper"><span class="tc-top">FICTION</span><span class="tc-title">Forget Kathmandu</span><span class="tc-author">Sushma Joshi</span></div>
+                <figcaption><b>Forget Kathmandu</b><span>Sushma Joshi</span></figcaption>
             </figure>
         </div>
 
