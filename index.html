@@ -328,24 +328,22 @@
             box-shadow: 0 1px 2px rgba(28,26,23,0.12), 0 8px 20px rgba(28,26,23,0.10);
             transition: transform .25s ease, box-shadow .25s ease;
         }
-        .book:hover img, .book:hover .type-cover { transform: translateY(-5px); box-shadow: 0 2px 3px rgba(28,26,23,0.12), 0 16px 32px rgba(28,26,23,0.14); }
+        .book:hover img { transform: translateY(-5px); box-shadow: 0 2px 3px rgba(28,26,23,0.12), 0 16px 32px rgba(28,26,23,0.14); }
 
-        /* typographic covers — for books with no printed jacket online */
-        .book .type-cover {
-            width: 128px; height: 192px; border-radius: 2px;
-            display: flex; flex-direction: column;
-            padding: 13px 12px 11px;
-            box-shadow: 0 1px 2px rgba(28,26,23,0.12), 0 8px 20px rgba(28,26,23,0.10);
-            transition: transform .25s ease, box-shadow .25s ease;
+        .book { position: relative; }
+        .book .takeaway {
+            position: absolute; top: 0; left: 0; right: 0; height: 192px;
+            background: linear-gradient(180deg, rgba(28,26,23,0.86), rgba(22,56,42,0.94));
+            color: #F2EFE9; font-family: var(--serif); font-style: italic;
+            font-size: 0.78rem; line-height: 1.55; padding: 13px 12px;
+            display: flex; align-items: flex-end;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity .25s ease, transform .25s ease;
+            pointer-events: none; border-radius: 2px;
         }
-        .type-cover .tc-top { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.75; }
-        .type-cover .tc-title { font-family: var(--serif); font-style: italic; font-size: 1.05rem; line-height: 1.25; margin: auto 0; }
-        .type-cover .tc-title.np-title { font-style: normal; font-size: 1.3rem; }
-        .type-cover .tc-author { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; border-top: 1px solid currentColor; padding-top: 8px; opacity: 0.85; }
-        .tc-green { background: linear-gradient(160deg, #2A6249, #1C4433); color: #F2EFE9; }
-        .tc-earth { background: linear-gradient(160deg, #96684F, #74492F); color: #FAF9F6; }
-        .tc-paper { background: linear-gradient(160deg, #F2EFE9, #E0D9CB); color: #1C1A17; }
-        .np-label { color: var(--accent); }
+        .book:hover .takeaway { opacity: 1; transform: translateY(0); }
+        @media (hover: none) { .book .takeaway { display: none; } }
+
         .book b {
             display: block; font-size: 0.8rem; font-weight: 600;
             line-height: 1.35; margin-top: 12px;
@@ -460,8 +458,8 @@
 
         /* book shelf — hand-placed feel */
         .lib-row .book:nth-child(odd) img { transform: rotate(-1.6deg); }
-        .lib-row .book:nth-child(even) img, .lib-row .book:nth-child(even) .type-cover { transform: rotate(1.3deg); }
-        .lib-row .book:hover img, .lib-row .book:hover .type-cover { transform: rotate(0) translateY(-6px); }
+        .lib-row .book:nth-child(even) img { transform: rotate(1.3deg); }
+        .lib-row .book:hover img { transform: rotate(0) translateY(-6px); }
 
         .book .met {
             display: inline-block; font-family: var(--mono); font-style: normal;
@@ -904,10 +902,12 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         <div class="lib-row rv">
             <figure class="book reading">
                 <img src="images/books/antifragile.jpg" alt="Antifragile by Nassim Nicholas Taleb" loading="lazy"/>
+                <div class="takeaway">Be the fire, not the candle.</div>
                 <figcaption><b>Antifragile</b><span>Nassim Nicholas Taleb</span></figcaption>
             </figure>
             <figure class="book reading">
                 <img src="images/books/dorian-gray.jpg" alt="The Picture of Dorian Gray by Oscar Wilde" loading="lazy"/>
+                <div class="takeaway">Warnings that sound like invitations.</div>
                 <figcaption><b>The Picture of Dorian Gray</b><span>Oscar Wilde</span></figcaption>
             </figure>
         </div>
@@ -924,6 +924,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             </figure>
             <figure class="book">
                 <img src="images/books/meditations.jpg" alt="Meditations by Marcus Aurelius" loading="lazy"/>
+                <div class="takeaway">What stands in the way becomes the way.</div>
                 <figcaption><b>Meditations</b><span>Marcus Aurelius</span></figcaption>
             </figure>
             <figure class="book">
@@ -932,22 +933,27 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             </figure>
             <figure class="book">
                 <img src="images/books/mans-search-for-meaning.jpg" alt="Man's Search for Meaning by Viktor E. Frankl" loading="lazy"/>
+                <div class="takeaway">The last freedom: choosing your attitude.</div>
                 <figcaption><b>Man's Search for Meaning</b><span>Viktor E. Frankl</span></figcaption>
             </figure>
             <figure class="book">
                 <img src="images/books/beyond-good-and-evil.jpg" alt="Beyond Good and Evil by Friedrich Nietzsche" loading="lazy"/>
+                <div class="takeaway">The abyss also reads pull requests.</div>
                 <figcaption><b>Beyond Good and Evil</b><span>Friedrich Nietzsche</span></figcaption>
             </figure>
             <figure class="book">
                 <img src="images/books/notes-from-underground.jpg" alt="Notes from Underground by Fyodor Dostoevsky" loading="lazy"/>
+                <div class="takeaway">The most honest opening line in literature.</div>
                 <figcaption><b>Notes from Underground</b><span>Fyodor Dostoevsky</span></figcaption>
             </figure>
             <figure class="book">
                 <img src="images/books/zero-to-one.jpg" alt="Zero to One by Peter Thiel" loading="lazy"/>
+                <div class="takeaway">Every moment happens only once.</div>
                 <figcaption><b>Zero to One</b><span>Peter Thiel</span></figcaption>
             </figure>
             <figure class="book">
                 <img src="images/books/psychology-of-money.jpg" alt="The Psychology of Money by Morgan Housel" loading="lazy"/>
+                <div class="takeaway">Wealth is what you don’t see.</div>
                 <figcaption><b>The Psychology of Money</b><span>Morgan Housel</span></figcaption>
             </figure>
             <figure class="book">
@@ -1012,22 +1018,27 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             </figure>
             <figure class="book">
                 <img src="images/books/80-20-principle.jpg" alt="The 80/20 Principle by Richard Koch" loading="lazy"/>
+                <div class="takeaway">Twenty percent of the code, eighty percent of the incidents.</div>
                 <figcaption><b>The 80/20 Principle</b><span>Richard Koch</span></figcaption>
             </figure>
             <figure class="book">
                 <img src="images/books/million-dollar-weekend.jpg" alt="Million Dollar Weekend by Noah Kagan" loading="lazy"/>
+                <div class="takeaway">Ask first, build second.</div>
                 <figcaption><b>Million Dollar Weekend</b><span>Noah Kagan</span></figcaption>
             </figure>
             <figure class="book">
                 <img src="images/books/to-sell-is-human.jpg" alt="To Sell Is Human by Daniel H. Pink" loading="lazy"/>
+                <div class="takeaway">Selling is moving people — we all do it, every day.</div>
                 <figcaption><b>To Sell Is Human</b><span>Daniel H. Pink</span></figcaption>
             </figure>
             <figure class="book">
                 <img src="images/books/side-hustle.jpg" alt="Side Hustle by Chris Guillebeau" loading="lazy"/>
+                <div class="takeaway">Twenty-seven days from idea to income.</div>
                 <figcaption><b>Side Hustle</b><span>Chris Guillebeau</span></figcaption>
             </figure>
             <figure class="book">
                 <img src="images/books/foolproof.jpg" alt="Foolproof by Sander van der Linden" loading="lazy"/>
+                <div class="takeaway">Prebunking beats debunking.</div>
                 <figcaption><b>Foolproof</b><span>Sander van der Linden</span></figcaption>
             </figure>
         </div>
@@ -1036,16 +1047,19 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         <p class="lib-intro rv" style="margin-top: -8px;">Home ground &mdash; hills, saints, and stories from right here.</p>
         <div class="lib-row rv">
             <figure class="book">
-                <div class="type-cover tc-green"><span class="tc-top">A NOVEL</span><span class="tc-title">Rockin&rsquo; Rollin&rsquo; Rolpa</span><span class="tc-author">Mahendra P. Joshi</span></div>
+                <img src="images/books/rockin-rollin-rolpa.jpg" alt="Rockin' Rollin' Rolpa by Mahendra P. Joshi" loading="lazy"/>
+                <div class="takeaway">America meets rural Nepal &mdash; one mishap at a time.</div>
                 <figcaption><b>Rockin' Rollin' Rolpa</b><span>Mahendra P. Joshi</span></figcaption>
             </figure>
             <figure class="book">
-                <div class="type-cover tc-earth"><span class="tc-top">&#2343;&#2381;&#2351;&#2366;&#2344; &middot; &#2360;&#2366;&#2343;&#2344;&#2366;</span><span class="tc-title np-title">&#2326;&#2346;&#2381;&#2340;&#2337; &#2348;&#2366;&#2348;&#2366;</span><span class="tc-author">&#2360;&#2381;&#2357;&#2366;&#2350;&#2368; &#2360;&#2330;&#2381;&#2330;&#2367;&#2342;&#2366;&#2344;&#2344;&#2381;&#2342;</span></div>
-                <figcaption><b>&#2326;&#2346;&#2381;&#2340;&#2337; &#2348;&#2366;&#2348;&#2366;</b><span>Swami Sachchidananda</span></figcaption>
+                <img src="images/books/khaptad-baba.jpg" alt="खप्तडबाबा by Arjun Gyawali" loading="lazy"/>
+                <div class="takeaway">Allopathic doctor to saint &mdash; fifty years in the Khaptad hills.</div>
+                <figcaption><b>खप्तडबाबा</b><span>Arjun Gyawali</span></figcaption>
             </figure>
             <figure class="book">
-                <div class="type-cover tc-paper"><span class="tc-top">FICTION</span><span class="tc-title">Forget Kathmandu</span><span class="tc-author">Sushma Joshi</span></div>
-                <figcaption><b>Forget Kathmandu</b><span>Sushma Joshi</span></figcaption>
+                <img src="images/books/forget-kathmandu.jpg" alt="Forget Kathmandu by Manjushree Thapa" loading="lazy"/>
+                <div class="takeaway">An elegy for Nepali democracy &mdash; required reading from home.</div>
+                <figcaption><b>Forget Kathmandu</b><span>Manjushree Thapa</span></figcaption>
             </figure>
         </div>
 
