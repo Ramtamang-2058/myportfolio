@@ -91,7 +91,7 @@
 
         h1.display {
             font-family: var(--serif); font-weight: 400;
-            font-size: clamp(2.9rem, 6.2vw, 4.6rem);
+            font-size: clamp(2.35rem, 6.2vw, 4.6rem);
             line-height: 1.04; letter-spacing: -0.02em;
             margin-bottom: 26px;
         }
@@ -231,6 +231,7 @@
             align-items: center; margin-bottom: 88px;
         }
         .work-feature.flip .wf-media { order: 2; }
+        .wf-media figcaption { font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3); margin-top: 12px; letter-spacing: 0.06em; }
         .wf-media img {
             width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
             filter: saturate(0.94);
@@ -436,6 +437,29 @@
         .lib-row .book:nth-child(even) img { transform: rotate(1.3deg); }
         .lib-row .book:hover img { transform: rotate(0) translateY(-6px); }
 
+        .book .met {
+            display: inline-block; font-family: var(--mono); font-style: normal;
+            font-size: 0.6rem; letter-spacing: 0.06em; color: var(--accent);
+            border: 1px solid var(--accent); border-radius: 999px;
+            padding: 1px 7px; margin-top: 5px;
+        }
+
+        .also-build {
+            margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line);
+            display: flex; align-items: baseline; gap: 10px 26px; flex-wrap: wrap;
+        }
+        .also-build > span {
+            font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--ink-3);
+        }
+        .also-build a {
+            font-family: var(--serif); font-style: italic; font-size: 1.02rem;
+            color: var(--ink-2); text-decoration: none;
+            border-bottom: 1px solid var(--line); padding-bottom: 2px;
+            transition: color .2s, border-color .2s;
+        }
+        .also-build a:hover { color: var(--accent); border-color: var(--accent); }
+
         /* ── PULL QUOTE ── */
         .quote-sec { padding: 96px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
         .quote-inner { max-width: 780px; margin: 0 auto; text-align: center; padding: 0 24px; }
@@ -502,7 +526,10 @@
             .jhapa-grid { grid-template-columns: 1fr; }
             .facts { grid-template-columns: repeat(2, 1fr); }
             section { padding: 72px 0; }
-            .hero { padding: 140px 0 64px; }
+            .hero { padding: 118px 0 56px; }
+            .hero-grid { gap: 40px; }
+            .hero-photo { max-width: 290px; margin: 0 auto; }
+            .hero-lede { font-size: 1rem; margin-bottom: 32px; }
             .now-grid { grid-template-columns: 1fr 1fr; }
         }
 
@@ -552,8 +579,8 @@
                 </div>
             </div>
             <figure class="hero-photo li" style="--d:.3s">
-                <img src="images/me3.jpeg" alt="Portrait of Ram Kumar Tamang"/>
-                <figcaption>Kathmandu — where the mountains meet the terminal.</figcaption>
+                <img src="images/me3.jpeg" alt="Ram receiving an award with his students"/>
+                <figcaption>Award day with my students — Kathmandu.</figcaption>
             </figure>
         </div>
 
@@ -562,6 +589,13 @@
             <div class="hm"><dt>Focus</dt><dd>Geospatial · Disaster Risk · APIs</dd></div>
             <div class="hm"><dt>Say hello</dt><dd><a href="mailto:ram.tamang2058@gmail.com">ram.tamang2058@gmail.com</a></dd></div>
         </dl>
+
+        <div class="also-build li" style="--d:.65s">
+            <span>Also building with</span>
+            <a href="https://www.nirvixtech.com/" target="_blank" rel="noopener">Nirvix Technology</a>
+            <a href="https://hightechpioneer.com.np/" target="_blank" rel="noopener">High Tech Pioneer Nepal</a>
+            <a href="https://safalai.com.np/" target="_blank" rel="noopener">Safal AI</a>
+        </div>
     </div>
 </div>
 
@@ -574,8 +608,8 @@
         </div>
         <div class="about-grid">
             <figure class="about-photo rv rv-img">
-                <img src="images/me01.jpeg" alt="Ram Kumar Tamang"/>
-                <figcaption>Off duty — probably mid-run, mid-book, or mid-conversation.</figcaption>
+                <img src="images/me01.jpeg" alt="Ram at Boudhanath, Kathmandu"/>
+                <figcaption>Boudha, Kathmandu — where I go to walk and think.</figcaption>
             </figure>
             <div class="about-copy rv">
                 <p>
@@ -669,9 +703,10 @@
         </div>
 
         <div class="work-feature rv">
-            <div class="wf-media rv-img">
-                <img src="images/me8.JPG" alt="Nepal weather forecast platform"/>
-            </div>
+            <figure class="wf-media rv-img">
+                <img src="images/me8.JPG" alt="Receiving my bachelor's degree at convocation"/>
+                <figcaption>Convocation day — BSc ICT, Asia e University.</figcaption>
+            </figure>
             <div class="wf-body">
                 <div class="wf-no">FEATURED — NATIONAL INFRASTRUCTURE</div>
                 <h3>Nepal Weather Forecast &amp; River Monitoring</h3>
@@ -690,9 +725,10 @@
         </div>
 
         <div class="work-feature flip rv">
-            <div class="wf-media rv-img">
-                <img src="images/me03.jpeg" alt="InMoov humanoid robot"/>
-            </div>
+            <figure class="wf-media rv-img">
+                <img src="images/me03.jpeg" alt="The team with the InMoov robot at Begnas Lake, Pokhara"/>
+                <figcaption>Team day — Begnas Lake, Pokhara.</figcaption>
+            </figure>
             <div class="wf-body">
                 <div class="wf-no">FEATURED — RESEARCH &amp; ROBOTICS</div>
                 <h3>InMoov Humanoid Robot — Software Lead</h3>
@@ -869,6 +905,58 @@
             <figure class="book">
                 <img src="images/books/psychology-of-money.jpg" alt="The Psychology of Money by Morgan Housel" loading="lazy"/>
                 <figcaption><b>The Psychology of Money</b><span>Morgan Housel</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/socrates-express.jpg" alt="Socrates Express by Eric Weiner" loading="lazy"/>
+                <figcaption><b>Socrates Express</b><span>Eric Weiner</span><em class="met">met the author at Boudha</em></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/48-laws-of-power.jpg" alt="The 48 Laws of Power by Robert Greene" loading="lazy"/>
+                <figcaption><b>The 48 Laws of Power</b><span>Robert Greene</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/you-can-win.jpg" alt="You Can Win by Shiv Khera" loading="lazy"/>
+                <figcaption><b>You Can Win</b><span>Shiv Khera</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/diary-of-a-ceo.jpg" alt="The Diary of a CEO by Steven Bartlett" loading="lazy"/>
+                <figcaption><b>The Diary of a CEO</b><span>Steven Bartlett</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/4-hour-workweek.jpg" alt="The 4-Hour Workweek by Tim Ferriss" loading="lazy"/>
+                <figcaption><b>The 4-Hour Workweek</b><span>Tim Ferriss</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/tools-of-titans.jpg" alt="Tools of Titans by Tim Ferriss" loading="lazy"/>
+                <figcaption><b>Tools of Titans</b><span>Tim Ferriss</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/richest-man-in-babylon.jpg" alt="The Richest Man in Babylon by George S. Clason" loading="lazy"/>
+                <figcaption><b>The Richest Man in Babylon</b><span>George S. Clason</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/everything-store.jpg" alt="The Everything Store by Brad Stone" loading="lazy"/>
+                <figcaption><b>The Everything Store</b><span>Brad Stone</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/21-lessons.jpg" alt="21 Lessons for the 21st Century by Yuval Noah Harari" loading="lazy"/>
+                <figcaption><b>21 Lessons for the 21st Century</b><span>Yuval Noah Harari</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/awaken-giant-within.jpg" alt="Awaken the Giant Within by Tony Robbins" loading="lazy"/>
+                <figcaption><b>Awaken the Giant Within</b><span>Tony Robbins</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/unlimited-power.jpg" alt="Unlimited Power by Tony Robbins" loading="lazy"/>
+                <figcaption><b>Unlimited Power</b><span>Tony Robbins</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/one-thing.jpg" alt="The ONE Thing by Gary Keller and Jay Papasan" loading="lazy"/>
+                <figcaption><b>The ONE Thing</b><span>Gary Keller &amp; Jay Papasan</span></figcaption>
+            </figure>
+            <figure class="book">
+                <img src="images/books/lean-startup.jpg" alt="The Lean Startup by Eric Ries" loading="lazy"/>
+                <figcaption><b>The Lean Startup</b><span>Eric Ries</span></figcaption>
             </figure>
         </div>
 
