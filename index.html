@@ -282,12 +282,13 @@
         #robotics .sec-no b { color: #9DBBA9; }
         #robotics h2.sec-title em { color: #9DBBA9; }
 
-        .robot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+        .robot-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; align-items: start; }
+        .robot-grid > * { min-width: 0; }
         .robot-copy p { color: #C9CCC5; font-size: 0.98rem; line-height: 1.9; margin-bottom: 20px; }
         .robot-copy p strong { color: var(--paper); font-weight: 500; }
-        .robot-notes { display: grid; gap: 28px; }
-        .rnote figure img {
-            width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
+        .robot-notes { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: start; }
+        .rnote img {
+            width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
             border: 1px solid #3a3d38;
         }
         .rnote figcaption {
@@ -359,23 +360,6 @@
             width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block;
         }
 
-        .illam-card {
-            display: grid; grid-template-columns: 1fr auto; gap: 32px;
-            align-items: center;
-            border: 1px solid var(--line); background: var(--paper);
-            padding: 34px 38px; text-decoration: none;
-            transition: border-color .25s;
-        }
-        .illam-card:hover { border-color: var(--accent); }
-        .illam-card h4 {
-            font-family: var(--serif); font-weight: 500; font-size: 1.35rem;
-            margin-bottom: 8px; letter-spacing: -0.01em;
-        }
-        .illam-card p { color: var(--ink-2); font-size: 0.92rem; line-height: 1.75; max-width: 560px; }
-        .illam-arrow {
-            font-family: var(--mono); font-size: 0.75rem; color: var(--accent);
-            white-space: nowrap; letter-spacing: 0.08em;
-        }
 
         /* ── CONTACT ── */
         .contact-inner { text-align: center; max-width: 640px; margin: 0 auto; }
@@ -422,6 +406,75 @@
         .rv { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
         .rv.on { opacity: 1; transform: none; }
 
+        /* ── MOTION ── */
+        #progress {
+            position: fixed; top: 0; left: 0; right: 0; height: 2px;
+            background: var(--accent); transform-origin: 0 50%;
+            transform: scaleX(0); z-index: 200;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(26px); }
+            to { opacity: 1; transform: none; }
+        }
+        .li { opacity: 0; animation: fadeUp .85s cubic-bezier(.22,.61,.36,1) forwards; animation-delay: var(--d, 0s); }
+
+        .rv-img { clip-path: inset(10% 7% 10% 7%); opacity: 0.001; transition: clip-path 1s cubic-bezier(.4,0,.2,1), opacity .8s ease; }
+        .rv-img.on { clip-path: inset(0 0 0 0); opacity: 1; }
+
+        /* hero photo frame */
+        .hero-photo::before {
+            content: ''; position: absolute; inset: 0;
+            border: 1px solid var(--line);
+            transform: translate(14px, 14px);
+            z-index: -1; transition: transform .5s ease;
+        }
+        .hero-photo:hover::before { transform: translate(8px, 8px); }
+
+        /* book shelf — hand-placed feel */
+        .lib-row .book:nth-child(odd) img { transform: rotate(-1.6deg); }
+        .lib-row .book:nth-child(even) img { transform: rotate(1.3deg); }
+        .lib-row .book:hover img { transform: rotate(0) translateY(-6px); }
+
+        /* ── PULL QUOTE ── */
+        .quote-sec { padding: 96px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+        .quote-inner { max-width: 780px; margin: 0 auto; text-align: center; padding: 0 24px; }
+        .quote-mark {
+            font-family: var(--serif); font-size: 3.4rem; line-height: 0;
+            color: var(--accent); display: block; margin-bottom: 26px;
+        }
+        .quote-text {
+            font-family: var(--serif); font-weight: 300; font-style: italic;
+            font-size: clamp(1.5rem, 3.4vw, 2.3rem); line-height: 1.45;
+            letter-spacing: -0.01em; margin-bottom: 28px;
+        }
+        .quote-text .hl { color: var(--accent); }
+        .quote-by {
+            font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--ink-3);
+        }
+        .quote-note { font-size: 0.82rem; color: var(--ink-3); font-style: italic; margin-top: 10px; }
+
+        /* ── NOW ── */
+        .now-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+        }
+        .now-cell {
+            border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+            padding: 30px 26px; transition: background .25s ease;
+        }
+        .now-cell:hover { background: rgba(32,80,60,0.04); }
+        .now-cell dt {
+            font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 12px;
+        }
+        .now-cell dd b {
+            display: block; font-family: var(--serif); font-weight: 500;
+            font-size: 1.12rem; letter-spacing: -0.01em; margin-bottom: 5px;
+        }
+        .now-cell dd span { font-size: 0.83rem; color: var(--ink-2); line-height: 1.6; display: block; }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 960px) {
             .hero-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -433,7 +486,7 @@
             .work-feature.flip .wf-media { order: 0; }
             .robot-grid { grid-template-columns: 1fr; gap: 44px; }
             .jhapa-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-meta { gap: 40px; flex-wrap: wrap; }
+            .hero-meta { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px 40px; }
         }
         @media (max-width: 700px) {
             .nav-links {
@@ -447,14 +500,21 @@
             .work-item { grid-template-columns: 1fr; gap: 8px; }
             .wi-side { text-align: left; }
             .jhapa-grid { grid-template-columns: 1fr; }
-            .illam-card { grid-template-columns: 1fr; }
             .facts { grid-template-columns: repeat(2, 1fr); }
             section { padding: 72px 0; }
             .hero { padding: 140px 0 64px; }
+            .now-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .li, .rv, .rv-img { opacity: 1 !important; transform: none !important; clip-path: none !important; }
         }
     </style>
 </head>
 <body>
+
+<div id="progress"></div>
 
 <!-- NAV -->
 <header id="hdr">
@@ -467,6 +527,7 @@
             <li><a href="#journal">Journal</a></li>
             <li><a href="gallary.html">Gallery</a></li>
             <li><a href="dimension.html">Poetry</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li><a href="Ram_Kumar_Tamang_cv.pdf" class="cv-link">CV ↓</a></li>
         </ul>
         <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -478,25 +539,25 @@
     <div class="wrap">
         <div class="hero-grid">
             <div>
-                <div class="kicker">Backend Engineer — Kathmandu, Nepal</div>
-                <h1 class="display">I build systems that warn<br>before the <em>flood arrives.</em></h1>
-                <p class="hero-lede">
+                <div class="kicker li" style="--d:.05s">Backend Engineer — Kathmandu, Nepal</div>
+                <h1 class="display li" style="--d:.15s">I build systems that warn<br>before the <em>flood arrives.</em></h1>
+                <p class="hero-lede li" style="--d:.28s">
                     Python backend engineer with three years of production experience — currently shaping
                     Nepal's national weather forecast and flood early-warning platforms at NAXA,
                     serving governments and humanitarian teams across three countries.
                 </p>
-                <div class="hero-actions">
+                <div class="hero-actions li" style="--d:.4s">
                     <a href="#work" class="btn-solid">See my work</a>
                     <a href="Ram_Kumar_Tamang_cv.pdf" class="btn-line">Download CV</a>
                 </div>
             </div>
-            <figure class="hero-photo rv">
+            <figure class="hero-photo li" style="--d:.3s">
                 <img src="images/me3.jpeg" alt="Portrait of Ram Kumar Tamang"/>
                 <figcaption>Kathmandu — where the mountains meet the terminal.</figcaption>
             </figure>
         </div>
 
-        <dl class="hero-meta rv">
+        <dl class="hero-meta li" style="--d:.55s">
             <div class="hm"><dt>Currently</dt><dd>Backend Engineer @ NAXA</dd></div>
             <div class="hm"><dt>Focus</dt><dd>Geospatial · Disaster Risk · APIs</dd></div>
             <div class="hm"><dt>Say hello</dt><dd><a href="mailto:ram.tamang2058@gmail.com">ram.tamang2058@gmail.com</a></dd></div>
@@ -512,7 +573,7 @@
             <h2 class="sec-title">Engineering that answers to <em>reality.</em></h2>
         </div>
         <div class="about-grid">
-            <figure class="about-photo rv">
+            <figure class="about-photo rv rv-img">
                 <img src="images/me01.jpeg" alt="Ram Kumar Tamang"/>
                 <figcaption>Off duty — probably mid-run, mid-book, or mid-conversation.</figcaption>
             </figure>
@@ -608,7 +669,7 @@
         </div>
 
         <div class="work-feature rv">
-            <div class="wf-media">
+            <div class="wf-media rv-img">
                 <img src="images/me8.JPG" alt="Nepal weather forecast platform"/>
             </div>
             <div class="wf-body">
@@ -629,7 +690,7 @@
         </div>
 
         <div class="work-feature flip rv">
-            <div class="wf-media">
+            <div class="wf-media rv-img">
                 <img src="images/me03.jpeg" alt="InMoov humanoid robot"/>
             </div>
             <div class="wf-body">
@@ -724,11 +785,11 @@
                 </div>
             </div>
             <div class="robot-notes">
-                <figure class="rnote rv">
+                <figure class="rnote rv rv-img">
                     <img src="images/robotics/magnetic_ecoder_calculating_value_of_r.jpeg" alt="Magnetic encoder calibration notes"/>
                     <figcaption>Lab note — calculating radius values from the magnetic encoder readings.</figcaption>
                 </figure>
-                <figure class="rnote rv">
+                <figure class="rnote rv rv-img">
                     <img src="images/robotics/finding_revolution_of_tyre.jpeg" alt="Tyre revolution calculation"/>
                     <figcaption>Lab note — working out wheel revolution counts for odometry.</figcaption>
                 </figure>
@@ -736,6 +797,16 @@
         </div>
     </div>
 </section>
+
+<!-- PULL QUOTE -->
+<div class="quote-sec">
+    <div class="quote-inner rv">
+        <span class="quote-mark">“</span>
+        <p class="quote-text">Wind extinguishes a candle and <span class="hl">energizes fire.</span></p>
+        <div class="quote-by">Nassim Nicholas Taleb — Antifragile</div>
+        <p class="quote-note">Underlined twice in my copy. I keep coming back to this one.</p>
+    </div>
+</div>
 
 <!-- LIBRARY -->
 <section id="library">
@@ -919,6 +990,34 @@
     </div>
 </section>
 
+<!-- NOW -->
+<section id="now">
+    <div class="wrap">
+        <div class="sec-head rv">
+            <div class="sec-no"><b>07</b> — Now</div>
+            <h2 class="sec-title">What I'm up to, <em>lately.</em></h2>
+        </div>
+        <dl class="now-grid rv">
+            <div class="now-cell">
+                <dt>Reading</dt>
+                <dd><b>Antifragile</b><span>Taleb, slowly — arguing with half of it. Dorian Gray on the nightstand.</span></dd>
+            </div>
+            <div class="now-cell">
+                <dt>Building</dt>
+                <dd><b>InMoov robot</b><span>Software lead at HTP Lab — teaching it to see, listen, and answer.</span></dd>
+            </div>
+            <div class="now-cell">
+                <dt>Studying</dt>
+                <dd><b>Applied Data Science</b><span>WorldQuant University, 2025 — evenings and weekends.</span></dd>
+            </div>
+            <div class="now-cell">
+                <dt>Running</dt>
+                <dd><b>Morning kilometres</b><span>7–10km before the phone gets a chance. Next run fest loading.</span></dd>
+            </div>
+        </dl>
+    </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
     <div class="wrap contact-inner rv">
@@ -966,7 +1065,22 @@
     const obs = new IntersectionObserver(entries => {
         entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
     }, { threshold: 0.08 });
-    document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+    document.querySelectorAll('.rv, .rv-img').forEach(el => obs.observe(el));
+
+    // Scroll progress + gentle hero parallax
+    const progress = document.getElementById('progress');
+    const heroPhoto = document.querySelector('.hero-photo');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function onScroll() {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
+        if (!reduced && heroPhoto && scrollY < innerHeight) {
+            heroPhoto.style.translate = '0 ' + (scrollY * 0.06) + 'px';
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
 </script>
 </body>
 </html>
