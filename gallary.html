@@ -3,242 +3,172 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Ram Tamang's Gallery — moments from life in Nepal."/>
-    <title>Gallery — Ram Tamang</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <meta name="description" content="Gallery — moments from Ram Tamang's world: Jhapa and Ilam diaries, robotics lab notes, portraits, and travel frames across Nepal."/>
+    <title>Gallery — Ram Kumar Tamang</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
     <style>
         :root {
-            --bg: #0d1117;
-            --bg2: #161b22;
-            --bg3: #21262d;
-            --blue: #58a6ff;
-            --green: #3fb950;
-            --text: #e6edf3;
-            --text2: #8b949e;
-            --muted: #6e7681;
-            --border: #30363d;
+            --paper: #FAF9F6;
+            --paper-2: #F2EFE9;
+            --ink: #1C1A17;
+            --ink-2: #55504A;
+            --ink-3: #8A837B;
+            --line: #E3DFD6;
+            --accent: #20503C;
+            --accent-dark: #16382A;
+            --serif: 'Fraunces', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --mono: 'IBM Plex Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Space Grotesk', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
+            font-family: var(--sans);
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
         }
 
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::selection { background: var(--accent); color: var(--paper); }
+        .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
 
-        /* NAV */
+        /* ── NAV ── */
         header {
-            position: fixed; top: 0; width: 100%;
-            z-index: 100;
-            background: rgba(13,17,23,0.96);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border);
-            padding: 0.9rem 0;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(250,249,246,0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
         }
-
-        .nav-wrap {
-            max-width: 1200px; margin: 0 auto;
-            padding: 0 2rem;
-            display: flex; justify-content: space-between; align-items: center;
+        .nav { display: flex; justify-content: space-between; align-items: center; height: 68px; }
+        .brand {
+            font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
+            text-decoration: none; letter-spacing: -0.01em;
         }
-
-        .nav-logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem; color: var(--text); text-decoration: none;
-        }
-        .nav-logo .g { color: var(--green); }
-
-        .nav-links { display: flex; gap: 0.2rem; list-style: none; align-items: center; }
+        .brand em { font-style: italic; color: var(--accent); }
+        .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
         .nav-links a {
-            color: var(--text2); text-decoration: none;
-            font-size: 0.87rem; font-weight: 500;
-            padding: 0.4rem 0.8rem; border-radius: 6px; transition: all 0.2s;
+            text-decoration: none; font-size: 0.86rem; font-weight: 500;
+            color: var(--ink-2); transition: color .2s;
         }
-        .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--bg3); }
-        .nav-links .btn { color: var(--bg) !important; background: var(--blue); font-weight: 600; }
-        .nav-links .btn:hover { background: #79b8ff; }
+        .nav-links a:hover, .nav-links a.active { color: var(--ink); }
+        .nav-links a.active { border-bottom: 1px solid var(--ink); padding-bottom: 2px; }
+        .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .burger span { display: block; width: 20px; height: 1.5px; background: var(--ink); margin: 5px 0; }
 
-        .hamburger { display: none; cursor: pointer; color: var(--text); font-size: 1.2rem; }
-
-        /* PAGE HERO */
-        .page-hero {
-            padding: 7.5rem 0 4rem;
-            background: var(--bg2);
-            border-bottom: 1px solid var(--border);
-            text-align: center;
+        /* ── PAGE HEAD ── */
+        .page-head { padding: 150px 0 40px; }
+        .kicker {
+            font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
+            display: flex; align-items: center; gap: 12px;
         }
-
-        .page-hero .label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem; color: var(--blue);
-            text-transform: uppercase; letter-spacing: 2.5px;
-            margin-bottom: 0.6rem;
+        .kicker::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
+        h1 {
+            font-family: var(--serif); font-weight: 400;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 18px;
         }
+        h1 em { font-style: italic; color: var(--accent); }
+        .page-lede { color: var(--ink-2); max-width: 560px; font-size: 1.02rem; line-height: 1.85; }
 
-        .page-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 700; margin-bottom: 0.75rem; }
-
-        .page-hero p { color: var(--text2); font-size: 1rem; max-width: 500px; margin: 0 auto 1.5rem; }
-
-        /* FILTER TABS */
-        .filter-bar {
-            display: flex; justify-content: center; gap: 0.5rem;
-            padding: 2rem 2rem 0;
-            flex-wrap: wrap;
+        /* ── FILTERS ── */
+        .filters {
+            position: sticky; top: 68px; z-index: 50;
+            background: rgba(250,249,246,0.94); backdrop-filter: blur(10px);
+            border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+            padding: 14px 0; margin-bottom: 48px;
         }
-
-        .filter-btn {
-            padding: 0.4rem 1.1rem;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text2);
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.83rem; font-weight: 500;
-            cursor: pointer; transition: all 0.2s;
+        .filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .fbtn {
+            font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em;
+            padding: 7px 16px; border-radius: 999px;
+            border: 1px solid var(--line); background: transparent; color: var(--ink-2);
+            cursor: pointer; transition: all .2s;
         }
-        .filter-btn:hover { border-color: var(--blue); color: var(--blue); }
-        .filter-btn.active { background: var(--blue); border-color: var(--blue); color: var(--bg); }
+        .fbtn:hover { border-color: var(--ink); color: var(--ink); }
+        .fbtn.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+        .fcount { margin-left: auto; font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); letter-spacing: 0.06em; }
 
-        /* GALLERY GRID */
-        .gallery-wrap {
-            max-width: 1400px; margin: 0 auto;
-            padding: 2rem 2rem 4rem;
-        }
-
-        .gallery-grid {
-            columns: 4 280px;
-            column-gap: 1rem;
-        }
-
+        /* ── GRID ── */
+        .gallery { columns: 3 300px; column-gap: 20px; padding-bottom: 96px; }
         .g-item {
-            break-inside: avoid;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            cursor: pointer;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            break-inside: avoid; margin-bottom: 20px;
+            cursor: pointer; position: relative;
         }
-
-        .g-item:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
-
-        .g-item img,
-        .g-item video {
-            width: 100%;
-            display: block;
-            transition: filter 0.3s ease;
+        .g-item img, .g-item video {
+            width: 100%; display: block;
+            filter: saturate(0.95);
+            transition: filter .25s ease;
         }
-
-        .g-item:hover img,
-        .g-item:hover video { filter: brightness(0.75); }
-
-        .g-overlay {
-            position: absolute; inset: 0;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; transition: opacity 0.3s;
-            color: #fff; font-size: 1.8rem;
+        .g-item:hover img, .g-item:hover video { filter: saturate(1) brightness(0.92); }
+        .g-cap {
+            display: flex; justify-content: space-between; gap: 14px;
+            margin-top: 10px;
         }
-        .g-item:hover .g-overlay { opacity: 1; }
+        .g-cap p { font-size: 0.8rem; color: var(--ink-2); line-height: 1.5; }
+        .g-tag {
+            font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3);
+            letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
+            padding-top: 3px;
+        }
+        .g-item.plain .g-cap p { color: var(--ink-3); font-style: italic; }
+        .hidden { display: none !important; }
 
-        /* LIGHTBOX */
+        /* ── LIGHTBOX ── */
         .lightbox {
-            display: none;
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.92);
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
+            display: none; position: fixed; inset: 0; z-index: 999;
+            background: rgba(20,18,15,0.94);
+            align-items: center; justify-content: center;
         }
         .lightbox.open { display: flex; }
-
-        .lb-inner {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
+        .lb-inner img, .lb-inner video {
+            max-width: 88vw; max-height: 86vh; display: block;
+        }
+        .lb-btn {
+            position: fixed; width: 44px; height: 44px; border-radius: 50%;
+            background: transparent; border: 1px solid rgba(250,249,246,0.35);
+            color: #FAF9F6; cursor: pointer; font-size: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            transition: all .2s; font-family: var(--sans);
+        }
+        .lb-btn:hover { border-color: #FAF9F6; }
+        .lb-close { top: 24px; right: 24px; }
+        .lb-prev { left: 24px; top: 50%; transform: translateY(-50%); }
+        .lb-next { right: 24px; top: 50%; transform: translateY(-50%); }
+        .lb-count {
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+            font-family: var(--mono); font-size: 0.72rem; color: rgba(250,249,246,0.65);
+            letter-spacing: 0.1em;
         }
 
-        .lb-inner img,
-        .lb-inner video {
-            max-width: 90vw;
-            max-height: 90vh;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            display: block;
-        }
-
-        .lb-close {
-            position: fixed; top: 1.5rem; right: 1.5rem;
-            width: 42px; height: 42px;
-            background: var(--bg2); border: 1px solid var(--border);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; color: var(--text); font-size: 1.1rem;
-            transition: all 0.2s;
-        }
-        .lb-close:hover { background: var(--bg3); color: var(--blue); }
-
-        .lb-prev, .lb-next {
-            position: fixed; top: 50%; transform: translateY(-50%);
-            width: 46px; height: 46px;
-            background: var(--bg2); border: 1px solid var(--border);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; color: var(--text); font-size: 1rem;
-            transition: all 0.2s;
-        }
-        .lb-prev { left: 1.5rem; }
-        .lb-next { right: 1.5rem; }
-        .lb-prev:hover, .lb-next:hover { background: var(--blue); border-color: var(--blue); color: var(--bg); }
-
-        /* FOOTER */
-        footer {
-            background: var(--bg);
-            border-top: 1px solid var(--border);
-            padding: 2rem 0;
-        }
-        .foot-inner {
-            max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+        /* ── FOOTER ── */
+        footer { border-top: 1px solid var(--line); padding: 28px 0; }
+        .foot {
             display: flex; justify-content: space-between; align-items: center;
-            flex-wrap: wrap; gap: 1rem;
+            flex-wrap: wrap; gap: 12px;
+            font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3);
+            letter-spacing: 0.05em;
         }
-        .foot-text { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--muted); }
-        .foot-text .g { color: var(--green); }
-        .socials { display: flex; gap: 0.5rem; }
-        .socials a {
-            width: 34px; height: 34px;
-            background: var(--bg2); border: 1px solid var(--border);
-            border-radius: 7px; display: flex; align-items: center; justify-content: center;
-            color: var(--text2); font-size: 0.85rem; text-decoration: none;
-            transition: all 0.2s;
-        }
-        .socials a:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-3px); }
+        .foot a { color: var(--ink-2); text-decoration: none; }
+        .foot a:hover { color: var(--ink); }
 
-        /* REVEAL */
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.55s ease; }
-        .reveal.on { opacity: 1; transform: translateY(0); }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .nav-links.open {
-                display: flex; flex-direction: column;
-                position: absolute; top: 100%; left: 0; right: 0;
-                background: rgba(13,17,23,0.98);
-                border-bottom: 1px solid var(--border);
-                padding: 1rem 2rem; gap: 0.5rem;
+        /* ── RESPONSIVE ── */
+        @media (max-width: 700px) {
+            .nav-links {
+                display: none; position: absolute; top: 68px; left: 0; right: 0;
+                background: var(--paper); border-bottom: 1px solid var(--line);
+                flex-direction: column; padding: 20px 24px; gap: 16px; align-items: flex-start;
             }
-            .hamburger { display: block; }
-            .gallery-grid { columns: 2 160px; }
-        }
-
-        @media (max-width: 480px) {
-            .gallery-grid { columns: 1; }
+            .nav-links.open { display: flex; }
+            .burger { display: block; }
+            .page-head { padding: 130px 0 32px; }
+            .fcount { display: none; }
         }
     </style>
 </head>
@@ -246,386 +176,315 @@
 
 <!-- NAV -->
 <header>
-    <div class="nav-wrap">
-        <a href="index.html" class="nav-logo">ram<span class="g">@</span>tamang<span class="g">:~$</span></a>
+    <div class="wrap nav">
+        <a href="index.html" class="brand">Ram Kumar <em>Tamang</em></a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
-            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#work">Work</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#library">Library</a></li>
+            <li><a href="index.html#journal">Journal</a></li>
             <li><a href="gallary.html" class="active">Gallery</a></li>
             <li><a href="dimension.html">Poetry</a></li>
-            <li><a href="index.html#contact" class="btn">Contact</a></li>
+            <li><a href="Ram_Kumar_Tamang_cv.pdf">CV ↓</a></li>
         </ul>
-        <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+        <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
 </header>
 
-<!-- PAGE HERO -->
-<div class="page-hero">
-    <div class="label">// gallery</div>
-    <h1>Frames from My World</h1>
-    <p>Moments, places, and people captured along the way — life in Nepal and beyond.</p>
+<!-- PAGE HEAD -->
+<div class="page-head">
+    <div class="wrap">
+        <div class="kicker">Gallery</div>
+        <h1>Frames from <em>my world.</em></h1>
+        <p class="page-lede">
+            Diaries from Jhapa and Ilam, lab notes from the robot bench, portraits, and travel frames —
+            life between the terminal and the mountains.
+        </p>
+    </div>
 </div>
 
-<!-- FILTER -->
-<div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="photo">Photos</button>
-    <button class="filter-btn" data-filter="video">Videos</button>
+<!-- FILTERS -->
+<div class="filters">
+    <div class="wrap filter-row">
+        <button class="fbtn active" data-f="all">All</button>
+        <button class="fbtn" data-f="jhapa">Jhapa Diary</button>
+        <button class="fbtn" data-f="illam">Ilam Diary</button>
+        <button class="fbtn" data-f="robotics">Robotics</button>
+        <button class="fbtn" data-f="portraits">Portraits</button>
+        <button class="fbtn" data-f="travel">Travel</button>
+        <button class="fbtn" data-f="videos">Videos</button>
+        <span class="fcount" id="fcount"></span>
+    </div>
 </div>
 
 <!-- GALLERY -->
-<div class="gallery-wrap">
-    <div class="gallery-grid" id="gallery">
+<div class="wrap">
+    <div class="gallery" id="gallery">
 
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me11.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
+        <!-- ═══ JHAPA DIARY ═══ -->
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/kathamandu_team_at_jhapa_wcbt_hackthon.jpeg" alt="Kathmandu team at WCBT hackathon, Jhapa" loading="lazy"/>
+            <figcaption class="g-cap"><p>The Kathmandu crew at the WCBT hackathon, Jhapa.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/me_as_judge_during_presentation.jpeg" alt="Judging student presentations" loading="lazy"/>
+            <figcaption class="g-cap"><p>Judging final presentations.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/me_as_judge_during_presentation_2_fommal.jpeg" alt="Formal judging session" loading="lazy"/>
+            <figcaption class="g-cap"><p>Formal judging session.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/me_as_judge_during_presentation_3_with_daries_marking.jpeg" alt="Marking score diaries" loading="lazy"/>
+            <figcaption class="g-cap"><p>Marking the diaries — scores and second coffees.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/three_judge.jpeg" alt="The judge panel" loading="lazy"/>
+            <figcaption class="g-cap"><p>The judge panel, mid-deliberation.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/reciving_token_of_love_from_mayer_and_predent_of_HISSAN.jpeg" alt="Token of love from Mayor and HISSAN president" loading="lazy"/>
+            <figcaption class="g-cap"><p>A token of love from the Mayor &amp; HISSAN president.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa videos">
+            <video src="images/jhapa_diary/jhapa_morning_with_carview.mov" muted loop playsinline preload="metadata"></video>
+            <figcaption class="g-cap"><p>Jhapa morning, car window view.</p><span class="g-tag">Video</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/book_cafe_at_jhapa.jpeg" alt="Book café in Jhapa" loading="lazy"/>
+            <figcaption class="g-cap"><p>Found a book café, obviously stayed hours.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/cafe_image_jhapa.jpeg" alt="Café corner, Jhapa" loading="lazy"/>
+            <figcaption class="g-cap"><p>Café corner, Jhapa.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/me_read_for_run_fest.jpeg" alt="Ready for the run fest" loading="lazy"/>
+            <figcaption class="g-cap"><p>Race morning — ready for the Run Fest.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="jhapa">
+            <img src="images/jhapa_diary/whitehouse_run_fest_dj_japha.jpeg" alt="Whitehouse Run Fest DJ stage" loading="lazy"/>
+            <figcaption class="g-cap"><p>Whitehouse Run Fest — DJ, dust, finish lines.</p><span class="g-tag">Jhapa</span></figcaption>
+        </figure>
 
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me10.png" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
+        <!-- ═══ ILAM DIARY ═══ -->
+        <figure class="g-item" data-cat="illam">
+            <img src="images/illam_diary/me_at_kanyam.jpeg" alt="Me at Kanyam, Ilam" loading="lazy"/>
+            <figcaption class="g-cap"><p>Me at Kanyam.</p><span class="g-tag">Ilam</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="illam">
+            <img src="images/illam_diary/me_kanaym_with_cloud.png" alt="Standing with the clouds at Kanyam" loading="lazy"/>
+            <figcaption class="g-cap"><p>Standing with the clouds at Kanyam.</p><span class="g-tag">Ilam</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="illam">
+            <img src="images/illam_diary/hourseman_and_horse_illam.png" alt="Horseman and horse, Ilam" loading="lazy"/>
+            <figcaption class="g-cap"><p>Horseman and his horse, Ilam.</p><span class="g-tag">Ilam</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="illam">
+            <img src="images/illam_diary/illam_community_view.png" alt="Community view, Ilam" loading="lazy"/>
+            <figcaption class="g-cap"><p>The community view, Ilam.</p><span class="g-tag">Ilam</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="illam">
+            <img src="images/illam_diary/illam_daiery_nature_knaym.png" alt="Kanyam nature frames" loading="lazy"/>
+            <figcaption class="g-cap"><p>Kanyam nature frames.</p><span class="g-tag">Ilam</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="illam">
+            <img src="images/illam_diary/team_back_view_sitting_hill.webp" alt="Team sitting on the hill" loading="lazy"/>
+            <figcaption class="g-cap"><p>The team, sitting on the hill.</p><span class="g-tag">Ilam</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="illam">
+            <img src="images/illam_diary/team_visiting_illam.webp" alt="Team visiting Ilam" loading="lazy"/>
+            <figcaption class="g-cap"><p>Team visiting Ilam.</p><span class="g-tag">Ilam</span></figcaption>
+        </figure>
 
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me3.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
+        <!-- ═══ ROBOTICS ═══ -->
+        <figure class="g-item" data-cat="robotics">
+            <img src="images/robotics/magnetic_ecoder_calculating_value_of_r.jpeg" alt="Magnetic encoder calibration notes" loading="lazy"/>
+            <figcaption class="g-cap"><p>Magnetic encoder — calculating radius values by hand.</p><span class="g-tag">Lab note</span></figcaption>
+        </figure>
+        <figure class="g-item" data-cat="robotics">
+            <img src="images/robotics/finding_revolution_of_tyre.jpeg" alt="Tyre revolution calculation" loading="lazy"/>
+            <figcaption class="g-cap"><p>Finding wheel revolutions for odometry.</p><span class="g-tag">Lab note</span></figcaption>
+        </figure>
 
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me1.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
+        <!-- ═══ PORTRAITS ═══ -->
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me01.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me03.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me3.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me1.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me2.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me04.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me05.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me06.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me07.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me10.png" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me11.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me12.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me13.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me14.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me5.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me7.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="portraits"><img src="images/me9.jpg" alt="" loading="lazy"/></figure>
 
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me4.png" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
+        <!-- ═══ TRAVEL ═══ -->
+        <figure class="g-item plain" data-cat="travel"><img src="images/wallpapersden.com_nepal-mountain_wxl.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/n1.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/n2.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/n4.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/001.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/002.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/003.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/004.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/005.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/007.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/008.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/009.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/012.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/014.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/015.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/016.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/017.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/018.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/021.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/024.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/025.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/026.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/029.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/031.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/033.jpeg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/1.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/2.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/3.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/9.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/11.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/12.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/13.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/14.jpg" alt="" loading="lazy"/></figure>
+        <figure class="g-item plain" data-cat="travel"><img src="images/15.jpg" alt="" loading="lazy"/></figure>
 
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me01.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me03.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me04.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me05.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me06.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me07.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me08.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me11.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me12.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/me13.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/001.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/002.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/003.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/004.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/005.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/007.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/008.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/009.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/012.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/014.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/015.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/016.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/017.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/018.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/021.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/024.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/025.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/026.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/029.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/031.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/033.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/1.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/2.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/3.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/9.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/11.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/12.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/13.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/14.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/15.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/n1.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/n2.jpeg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/n4.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="photo">
-            <img src="images/wallpapersden.com_nepal-mountain_wxl.jpg" alt="" loading="lazy">
-            <div class="g-overlay"><i class="fas fa-expand"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="video">
-            <video autoplay muted loop playsinline>
-                <source src="images/022.mp4" type="video/mp4">
-            </video>
-            <div class="g-overlay"><i class="fas fa-play"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="video">
-            <video autoplay muted loop playsinline>
-                <source src="images/18.mp4" type="video/mp4">
-            </video>
-            <div class="g-overlay"><i class="fas fa-play"></i></div>
-        </div>
-
-        <div class="g-item reveal" data-type="video">
-            <video autoplay muted loop playsinline>
-                <source src="images/17.mp4" type="video/mp4">
-            </video>
-            <div class="g-overlay"><i class="fas fa-play"></i></div>
-        </div>
+        <!-- ═══ VIDEOS ═══ -->
+        <figure class="g-item plain" data-cat="videos">
+            <video src="images/022.mp4" muted loop playsinline preload="metadata"></video>
+        </figure>
+        <figure class="g-item plain" data-cat="videos">
+            <video src="images/17.mp4" muted loop playsinline preload="metadata"></video>
+        </figure>
+        <figure class="g-item plain" data-cat="videos">
+            <video src="images/18.mp4" muted loop playsinline preload="metadata"></video>
+        </figure>
+        <figure class="g-item plain" data-cat="videos">
+            <video src="images/n1.mp4" muted loop playsinline preload="metadata"></video>
+        </figure>
 
     </div>
 </div>
 
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-    <div class="lb-close" id="lbClose"><i class="fas fa-times"></i></div>
-    <div class="lb-prev" id="lbPrev"><i class="fas fa-chevron-left"></i></div>
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">←</button>
     <div class="lb-inner" id="lbInner"></div>
-    <div class="lb-next" id="lbNext"><i class="fas fa-chevron-right"></i></div>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next">→</button>
+    <div class="lb-count" id="lbCount"></div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-    <div class="foot-inner">
-        <p class="foot-text">// <span class="g">gallery</span> · Ram Tamang</p>
-        <div class="socials">
-            <a href="https://github.com/Ramtamang-2058" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
+    <div class="wrap foot">
+        <span>© 2026 Ram Kumar Tamang — Kathmandu, Nepal</span>
+        <span><a href="mailto:ram.tamang2058@gmail.com">Email</a> · <a href="https://github.com/Ramtamang-2058" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/ram-tamang-a73241198" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.instagram.com/ram_unlimited/" target="_blank" rel="noopener">Instagram</a></span>
     </div>
 </footer>
 
 <script>
     // Mobile nav
-    document.getElementById('hamburger').addEventListener('click', () => {
-        document.getElementById('navLinks').classList.toggle('open');
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+    burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    // Video hover-play
+    document.querySelectorAll('.g-item video').forEach(v => {
+        const item = v.closest('.g-item');
+        item.addEventListener('mouseenter', () => v.play().catch(() => {}));
+        item.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
     });
 
-    // Reveal
-    const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
-    }, { threshold: 0.05 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-    // Filter
+    // Filtering
     const items = Array.from(document.querySelectorAll('.g-item'));
-    document.querySelectorAll('.filter-btn').forEach(btn => {
+    const count = document.getElementById('fcount');
+    function applyFilter(f) {
+        let visible = 0;
+        items.forEach(it => {
+            const show = f === 'all' || it.dataset.cat.split(' ').includes(f);
+            it.classList.toggle('hidden', !show);
+            if (show) visible++;
+        });
+        count.textContent = visible + ' frames';
+    }
+    applyFilter('all');
+
+    document.querySelectorAll('.fbtn').forEach(btn => {
         btn.addEventListener('click', () => {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            const f = btn.dataset.filter;
-            items.forEach(item => {
-                item.style.display = (f === 'all' || item.dataset.type === f) ? 'block' : 'none';
-            });
+            applyFilter(btn.dataset.f);
         });
     });
 
-    // Lightbox (photos only)
-    const photoItems = items.filter(i => i.dataset.type === 'photo');
-    let current = 0;
+    // Lightbox — photos only; videos play inline on click
+    const photoItems = items.filter(i => i.querySelector('img'));
     const lb = document.getElementById('lightbox');
     const lbInner = document.getElementById('lbInner');
+    const lbCount = document.getElementById('lbCount');
+    let cur = 0;
 
-    function openLb(idx) {
-        current = idx;
-        const src = photoItems[idx].querySelector('img').src;
-        lbInner.innerHTML = `<img src="${src}" alt="">`;
+    function visiblePhotos() {
+        return photoItems.filter(i => !i.classList.contains('hidden'));
+    }
+    function openLb(item) {
+        const vis = visiblePhotos();
+        cur = vis.indexOf(item);
+        render(vis);
+    }
+    function render(vis) {
+        const img = vis[cur].querySelector('img');
+        lbInner.innerHTML = '';
+        const clone = document.createElement('img');
+        clone.src = img.src;
+        lbInner.appendChild(clone);
+        lbCount.textContent = (cur + 1) + ' / ' + vis.length;
         lb.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
-
+    function step(dir) {
+        const vis = visiblePhotos();
+        cur = (cur + dir + vis.length) % vis.length;
+        render(vis);
+    }
     function closeLb() {
         lb.classList.remove('open');
+        lbInner.innerHTML = '';
         document.body.style.overflow = '';
     }
 
-    photoItems.forEach((item, i) => {
-        item.addEventListener('click', () => openLb(i));
+    photoItems.forEach(item => item.addEventListener('click', () => openLb(item)));
+    items.filter(i => i.querySelector('video')).forEach(item => {
+        item.addEventListener('click', () => {
+            const v = item.querySelector('video');
+            v.muted = false; v.controls = true;
+            v.play().catch(() => {});
+        });
     });
 
     document.getElementById('lbClose').addEventListener('click', closeLb);
-    document.getElementById('lbPrev').addEventListener('click', () => openLb((current - 1 + photoItems.length) % photoItems.length));
-    document.getElementById('lbNext').addEventListener('click', () => openLb((current + 1) % photoItems.length));
-
+    document.getElementById('lbPrev').addEventListener('click', () => step(-1));
+    document.getElementById('lbNext').addEventListener('click', () => step(1));
     lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-
     document.addEventListener('keydown', e => {
         if (!lb.classList.contains('open')) return;
         if (e.key === 'Escape') closeLb();
-        if (e.key === 'ArrowLeft') openLb((current - 1 + photoItems.length) % photoItems.length);
-        if (e.key === 'ArrowRight') openLb((current + 1) % photoItems.length);
+        if (e.key === 'ArrowLeft') step(-1);
+        if (e.key === 'ArrowRight') step(1);
     });
 </script>
 </body>
