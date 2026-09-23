@@ -14,7 +14,7 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet"/>
     <style>
         :root {
             --paper: #FAF9F6;
@@ -28,6 +28,7 @@
             --serif: 'Fraunces', Georgia, serif;
             --sans: 'Inter', -apple-system, sans-serif;
             --mono: 'IBM Plex Mono', monospace;
+            --deva: 'Noto Serif Devanagari', var(--serif);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -532,8 +533,89 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         }
         .now-cell dd span { font-size: 0.83rem; color: var(--ink-2); line-height: 1.6; display: block; }
 
+        /* ── RIDGELINES (generative Himalaya, hero + contact) ── */
+        .hero, #contact { position: relative; overflow: hidden; }
+        .hero > .wrap, #contact > .wrap { position: relative; z-index: 1; }
+        canvas.ridges {
+            position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 62%;
+            pointer-events: none; z-index: 0;
+            -webkit-mask-image: linear-gradient(180deg, transparent, #000 45%);
+                    mask-image: linear-gradient(180deg, transparent, #000 45%);
+        }
+        #contact canvas.ridges { height: 70%; opacity: .8; }
+
+        /* ── DEVANAGARI NUMERALS ── */
+        .sec-no .np {
+            font-family: var(--deva); font-style: normal; font-size: 0.95rem;
+            color: var(--ink-3); margin-left: 6px; opacity: .75;
+        }
+
+        /* ── PRAYER-FLAG STRIP ── */
+        .flags { display: flex; height: 3px; }
+        .flags i { flex: 1; }
+        .flags i:nth-child(1) { background: #2F5D8A; }
+        .flags i:nth-child(2) { background: #E9E4D8; }
+        .flags i:nth-child(3) { background: #A8392E; }
+        .flags i:nth-child(4) { background: #20503C; }
+        .flags i:nth-child(5) { background: #D9A93A; }
+
+        /* ── PRINCIPLES ── */
+        .principles {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--line); border-left: 1px solid var(--line);
+            counter-reset: pr;
+        }
+        .pr {
+            position: relative; padding: 34px 30px 36px;
+            border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
+            transition: background .3s ease;
+        }
+        .pr::before {
+            content: ''; position: absolute; top: -1px; left: -1px; height: 2px; width: 0;
+            background: var(--flag, var(--accent)); transition: width .45s ease;
+        }
+        .pr:hover { background: rgba(32,80,60,0.035); }
+        .pr:hover::before { width: calc(100% + 2px); }
+        .pr:nth-child(5n+1) { --flag: #2F5D8A; }
+        .pr:nth-child(5n+2) { --flag: #8A837B; }
+        .pr:nth-child(5n+3) { --flag: #A8392E; }
+        .pr:nth-child(5n+4) { --flag: #20503C; }
+        .pr:nth-child(5n+5) { --flag: #D9A93A; }
+        .pr-no {
+            font-family: var(--deva); font-size: 2.2rem; font-weight: 300;
+            color: var(--ink-3); line-height: 1; margin-bottom: 18px; display: block;
+        }
+        .pr h3 {
+            font-family: var(--serif); font-weight: 400; font-style: italic;
+            font-size: 1.32rem; line-height: 1.3; letter-spacing: -0.01em; margin-bottom: 12px;
+        }
+        .pr p { font-size: 0.9rem; color: var(--ink-2); line-height: 1.75; }
+        .pr p a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(32,80,60,.3); }
+        .principles-note {
+            margin-top: 22px; font-family: var(--mono); font-size: 0.72rem;
+            color: var(--ink-3); letter-spacing: 0.04em;
+        }
+
+        /* ── MARGIN NOTE OF THE DAY (footer) ── */
+        .daily {
+            border-top: 1px solid var(--line); padding: 34px 0 30px; text-align: center;
+        }
+        .daily small {
+            display: block; font-family: var(--mono); font-size: 0.66rem;
+            letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px;
+        }
+        .daily q {
+            font-family: var(--serif); font-style: italic; font-weight: 300;
+            font-size: clamp(1.05rem, 2.2vw, 1.3rem); color: var(--ink); quotes: '“' '”';
+        }
+        .daily cite {
+            display: block; margin-top: 8px; font-style: normal;
+            font-family: var(--mono); font-size: 0.7rem; color: var(--ink-3); letter-spacing: 0.06em;
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 960px) {
+            .principles { grid-template-columns: 1fr 1fr; }
             .hero-grid { grid-template-columns: 1fr; gap: 48px; }
             .hero-photo { max-width: 380px; }
             .about-grid { grid-template-columns: 1fr; gap: 44px; }
@@ -546,6 +628,9 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             .hero-meta { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 28px 40px; }
         }
         @media (max-width: 700px) {
+            .principles { grid-template-columns: 1fr; }
+            .pr { padding: 28px 22px 30px; }
+            canvas.ridges { height: 42%; }
             .nav-links {
                 display: none; position: absolute; top: 68px; left: 0; right: 0;
                 background: var(--paper); border-bottom: 1px solid var(--line);
@@ -596,6 +681,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
 
 <!-- HERO -->
 <div class="hero" id="top">
+    <canvas class="ridges" aria-hidden="true"></canvas>
     <div class="wrap">
         <div class="hero-grid">
             <div>
@@ -1241,8 +1327,52 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
     </div>
 </section>
 
+<!-- PRINCIPLES -->
+<section id="principles">
+    <div class="wrap">
+        <div class="sec-head rv">
+            <div class="sec-no"><b>08</b> — Principles</div>
+            <h2 class="sec-title">Things I believe, <em>provisionally.</em></h2>
+        </div>
+        <div class="principles rv">
+            <article class="pr">
+                <span class="pr-no">१</span>
+                <h3>The river doesn't read the documentation.</h3>
+                <p>Build for the monsoon, not the demo. Reality is the only test suite that never gets skipped.</p>
+            </article>
+            <article class="pr">
+                <span class="pr-no">२</span>
+                <h3>A warning that arrives late is just a report.</h3>
+                <p>In early-warning work, latency is an ethical question. Every second in the pipeline belongs to someone downstream.</p>
+            </article>
+            <article class="pr">
+                <span class="pr-no">३</span>
+                <h3>Stress is information.</h3>
+                <p>What breaks a system tells you what it was pretending to be. Let the failures teach, then design so they can't repeat.</p>
+            </article>
+            <article class="pr">
+                <span class="pr-no">४</span>
+                <h3>Read with a pencil.</h3>
+                <p>Every book is an argument. I keep my side of it in the <a href="/marginalia/">margins</a>.</p>
+            </article>
+            <article class="pr">
+                <span class="pr-no">५</span>
+                <h3>Teach what you just learned.</h3>
+                <p>A thousand students later, I'm sure of this: explaining something is the fastest way to find where you don't understand it yet.</p>
+            </article>
+            <article class="pr">
+                <span class="pr-no">६</span>
+                <h3>Walk in circles, think in straight lines.</h3>
+                <p>The kora around Boudha settles more of my design decisions than any whiteboard does.</p>
+            </article>
+        </div>
+        <p class="principles-note">// subject to revision — like all good software.</p>
+    </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
+    <canvas class="ridges" aria-hidden="true"></canvas>
     <div class="wrap contact-inner rv">
         <div class="kicker">Contact</div>
         <h2 class="contact-title">Good systems start with<br>a <em>good conversation.</em></h2>
@@ -1266,6 +1396,14 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
 </section>
 
 <!-- FOOTER -->
+<div class="flags" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+<div class="daily">
+    <div class="wrap">
+        <small>Today's margin note — from the shelf</small>
+        <q id="dailyQ">Wind extinguishes a candle and energizes fire.</q>
+        <cite id="dailyC">Nassim Nicholas Taleb — Antifragile</cite>
+    </div>
+</div>
 <footer>
     <div class="wrap foot">
         <span>© 2026 Ram Kumar Tamang — Kathmandu, Nepal · <span id="npt">–:–– NPT</span></span>
@@ -1316,6 +1454,107 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         }
         tick(); setInterval(tick, 15000);
     })();
+</script>
+<script>
+    // Devanagari numerals beside section numbers: 01 → ०१
+    (function () {
+        var dev = '०१२३४५६७८९';
+        document.querySelectorAll('.sec-no b').forEach(function (b) {
+            var i = document.createElement('i');
+            i.className = 'np';
+            i.textContent = b.textContent.replace(/\d/g, function (d) { return dev[d]; });
+            b.after(i);
+        });
+    })();
+
+    // Margin note of the day — one line from a book on the shelf, rotating daily
+    (function () {
+        var notes = [
+            ['Wind extinguishes a candle and energizes fire.', 'Nassim Nicholas Taleb — Antifragile'],
+            ['The impediment to action advances action. What stands in the way becomes the way.', 'Marcus Aurelius — Meditations'],
+            ['Those who have a “why” to live, can bear with almost any “how”.', 'Viktor E. Frankl — Man’s Search for Meaning'],
+            ['Most history is guessing, and the rest is prejudice.', 'Will & Ariel Durant — The Lessons of History'],
+            ['Every moment in business happens only once.', 'Peter Thiel — Zero to One'],
+            ['Wealth is what you don’t see.', 'Morgan Housel — The Psychology of Money'],
+            ['He who fights with monsters should look to it that he himself does not become a monster.', 'Friedrich Nietzsche — Beyond Good and Evil'],
+            ['All animals are equal, but some animals are more equal than others.', 'George Orwell — Animal Farm'],
+            ['What’s the ONE Thing I can do such that by doing it everything else will be easier or unnecessary?', 'Gary Keller — The ONE Thing']
+        ];
+        var day = Math.floor(Date.now() / 864e5);
+        var n = notes[day % notes.length];
+        var q = document.getElementById('dailyQ'), c = document.getElementById('dailyC');
+        if (q && c) { q.textContent = n[0]; c.textContent = n[1]; }
+    })();
+
+    // Ridgelines — stacked Himalayan ridges drifting slowly, with a river in front.
+    (function () {
+        var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var paper = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim() || '#FAF9F6';
+
+        function rand(seed) { return function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+
+        function Ridges(canvas, seed, flip) {
+            var ctx = canvas.getContext('2d'), w = 0, h = 0, t = 0, running = false, raf = 0;
+            var r = rand(seed), LINES = 13, layers = [];
+            for (var i = 0; i < LINES; i++) {
+                var peaks = [];
+                for (var k = 0; k < 3; k++) peaks.push({ f: 0.0007 + r() * 0.0018 * (k + 1), p: r() * 100, a: 0.25 + r() * 0.75 });
+                layers.push(peaks);
+            }
+            function ridge(x, peaks, drift) {
+                var y = 0;
+                for (var k = 0; k < peaks.length; k++) {
+                    var s = 1 - Math.abs(Math.sin((x + drift) * peaks[k].f + peaks[k].p));
+                    y += peaks[k].a * s * s / (k + 1);
+                }
+                return y;
+            }
+            function size() {
+                var dpr = Math.min(devicePixelRatio || 1, 2);
+                w = canvas.clientWidth; h = canvas.clientHeight;
+                canvas.width = w * dpr; canvas.height = h * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                draw();
+            }
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                var step = w < 700 ? 8 : 5;
+                for (var i = 0; i < LINES; i++) {
+                    var depth = i / (LINES - 1);                   // 0 = far, 1 = near
+                    var base = h * (0.18 + depth * 0.78);
+                    var amp = h * (0.10 + (1 - depth) * 0.22);
+                    var drift = t * (4 + depth * 14) * (flip ? -1 : 1);
+                    var isRiver = i === LINES - 1;
+                    ctx.beginPath();
+                    for (var x = 0; x <= w + step; x += step) {
+                        var y = isRiver
+                            ? base + Math.sin(x * 0.012 + t * 0.9) * 3 + Math.sin(x * 0.031 - t * 1.4) * 1.5
+                            : base - ridge(x, layers[i], drift) * amp;
+                        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                    }
+                    ctx.lineTo(w, h); ctx.lineTo(0, h); ctx.closePath();
+                    ctx.fillStyle = paper; ctx.fill();          // hide the ridges behind, like ink on paper
+                    ctx.lineWidth = isRiver ? 1.4 : 1;
+                    ctx.strokeStyle = isRiver ? 'rgba(32,80,60,0.55)' : 'rgba(28,26,23,' + (0.07 + depth * 0.16).toFixed(3) + ')';
+                    ctx.stroke();
+                }
+            }
+            function loop() { t += 0.016; draw(); raf = requestAnimationFrame(loop); }
+            function start() { if (!running && !reduced) { running = true; raf = requestAnimationFrame(loop); } }
+            function stop() { running = false; cancelAnimationFrame(raf); }
+
+            size();
+            addEventListener('resize', size);
+            new IntersectionObserver(function (es) { es[0].isIntersecting ? start() : stop(); }).observe(canvas);
+        }
+
+        var cs = document.querySelectorAll('canvas.ridges');
+        if (cs[0]) Ridges(cs[0], 2058, false);
+        if (cs[1]) Ridges(cs[1], 1984, true);
+    })();
+
+    console.log('%cनमस्ते.%c\n\nRivers rise in silence;\nthe server wakes before them —\na phone buzzes: go.\n\n— ram.tamang2058@gmail.com',
+        'font: italic 22px Georgia; color: #20503C', 'font: 13px Georgia; color: #55504A');
 </script>
 </body>
 </html>
