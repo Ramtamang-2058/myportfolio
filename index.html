@@ -471,6 +471,40 @@
             .v-card { min-height: 0; }
         }
 
+        /* ── SKETCHBOOK TEASER ── */
+        .sketch-teaser {
+            padding: 88px 0; border-top: 1px solid var(--line);
+            background-image: radial-gradient(rgba(28,26,23,0.10) 1px, transparent 1.2px); background-size: 22px 22px;
+        }
+        .st-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 56px; align-items: center; }
+        .st-copy h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.8rem, 3.4vw, 2.5rem); letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 14px; }
+        .st-copy h3 em { font-style: italic; color: var(--accent); }
+        .st-copy p { color: var(--ink-2); line-height: 1.8; margin-bottom: 24px; }
+        .st-copy a {
+            font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.04em; color: var(--accent);
+            text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 2px;
+        }
+        .st-pins { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: start; }
+        .st-pins a {
+            display: block; background: #fff; padding: 9px 9px 12px; position: relative;
+            box-shadow: 0 1px 2px rgba(28,26,23,0.08), 0 10px 24px rgba(28,26,23,0.09);
+            transform: rotate(var(--r)); transition: transform .45s cubic-bezier(.2,.7,.3,1), box-shadow .45s;
+            text-decoration: none; color: var(--ink);
+        }
+        .st-pins a::before {
+            content: ''; position: absolute; top: -9px; left: 50%; width: 70px; height: 20px; margin-left: -35px;
+            background: var(--tape); transform: rotate(calc(var(--r) * -3));
+        }
+        .st-pins a:hover { transform: rotate(0) translateY(-6px); box-shadow: 0 20px 40px rgba(28,26,23,0.16); }
+        .st-pins img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+        .st-pins span { display: block; font-family: var(--serif); font-style: italic; font-size: 0.82rem; margin-top: 8px; line-height: 1.35; }
+        .st-pins a:nth-child(2) { margin-top: 28px; }
+        @media (max-width: 800px) {
+            .st-grid { grid-template-columns: 1fr; gap: 36px; }
+            .st-pins { gap: 12px; }
+            .st-pins span { font-size: 0.72rem; }
+        }
+
         /* ── FIELD NOTES (JHAPA / ILLAM) ── */
         #journal { background: var(--paper-2); }
 
@@ -1511,6 +1545,33 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         </div>
     </div>
 </section>
+
+<!-- SKETCHBOOK TEASER -->
+<div class="sketch-teaser">
+    <div class="wrap st-grid">
+        <div class="st-copy rv">
+            <div class="kicker">From the sketchbook</div>
+            <h3>When I'm not shipping, <em>I'm shading.</em></h3>
+            <p>Pencil lines drawn between deploys, at a resort railing, in the office art hour. The whole wall —
+                plus Chitlang, Jhapa, Ilam, the classroom and the rest — hangs in the gallery, ten rooms deep.</p>
+            <a href="/gallery/#sketchbook">Walk through the gallery →</a>
+        </div>
+        <div class="st-pins rv">
+            <a href="/gallery/#sketchbook" style="--r:-2deg; --tape: rgba(47,93,138,0.30)">
+                <img src="images/art/resort-plein-air.jpg" alt="Pencil drawing of a resort held up in front of the real view" loading="lazy"/>
+                <span>Drew the resort, then held it up to the real thing.</span>
+            </a>
+            <a href="/gallery/#sketchbook" style="--r:1.5deg; --tape: rgba(217,169,58,0.42)">
+                <img src="images/art/naxa-butterfly-hand.jpg" alt="Pencil drawing of a butterfly landing on a hand" loading="lazy"/>
+                <span>A butterfly lands on a hand.</span>
+            </a>
+            <a href="/gallery/#sketchbook" style="--r:-1deg; --tape: rgba(168,57,46,0.26)">
+                <img src="images/art/pocket-sketchbook-house.jpg" alt="Pencil sketch of a crooked cottage" loading="lazy"/>
+                <span>A messy little house, pocket sketchbook.</span>
+            </a>
+        </div>
+    </div>
+</div>
 
 <!-- NOW -->
 <section id="now">
