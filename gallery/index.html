@@ -4,16 +4,16 @@
     <meta charset="UTF-8"/>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Gallery — moments from Ram Tamang's world: Jhapa and Ilam diaries, robotics lab notes, portraits, and travel frames across Nepal."/>
+    <meta name="description" content="Gallery — a small exhibition in rooms: Ram Tamang's pencil sketchbook, Chitlang on foot, Jhapa and Ilam diaries, cafés, robotics lab notes, portraits, and travel frames across Nepal."/>
     <title>Gallery — Ram Kumar Tamang</title>
     <meta property="og:type" content="website"/>
     <meta property="og:title" content="Gallery — Ram Tamang"/>
-    <meta property="og:description" content="Field journal in frames: Jhapa, Ilam, robotics, portraits, travel — and pencil art."/>
-    <meta property="og:image" content="https://ram-tamang.com.np/images/art/pencil-sketchbook.jpg"/>
+    <meta property="og:description" content="An exhibition in rooms: the sketchbook, Chitlang on foot, Jhapa, Ilam, cafés, the robot bench, portraits and travel."/>
+    <meta property="og:image" content="https://ram-tamang.com.np/images/art/resort-plein-air.jpg"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@300;400&display=swap" rel="stylesheet"/>
     <style>
         :root {
             --paper: #FAF9F6;
@@ -24,13 +24,15 @@
             --line: #E3DFD6;
             --accent: #20503C;
             --accent-dark: #16382A;
+            --gold: #D9A93A;
             --serif: 'Fraunces', Georgia, serif;
             --sans: 'Inter', -apple-system, sans-serif;
             --mono: 'IBM Plex Mono', monospace;
+            --deva: 'Noto Serif Devanagari', var(--serif);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 120px; }
 
         body {
             font-family: var(--sans);
@@ -39,10 +41,16 @@
             font-size: 16px;
             line-height: 1.7;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        body::after {
+            content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: .035;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
         ::selection { background: var(--accent); color: var(--paper); }
         .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+        img, video { display: block; max-width: 100%; }
 
         /* ── NAV ── */
         header {
@@ -54,7 +62,7 @@
         .nav { display: flex; justify-content: space-between; align-items: center; height: 68px; }
         .brand {
             font-family: var(--serif); font-size: 1.15rem; font-weight: 500;
-            text-decoration: none; letter-spacing: -0.01em;
+            text-decoration: none; color: var(--ink); letter-spacing: -0.01em;
         }
         .brand em { font-style: italic; color: var(--accent); }
         .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
@@ -67,8 +75,12 @@
         .burger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
         .burger span { display: block; width: 20px; height: 1.5px; background: var(--ink); margin: 5px 0; }
 
-        /* ── PAGE HEAD ── */
-        .page-head { padding: 150px 0 40px; }
+        /* ── HERO ── */
+        .hero { position: relative; padding: 150px 0 64px; overflow: hidden; }
+        .flag-line { position: absolute; top: 76px; left: 0; width: 100%; height: 90px; pointer-events: none; }
+        .flag-line path.cord { fill: none; stroke: #B7AE9F; stroke-width: 1; }
+        .flag-line .flag { transform-box: fill-box; transform-origin: 50% 0; animation: sway 3.8s ease-in-out infinite alternate; }
+        @keyframes sway { from { transform: rotate(-5deg); } to { transform: rotate(6deg); } }
         .kicker {
             font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.14em;
             text-transform: uppercase; color: var(--accent); margin-bottom: 20px;
@@ -76,91 +88,234 @@
         }
         .kicker::before { content: ''; width: 36px; height: 1px; background: var(--accent); }
         h1 {
-            font-family: var(--serif); font-weight: 400;
-            font-size: clamp(2.4rem, 5vw, 3.6rem);
-            letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 18px;
+            font-family: var(--serif); font-weight: 300;
+            font-size: clamp(2.8rem, 7vw, 5.4rem);
+            letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 26px;
         }
-        h1 em { font-style: italic; color: var(--accent); }
-        .page-lede { color: var(--ink-2); max-width: 560px; font-size: 1.02rem; line-height: 1.85; }
+        h1 em { font-style: italic; color: var(--accent); position: relative; white-space: nowrap; }
+        h1 em svg { position: absolute; left: -2%; bottom: -0.18em; width: 104%; height: 0.32em; overflow: visible; }
+        h1 em svg path {
+            fill: none; stroke: var(--gold); stroke-width: 3; stroke-linecap: round;
+            stroke-dasharray: 420; stroke-dashoffset: 420; animation: draw 1.6s .5s cubic-bezier(.6,.1,.3,1) forwards;
+        }
+        @keyframes draw { to { stroke-dashoffset: 0; } }
+        .hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 48px; align-items: end; }
+        .page-lede { color: var(--ink-2); max-width: 560px; font-size: 1.04rem; line-height: 1.85; }
+        .ticket {
+            border: 1px dashed var(--ink-3); padding: 18px 20px; position: relative;
+            font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: var(--ink-2);
+            transform: rotate(1.5deg); background: #fff;
+        }
+        .ticket::before, .ticket::after {
+            content: ''; position: absolute; top: 50%; width: 16px; height: 16px; margin-top: -8px;
+            border-radius: 50%; background: var(--paper); border: 1px dashed var(--ink-3);
+        }
+        .ticket::before { left: -9px; clip-path: inset(0 0 0 50%); }
+        .ticket::after { right: -9px; clip-path: inset(0 50% 0 0); }
+        .ticket b { display: block; font-family: var(--serif); font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); margin-bottom: 6px; }
+        .ticket .np { font-family: var(--deva); color: var(--accent); }
 
-        /* ── FILTERS ── */
-        .filters {
+        /* ── ROOM NAV ── */
+        .rooms-nav {
             position: sticky; top: 68px; z-index: 50;
             background: rgba(250,249,246,0.94); backdrop-filter: blur(10px);
             border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-            padding: 14px 0; margin-bottom: 48px;
         }
-        .filter-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-        .fbtn {
-            font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.06em;
-            padding: 7px 16px; border-radius: 999px;
-            border: 1px solid var(--line); background: transparent; color: var(--ink-2);
-            cursor: pointer; transition: all .2s;
+        .rooms-nav .wrap { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-top: 12px; padding-bottom: 12px; }
+        .rooms-nav .wrap::-webkit-scrollbar { display: none; }
+        .rooms-nav a {
+            flex: none; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em;
+            padding: 6px 14px; border-radius: 999px; border: 1px solid transparent;
+            color: var(--ink-2); text-decoration: none; transition: all .2s; white-space: nowrap;
         }
-        .fbtn:hover { border-color: var(--ink); color: var(--ink); }
-        .fbtn.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
-        .fcount { margin-left: auto; font-family: var(--mono); font-size: 0.72rem; color: var(--ink-3); letter-spacing: 0.06em; }
+        .rooms-nav a i { font-style: normal; font-family: var(--deva); color: var(--ink-3); margin-right: 6px; }
+        .rooms-nav a:hover { border-color: var(--line); color: var(--ink); }
+        .rooms-nav a.on { background: var(--ink); color: var(--paper); }
+        .rooms-nav a.on i { color: var(--gold); }
 
-        /* ── GRID ── */
-        .gallery { columns: 3 300px; column-gap: 20px; padding-bottom: 96px; }
-        .g-item {
-            break-inside: avoid; margin-bottom: 20px;
-            cursor: pointer; position: relative;
-        }
-        .g-item img, .g-item video {
-            width: 100%; display: block;
-            filter: saturate(0.95);
-            transition: filter .25s ease;
-        }
-        .g-item:hover img, .g-item:hover video { filter: saturate(1) brightness(0.92); }
-        .g-cap {
-            display: flex; justify-content: space-between; gap: 14px;
-            margin-top: 10px;
-        }
-        .g-cap p { font-size: 0.8rem; color: var(--ink-2); line-height: 1.5; }
-        .g-tag {
-            font-family: var(--mono); font-size: 0.62rem; color: var(--ink-3);
-            letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
-            padding-top: 3px;
-        }
+        /* ── ROOMS (shared) ── */
+        .room { padding: 96px 0; position: relative; }
+        .room-head { display: grid; grid-template-columns: 110px 1fr; gap: 28px; margin-bottom: 52px; align-items: start; }
+        .room-no { font-family: var(--deva); font-size: 4.4rem; line-height: 0.9; color: var(--accent); font-weight: 300; }
+        .room-no small { display: block; font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; color: var(--ink-3); margin-top: 12px; text-transform: uppercase; }
+        .room h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.9rem, 3.6vw, 2.7rem); letter-spacing: -0.02em; line-height: 1.1; }
+        .room h2 em { font-style: italic; color: var(--accent); }
+        .wall-text { color: var(--ink-2); max-width: 560px; margin-top: 12px; line-height: 1.8; font-size: 0.97rem; }
+        figure { cursor: zoom-in; }
+        figure.vid { cursor: pointer; }
+        figcaption { font-size: 0.8rem; color: var(--ink-2); line-height: 1.5; }
+        .label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); display: block; margin-top: 4px; }
 
-        /* ── ART: framed sketches, pinned to the wall ── */
-        .g-item[data-cat~="art"] {
-            background: #fff;
-            padding: 12px 12px 0;
-            border: 1px solid rgba(28,26,23,0.10);
-            box-shadow: 0 2px 10px rgba(28,26,23,0.07);
-            transition: transform .35s ease, box-shadow .35s ease;
+        /* reveal */
+        .rv { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.22,.61,.36,1); }
+        .rv.on { opacity: 1; transform: none; }
+
+        /* ── I. SKETCHBOOK — pinned with washi tape ── */
+        #sketchbook {
+            background-color: var(--paper-2);
+            background-image: radial-gradient(rgba(28,26,23,0.12) 1px, transparent 1.2px);
+            background-size: 22px 22px;
         }
-        .g-item[data-cat~="art"] img {
-            border: 1px solid rgba(28,26,23,0.08);
-            filter: saturate(0.92) contrast(0.98);
+        .pinboard { columns: 3 280px; column-gap: 34px; }
+        .pin {
+            break-inside: avoid; margin: 0 0 42px; position: relative;
+            background: #fff; padding: 12px 12px 14px;
+            box-shadow: 0 1px 2px rgba(28,26,23,0.08), 0 10px 24px rgba(28,26,23,0.08);
+            transform: rotate(var(--r, -1deg));
+            transition: transform .45s cubic-bezier(.2,.7,.3,1), box-shadow .45s ease;
         }
-        .g-item[data-cat~="art"]:hover {
-            transform: translateY(-4px) rotate(0deg) scale(1.01);
-            box-shadow: 0 18px 40px rgba(28,26,23,0.16);
+        .pin::before {
+            content: ''; position: absolute; top: -11px; left: 50%; width: 92px; height: 24px;
+            margin-left: -46px; transform: rotate(calc(var(--r, -1deg) * -3));
+            background: var(--tape, rgba(217,169,58,0.42));
+            background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 6px, transparent 6px 12px);
+            box-shadow: 0 1px 1px rgba(0,0,0,0.04);
         }
-        .g-item[data-cat~="art"]:nth-of-type(odd)  { transform: rotate(-1.3deg); }
-        .g-item[data-cat~="art"]:nth-of-type(even) { transform: rotate(1.1deg); }
-        .g-item[data-cat~="art"] .g-cap { margin-top: 9px; padding-bottom: 11px; }
-        .g-item[data-cat~="art"] .g-cap p {
-            font-family: 'Fraunces', serif; font-style: italic;
-            font-size: 0.92rem; color: var(--ink);
+        .pin:hover { transform: rotate(0) translateY(-6px) scale(1.015); box-shadow: 0 22px 44px rgba(28,26,23,0.18); z-index: 2; }
+        .pin img { width: 100%; filter: saturate(0.94) contrast(0.98); }
+        .pin figcaption { margin-top: 12px; font-family: var(--serif); font-style: italic; font-size: 0.96rem; color: var(--ink); line-height: 1.4; }
+        .pin .label { font-style: normal; }
+        .pin.feature { column-span: all; max-width: 760px; margin: 0 auto 56px; }
+        .pin.feature figcaption { font-size: 1.12rem; }
+        .guest {
+            display: inline-block; font-family: var(--mono); font-style: normal; font-size: 0.58rem;
+            letter-spacing: 0.08em; text-transform: uppercase; color: #A8392E;
+            border: 1px solid #A8392E; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: 2px;
         }
-        .g-item[data-cat~="art"] .g-tag { color: var(--accent); }
-        .g-item.plain .g-cap p { color: var(--ink-3); font-style: italic; }
-        .hidden { display: none !important; }
+        .pin:nth-child(3n+1) { --tape: rgba(47,93,138,0.30); }
+        .pin:nth-child(3n+2) { --tape: rgba(168,57,46,0.26); }
+
+        /* ── II. CHITLANG — filmstrip ── */
+        #chitlang { padding-bottom: 72px; }
+        .film {
+            background: #191816; padding: 34px 0;
+            background-image:
+                repeating-linear-gradient(90deg, transparent 0 14px, #F2EFE9 14px 26px, transparent 26px 40px),
+                repeating-linear-gradient(90deg, transparent 0 14px, #F2EFE9 14px 26px, transparent 26px 40px);
+            background-size: 100% 10px, 100% 10px;
+            background-position: 0 12px, 0 calc(100% - 12px);
+            background-repeat: repeat-x;
+            background-color: #191816;
+        }
+        .film-track {
+            display: flex; gap: 14px; overflow-x: auto; padding: 0 max(24px, calc((100vw - 1072px) / 2));
+            scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #55504A transparent;
+        }
+        .frame { flex: none; scroll-snap-align: center; position: relative; }
+        .frame img, .frame video { height: 440px; width: auto; }
+        .frame figcaption {
+            position: absolute; left: 0; right: 0; bottom: 0; padding: 30px 14px 12px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.65)); color: #F2EFE9; font-size: 0.78rem;
+            opacity: 0; transition: opacity .3s;
+        }
+        .frame:hover figcaption { opacity: 1; }
+        .frame .fno { position: absolute; top: -26px; left: 2px; font-family: var(--mono); font-size: 0.6rem; color: #D9A93A; letter-spacing: 0.12em; }
+        .film-hint { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--ink-3); text-transform: uppercase; margin-top: 16px; }
+
+        /* ── III. JHAPA — polaroids ── */
+        .polaroids { display: flex; flex-wrap: wrap; gap: 34px 30px; justify-content: center; }
+        .polaroid {
+            width: 300px; background: #fff; padding: 12px 12px 18px; position: relative;
+            box-shadow: 0 2px 4px rgba(28,26,23,0.08), 0 14px 30px rgba(28,26,23,0.10);
+            transform: rotate(var(--r, 0deg)) translateY(var(--y, 0));
+            transition: transform .45s cubic-bezier(.2,.7,.3,1), box-shadow .45s;
+        }
+        .polaroid:hover { transform: rotate(0) translateY(-8px) scale(1.03); z-index: 2; box-shadow: 0 26px 50px rgba(28,26,23,0.2); }
+        .polaroid img, .polaroid video { width: 100%; aspect-ratio: 1; object-fit: cover; }
+        .polaroid figcaption { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink); margin-top: 12px; text-align: center; }
+
+        /* ── IV. ILAM — mosaic ── */
+        #illam { background: var(--paper-2); }
+        .mosaic { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 200px; gap: 12px; grid-auto-flow: dense; }
+        .mosaic figure { position: relative; overflow: hidden; }
+        .mosaic img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.3,1), filter .5s; filter: saturate(0.92); }
+        .mosaic figure:hover img { transform: scale(1.05); filter: saturate(1.05); }
+        .mosaic figcaption {
+            position: absolute; left: 12px; bottom: 12px; right: 12px;
+            color: #fff; font-family: var(--serif); font-style: italic; font-size: 0.95rem;
+            text-shadow: 0 1px 12px rgba(0,0,0,0.55);
+        }
+        .mosaic .big { grid-column: span 2; grid-row: span 2; }
+        .mosaic .tall { grid-row: span 2; }
+        .mosaic .wide { grid-column: span 2; }
+
+        /* ── V. CAFÉS — arched windows ── */
+        .arches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; align-items: end; }
+        .arch img { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 999px 999px 4px 4px; transition: border-radius .6s ease, filter .6s; filter: sepia(0.12) saturate(0.95); }
+        .arch:hover img { border-radius: 60px 60px 4px 4px; filter: none; }
+        .arch figcaption { margin-top: 16px; text-align: center; font-family: var(--serif); font-size: 1.02rem; color: var(--ink); line-height: 1.45; }
+        .arch figcaption i { display: block; color: var(--ink-2); font-size: 0.88rem; margin-top: 4px; }
+        .arch:nth-child(2) { transform: translateY(-36px); }
+
+        /* ── VI. ROBOTICS — blueprint ── */
+        #robotics {
+            background-color: #12304A; color: #DCE8F2;
+            background-image:
+                linear-gradient(rgba(220,232,242,0.08) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(220,232,242,0.08) 1px, transparent 1px),
+                linear-gradient(rgba(220,232,242,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(220,232,242,0.04) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+        }
+        #robotics .room-no { color: #9CC3E4; }
+        #robotics .room-no small, #robotics .wall-text { color: #9FB6C9; }
+        #robotics h2 em { color: #9CC3E4; }
+        .blueprint { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+        .blueprint figure { border: 1px solid rgba(220,232,242,0.45); padding: 10px; position: relative; }
+        .blueprint figure::before, .blueprint figure::after {
+            content: ''; position: absolute; width: 14px; height: 14px; border: 1px solid #DCE8F2;
+        }
+        .blueprint figure::before { top: -6px; left: -6px; border-right: 0; border-bottom: 0; }
+        .blueprint figure::after { bottom: -6px; right: -6px; border-left: 0; border-top: 0; }
+        .blueprint img { width: 100%; aspect-ratio: 4/3; object-fit: cover; filter: grayscale(0.3) contrast(1.05); }
+        .blueprint figcaption { font-family: var(--mono); font-size: 0.72rem; color: #BFD3E3; letter-spacing: 0.04em; margin-top: 10px; }
+        .blueprint figcaption b { color: #fff; font-weight: 500; }
+
+        /* ── VII. PORTRAITS — contact sheet ── */
+        #portraits { background: #1C1A17; color: #F2EFE9; }
+        #portraits .room-no { color: var(--gold); }
+        #portraits .room-no small, #portraits .wall-text { color: #A39C92; }
+        #portraits h2 em { color: var(--gold); }
+        .contact { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; background: #0F0E0D; padding: 22px 16px; border-radius: 3px; }
+        .contact figure { position: relative; padding-top: 16px; }
+        .contact .fno { position: absolute; top: 0; left: 2px; font-family: var(--mono); font-size: 0.56rem; color: #D98C3A; letter-spacing: 0.1em; }
+        .contact img { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter .5s; }
+        .contact figure:hover img { filter: none; }
+        .contact figure.circled::after {
+            content: ''; position: absolute; inset: 8px -4px -8px -4px; border: 2px solid #C0392B;
+            border-radius: 48% 52% 46% 54% / 52% 44% 56% 48%; transform: rotate(-3deg); pointer-events: none;
+        }
+        .contact-note { font-family: var(--mono); font-size: 0.66rem; color: #8A837B; letter-spacing: 0.06em; margin-top: 14px; }
+
+        /* ── VIII. TRAVEL — salon hang ── */
+        .salon { columns: 4 220px; column-gap: 14px; }
+        .salon figure { break-inside: avoid; margin-bottom: 14px; overflow: hidden; }
+        .salon img { width: 100%; transition: transform .7s cubic-bezier(.2,.7,.3,1), filter .5s; filter: saturate(0.9); }
+        .salon figure:hover img { transform: scale(1.04); filter: saturate(1.05); }
+
+        /* ── IX. MOVING PICTURES — cinema ── */
+        #moving { background: #0E0D0C; color: #F2EFE9; }
+        #moving .room-no { color: var(--gold); }
+        #moving .room-no small, #moving .wall-text { color: #A39C92; }
+        #moving h2 em { color: var(--gold); }
+        .cinema { display: flex; gap: 18px; align-items: flex-end; flex-wrap: wrap; justify-content: center; }
+        .cinema figure { position: relative; }
+        .cinema video { height: 300px; width: auto; border-radius: 2px; box-shadow: 0 0 60px rgba(217,169,58,0.08); }
+        .cinema figure::after {
+            content: '▶'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: rgba(255,255,255,0.8); pointer-events: none; transition: opacity .3s;
+        }
+        .cinema figure:hover::after, .cinema figure.playing::after { opacity: 0; }
 
         /* ── LIGHTBOX ── */
         .lightbox {
             display: none; position: fixed; inset: 0; z-index: 999;
-            background: rgba(20,18,15,0.94);
-            align-items: center; justify-content: center;
+            background: rgba(20,18,15,0.95);
+            align-items: center; justify-content: center; flex-direction: column; gap: 16px;
         }
         .lightbox.open { display: flex; }
-        .lb-inner img, .lb-inner video {
-            max-width: 88vw; max-height: 86vh; display: block;
-        }
+        .lb-inner img { max-width: 88vw; max-height: 80vh; display: block; box-shadow: 0 30px 80px rgba(0,0,0,0.5); }
+        .lb-cap { font-family: var(--serif); font-style: italic; color: #E9E4D8; font-size: 1rem; text-align: center; max-width: 80vw; min-height: 1.4em; }
         .lb-btn {
             position: fixed; width: 44px; height: 44px; border-radius: 50%;
             background: transparent; border: 1px solid rgba(250,249,246,0.35);
@@ -178,6 +333,20 @@
             letter-spacing: 0.1em;
         }
 
+        /* ── EXIT ── */
+        .exit { text-align: center; padding: 96px 0 88px; }
+        .exit p { font-family: var(--serif); font-style: italic; font-size: clamp(1.3rem, 2.6vw, 1.8rem); max-width: 640px; margin: 0 auto; line-height: 1.4; }
+        .exit cite { display: block; font-family: var(--mono); font-style: normal; font-size: 0.68rem; letter-spacing: 0.1em; color: var(--ink-3); margin-top: 14px; }
+        .exit a { display: inline-block; margin-top: 30px; font-family: var(--mono); font-size: 0.74rem; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+
+        .flags { display: flex; height: 3px; }
+        .flags i { flex: 1; }
+        .flags i:nth-child(1) { background: #2F5D8A; }
+        .flags i:nth-child(2) { background: #E9E4D8; }
+        .flags i:nth-child(3) { background: #A8392E; }
+        .flags i:nth-child(4) { background: #20503C; }
+        .flags i:nth-child(5) { background: #D9A93A; }
+
         /* ── FOOTER ── */
         footer { border-top: 1px solid var(--line); padding: 28px 0; }
         .foot {
@@ -190,6 +359,12 @@
         .foot a:hover { color: var(--ink); }
 
         /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+            .ticket { max-width: 340px; }
+            .mosaic { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; }
+            .contact { grid-template-columns: repeat(4, 1fr); }
+        }
         @media (max-width: 700px) {
             .nav-links {
                 display: none; position: absolute; top: 68px; left: 0; right: 0;
@@ -198,8 +373,30 @@
             }
             .nav-links.open { display: flex; }
             .burger { display: block; }
-            .page-head { padding: 130px 0 32px; }
-            .fcount { display: none; }
+            .wrap { padding: 0 16px; }
+            .hero { padding: 128px 0 48px; }
+            .room { padding: 68px 0; }
+            .room-head { grid-template-columns: 1fr; gap: 6px; margin-bottom: 36px; }
+            .room-no { font-size: 3rem; }
+            .room-no small { display: inline; margin-left: 10px; }
+            .frame img, .frame video { height: 320px; }
+            .frame figcaption { opacity: 1; }
+            .polaroid { width: calc(50% - 10px); padding: 8px 8px 12px; }
+            .polaroids { gap: 22px 20px; }
+            .polaroid figcaption { font-size: 0.8rem; }
+            .arches { grid-template-columns: 1fr; gap: 40px; max-width: 360px; margin: 0 auto; }
+            .arch:nth-child(2) { transform: none; }
+            .blueprint { grid-template-columns: 1fr; }
+            .contact { grid-template-columns: repeat(3, 1fr); padding: 14px 10px; }
+            .salon { columns: 2; }
+            .cinema video { height: 240px; }
+            .pin.feature { margin-bottom: 44px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+            .rv { opacity: 1; transform: none; }
+            h1 em svg path { stroke-dashoffset: 0; }
+            html { scroll-behavior: auto; }
         }
     </style>
 </head>
@@ -222,248 +419,419 @@
     </div>
 </header>
 
-<!-- PAGE HEAD -->
-<div class="page-head">
+<!-- HERO -->
+<section class="hero">
+    <svg class="flag-line" id="flagLine" viewBox="0 0 1200 90" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div class="wrap hero-grid">
+        <div>
+            <div class="kicker">Gallery — an exhibition in rooms</div>
+            <h1>Frames from <em>my world.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 120 18, 180 9 S 270 6, 296 12"/></svg></em></h1>
+            <p class="page-lede">
+                Pencil lines from the pocket sketchbook, a stone road into Chitlang, diaries from Jhapa and Ilam,
+                café corners, lab notes from the robot bench — life between the terminal and the mountains.
+                Walk through slowly; every frame opens.
+            </p>
+        </div>
+        <div class="ticket">
+            <b>Admit one — free, always.</b>
+            Nine rooms · <span id="frameCount">–</span> frames<br/>
+            Open daily · Kathmandu, <span class="np">नेपाल</span><br/>
+            Curator: the guy with the pencil
+        </div>
+    </div>
+</section>
+
+<!-- ROOM NAV -->
+<nav class="rooms-nav" aria-label="Rooms">
+    <div class="wrap" id="roomsNav">
+        <a href="#sketchbook"><i>१</i>Sketchbook</a>
+        <a href="#chitlang"><i>२</i>Chitlang</a>
+        <a href="#jhapa"><i>३</i>Jhapa</a>
+        <a href="#illam"><i>४</i>Ilam</a>
+        <a href="#cafes"><i>५</i>Cafés</a>
+        <a href="#robotics"><i>६</i>Robotics</a>
+        <a href="#portraits"><i>७</i>Portraits</a>
+        <a href="#travel"><i>८</i>Travel</a>
+        <a href="#moving"><i>९</i>Moving pictures</a>
+    </div>
+</nav>
+
+<!-- ═══ I. SKETCHBOOK ═══ -->
+<section class="room" id="sketchbook">
     <div class="wrap">
-        <div class="kicker">Gallery</div>
-        <h1>Frames from <em>my world.</em></h1>
-        <p class="page-lede">
-            Diaries from Jhapa and Ilam, lab notes from the robot bench, portraits, and travel frames —
-            life between the terminal and the mountains.
-        </p>
+        <div class="room-head rv">
+            <div class="room-no">१<small>Room one</small></div>
+            <div>
+                <h2>The sketchbook, <em>pinned to the wall.</em></h2>
+                <p class="wall-text">Graphite, iPad, whatever's near. Most of these were drawn in stolen minutes —
+                    between deploys, at a resort railing, in the office art hour with friends whose work hangs here too.</p>
+            </div>
+        </div>
+
+        <div class="pinboard rv">
+            <figure class="pin feature" style="--r:-0.6deg">
+                <img src="/images/art/resort-plein-air.jpg" alt="Pencil drawing of a resort held up in front of the real resort and hills" loading="lazy"/>
+                <figcaption>Drew the resort, then held it up to the real thing.<span class="label">Graphite · drawn on location</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-1.8deg">
+                <img src="/images/art/pocket-sketchbook-house.jpg" alt="Pencil sketch of a crooked cottage in the pocket sketchbook" loading="lazy"/>
+                <figcaption>A messy little house, pocket sketchbook.<span class="label">Graphite · pocket sketchbook</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:1.4deg">
+                <img src="/images/art/naxa-butterfly-hand.jpg" alt="Pencil drawing of a butterfly landing on a hand" loading="lazy"/>
+                <figcaption>A butterfly lands on a hand.<span class="label">Graphite · NAXA office art hour</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-1deg">
+                <img src="/images/art/office-flower-vase.jpg" alt="Pencil drawing of flowers in a vase on stacked books, beside a code terminal" loading="lazy"/>
+                <figcaption>Flowers in a vase, drawn next to a terminal.<span class="label">Graphite · after hours at the desk</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:1.9deg">
+                <img src="/images/art/naxa-nistha-petals.jpg" alt="Drawing of a face with petals, captioned Blooming at my own pace" loading="lazy"/>
+                <figcaption>“Blooming at my own pace.” <span class="guest">guest · Nistha</span><span class="label">Graphite · NAXA office art hour — next to my Camus</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-1.4deg">
+                <img src="/images/art/naxa-biddya-pattern.jpg" alt="A lattice of petal shapes filling a sketchbook page" loading="lazy"/>
+                <figcaption>A lattice of petals. <span class="guest">guest · Biddya</span><span class="label">Ink · NAXA office art hour</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:1deg">
+                <img src="/images/art/office-sketchbook.jpg" alt="Office hours, good light" loading="lazy"/>
+                <figcaption>Office hours, good light.<span class="label">Graphite · sketchbook</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-2deg">
+                <img src="/images/art/pencil-sketchbook.jpg" alt="Pencil sketchbook sessions" loading="lazy"/>
+                <figcaption>Pencil sketchbook sessions.<span class="label">Graphite · sketchbook</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:1.6deg">
+                <img src="/images/art/sketch.jpg" alt="Quick sketch" loading="lazy"/>
+                <figcaption>Quick sketch.<span class="label">Graphite</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-0.8deg">
+                <img src="/images/art/anime-character.jpg" alt="Anime character study" loading="lazy"/>
+                <figcaption>Anime character study.<span class="label">Graphite</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:1.2deg">
+                <img src="/images/art/anime-character-2.jpg" alt="Another character study" loading="lazy"/>
+                <figcaption>Another character study.<span class="label">Graphite</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-1.6deg">
+                <img src="/images/art/canvas.jpg" alt="On canvas" loading="lazy"/>
+                <figcaption>On canvas.<span class="label">Canvas</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:0.8deg">
+                <img src="/images/art/diary-sketch.jpg" alt="Pages from the diary" loading="lazy"/>
+                <figcaption>Pages from the diary.<span class="label">Diary</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-1.2deg">
+                <img src="/images/art/ipad-pencil-art.jpg" alt="iPad pencil study" loading="lazy"/>
+                <figcaption>iPad pencil study.<span class="label">iPad · Pencil</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:1.7deg">
+                <img src="/images/art/ipad-pencil-art-2.jpg" alt="iPad pencil study II" loading="lazy"/>
+                <figcaption>iPad pencil study II.<span class="label">iPad · Pencil</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-0.6deg">
+                <img src="/images/art/ipad-pencil-art-3.jpg" alt="iPad pencil study III" loading="lazy"/>
+                <figcaption>iPad pencil study III.<span class="label">iPad · Pencil</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:1.3deg">
+                <img src="/images/art/ipad-flower.jpg" alt="Flowers, on iPad" loading="lazy"/>
+                <figcaption>Flowers, on iPad.<span class="label">iPad · Pencil</span></figcaption>
+            </figure>
+            <figure class="pin" style="--r:-1.5deg">
+                <img src="/images/art/smart-board-doodle.jpg" alt="Smart-board doodle between meetings" loading="lazy"/>
+                <figcaption>Smart-board doodle between meetings.<span class="label">Smart board · finger</span></figcaption>
+            </figure>
+        </div>
     </div>
-</div>
+</section>
 
-<!-- FILTERS -->
-<div class="filters">
-    <div class="wrap filter-row">
-        <button class="fbtn active" data-f="all">All</button>
-        <button class="fbtn" data-f="jhapa">Jhapa Diary</button>
-        <button class="fbtn" data-f="illam">Ilam Diary</button>
-        <button class="fbtn" data-f="robotics">Robotics</button>
-        <button class="fbtn" data-f="portraits">Portraits</button>
-        <button class="fbtn" data-f="art">Art &amp; Sketches</button>
-        <button class="fbtn" data-f="travel">Travel</button>
-        <button class="fbtn" data-f="videos">Videos</button>
-        <span class="fcount" id="fcount"></span>
+<!-- ═══ II. CHITLANG ═══ -->
+<section class="room" id="chitlang">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">२<small>Room two</small></div>
+            <div>
+                <h2>Chitlang, <em>on foot.</em></h2>
+                <p class="wall-text">A stone road, a blue roof, a tree that caught the sun at exactly the right moment,
+                    and friends walking ahead. Shot as it came — one roll, no retakes.</p>
+            </div>
+        </div>
     </div>
-</div>
+    <div class="film rv">
+        <div class="film-track">
+            <figure class="frame"><span class="fno">01 ▸</span>
+                <img src="/images/gallery/chitlang-stone-path.jpg" alt="A stone-paved trail under a big tree, Chitlang" loading="lazy"/>
+                <figcaption>The stone road into Chitlang.</figcaption>
+            </figure>
+            <figure class="frame vid"><span class="fno">02 ▸</span>
+                <video src="/images/gallery/chitlang-walk.mp4" poster="/images/gallery/chitlang-walk-poster.jpg" muted loop playsinline preload="none"></video>
+                <figcaption>Friends walking the trail. Tap for sound.</figcaption>
+            </figure>
+            <figure class="frame"><span class="fno">03 ▸</span>
+                <img src="/images/gallery/chitlang-path-tree.jpg" alt="A lone tree with sun rays over a rocky trail" loading="lazy"/>
+                <figcaption>Same trail, the sun finds the tree.</figcaption>
+            </figure>
+            <figure class="frame"><span class="fno">04 ▸</span>
+                <img src="/images/gallery/chitlang-hill-view.jpg" alt="Village houses with a blue roof beneath green hills" loading="lazy"/>
+                <figcaption>Blue roof, green hill.</figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="wrap"><p class="film-hint">← scroll the roll →</p></div>
+</section>
 
-<!-- GALLERY -->
-<div class="wrap">
-    <div class="gallery" id="gallery">
+<!-- ═══ III. JHAPA ═══ -->
+<section class="room" id="jhapa">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">३<small>Room three</small></div>
+            <div>
+                <h2>The Jhapa <em>diary.</em></h2>
+                <p class="wall-text">Judging at the WCBT hackathon, a run fest at dawn, and more second coffees than I'll admit.</p>
+            </div>
+        </div>
+        <div class="polaroids rv">
+            <figure class="polaroid" style="--r:-2.5deg">
+                <img src="/images/jhapa_diary/kathamandu_team_at_jhapa_wcbt_hackthon.jpeg" alt="Kathmandu team at WCBT hackathon, Jhapa" loading="lazy"/>
+                <figcaption>The Kathmandu crew, WCBT hackathon.</figcaption>
+            </figure>
+            <figure class="polaroid" style="--r:1.8deg; --y:18px">
+                <img src="/images/jhapa_diary/me_as_judge_during_presentation.jpeg" alt="Judging student presentations" loading="lazy"/>
+                <figcaption>Judging final presentations.</figcaption>
+            </figure>
+            <figure class="polaroid" style="--r:-1deg">
+                <img src="/images/jhapa_diary/me_as_judge_during_presentation_2_fommal.jpeg" alt="Formal judging session" loading="lazy"/>
+                <figcaption>Formal judging session.</figcaption>
+            </figure>
+            <figure class="polaroid" style="--r:2.2deg; --y:-10px">
+                <img src="/images/jhapa_diary/me_as_judge_during_presentation_3_with_daries_marking.jpeg" alt="Marking score diaries" loading="lazy"/>
+                <figcaption>Scores and second coffees.</figcaption>
+            </figure>
+            <figure class="polaroid" style="--r:-1.8deg; --y:12px">
+                <img src="/images/jhapa_diary/three_judge.jpeg" alt="The judge panel" loading="lazy"/>
+                <figcaption>The panel, mid-deliberation.</figcaption>
+            </figure>
+            <figure class="polaroid" style="--r:1.2deg">
+                <img src="/images/jhapa_diary/reciving_token_of_love_from_mayer_and_predent_of_HISSAN.jpeg" alt="Token of love from Mayor and HISSAN president" loading="lazy"/>
+                <figcaption>A token of love from the Mayor &amp; HISSAN.</figcaption>
+            </figure>
+            <figure class="polaroid" style="--r:-2deg; --y:-6px">
+                <img src="/images/jhapa_diary/me_read_for_run_fest.jpeg" alt="Ready for the run fest" loading="lazy"/>
+                <figcaption>Race morning — Run Fest.</figcaption>
+            </figure>
+            <figure class="polaroid" style="--r:2.6deg; --y:14px">
+                <img src="/images/jhapa_diary/whitehouse_run_fest_dj_japha.jpeg" alt="Whitehouse Run Fest DJ stage" loading="lazy"/>
+                <figcaption>DJ, dust, finish lines.</figcaption>
+            </figure>
+            <figure class="polaroid" style="--r:-1.4deg">
+                <img src="/images/jhapa_diary/cafe_image_jhapa.jpeg" alt="Café corner, Jhapa" loading="lazy"/>
+                <figcaption>Café corner, Jhapa.</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
 
-        <!-- ═══ JHAPA DIARY ═══ -->
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/book_cafe_at_jhapa.jpeg" alt="Book café in Jhapa" loading="lazy"/>
-            <figcaption class="g-cap"><p>Found a book café, obviously stayed hours.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
+<!-- ═══ IV. ILAM ═══ -->
+<section class="room" id="illam">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">४<small>Room four</small></div>
+            <div>
+                <h2>Ilam, <em>above the clouds.</em></h2>
+                <p class="wall-text">Kanyam's tea rows, a horseman and his horse, and the team sitting on a hill with nothing to fix.</p>
+            </div>
+        </div>
+        <div class="mosaic rv">
+            <figure class="big">
+                <img src="/images/illam_diary/me_kanaym_with_cloud.png" alt="Standing with the clouds at Kanyam" loading="lazy"/>
+                <figcaption>Standing with the clouds at Kanyam.</figcaption>
+            </figure>
+            <figure class="tall">
+                <img src="/images/illam_diary/me_at_kanyam.jpeg" alt="Me at Kanyam, Ilam" loading="lazy"/>
+                <figcaption>Me at Kanyam.</figcaption>
+            </figure>
+            <figure>
+                <img src="/images/illam_diary/hourseman_and_horse_illam.png" alt="Horseman and horse, Ilam" loading="lazy"/>
+                <figcaption>Horseman &amp; horse.</figcaption>
+            </figure>
+            <figure>
+                <img src="/images/illam_diary/illam_daiery_nature_knaym.png" alt="Kanyam nature frames" loading="lazy"/>
+                <figcaption>Kanyam, green.</figcaption>
+            </figure>
+            <figure class="wide">
+                <img src="/images/illam_diary/illam_community_view.png" alt="Community view, Ilam" loading="lazy"/>
+                <figcaption>The community view.</figcaption>
+            </figure>
+            <figure>
+                <img src="/images/illam_diary/team_back_view_sitting_hill.webp" alt="Team sitting on the hill" loading="lazy"/>
+                <figcaption>The team, on the hill.</figcaption>
+            </figure>
+            <figure>
+                <img src="/images/illam_diary/team_visiting_illam.webp" alt="Team visiting Ilam" loading="lazy"/>
+                <figcaption>Team visiting Ilam.</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
 
-<figure class="g-item" data-cat="art">
-            <img src="/images/art/office-sketchbook.jpg" alt="Office hours, good light" loading="lazy"/>
-            <figcaption class="g-cap"><p>Office hours, good light.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
+<!-- ═══ V. CAFÉS ═══ -->
+<section class="room" id="cafes">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">५<small>Room five</small></div>
+            <div>
+                <h2>Cafés &amp; <em>corners.</em></h2>
+                <p class="wall-text">Where the book comes out of the bag. The walls usually have better advice than I do.</p>
+            </div>
+        </div>
+        <div class="arches rv">
+            <figure class="arch">
+                <img src="/images/gallery/chiyawala-thapathali.jpg" alt="Posters on a wooden wall at Chiyawala, Thapathali, one reading The good ideas will survive" loading="lazy"/>
+                <figcaption>Chiyawala, Thapathali<i>“The good ideas will survive.”</i></figcaption>
+            </figure>
+            <figure class="arch">
+                <img src="/images/jhapa_diary/book_cafe_at_jhapa.jpeg" alt="Book café in Jhapa" loading="lazy"/>
+                <figcaption>A book café, Jhapa<i>Found it, obviously stayed hours.</i></figcaption>
+            </figure>
+            <figure class="arch">
+                <img src="/images/gallery/himalayan-java-ranipokhari.jpg" alt="Chess pieces in the foreground at Himalayan Java, Ranipokhari, wall reading Your cup of happiness" loading="lazy"/>
+                <figcaption>Himalayan Java, Ranipokhari<i>Your cup of happiness — and a chessboard.</i></figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
 
-<figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/kathamandu_team_at_jhapa_wcbt_hackthon.jpeg" alt="Kathmandu team at WCBT hackathon, Jhapa" loading="lazy"/>
-            <figcaption class="g-cap"><p>The Kathmandu crew at the WCBT hackathon, Jhapa.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/me_as_judge_during_presentation.jpeg" alt="Judging student presentations" loading="lazy"/>
-            <figcaption class="g-cap"><p>Judging final presentations.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/me_as_judge_during_presentation_2_fommal.jpeg" alt="Formal judging session" loading="lazy"/>
-            <figcaption class="g-cap"><p>Formal judging session.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/me_as_judge_during_presentation_3_with_daries_marking.jpeg" alt="Marking score diaries" loading="lazy"/>
-            <figcaption class="g-cap"><p>Marking the diaries — scores and second coffees.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/three_judge.jpeg" alt="The judge panel" loading="lazy"/>
-            <figcaption class="g-cap"><p>The judge panel, mid-deliberation.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/reciving_token_of_love_from_mayer_and_predent_of_HISSAN.jpeg" alt="Token of love from Mayor and HISSAN president" loading="lazy"/>
-            <figcaption class="g-cap"><p>A token of love from the Mayor &amp; HISSAN president.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="jhapa videos">
-            <video src="/images/jhapa_diary/jhapa_morning_with_carview.mov" muted loop playsinline preload="metadata"></video>
-            <figcaption class="g-cap"><p>Jhapa morning, car window view.</p><span class="g-tag">Video</span></figcaption>
-        </figure>
-        
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/cafe_image_jhapa.jpeg" alt="Café corner, Jhapa" loading="lazy"/>
-            <figcaption class="g-cap"><p>Café corner, Jhapa.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/me_read_for_run_fest.jpeg" alt="Ready for the run fest" loading="lazy"/>
-            <figcaption class="g-cap"><p>Race morning — ready for the Run Fest.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="jhapa">
-            <img src="/images/jhapa_diary/whitehouse_run_fest_dj_japha.jpeg" alt="Whitehouse Run Fest DJ stage" loading="lazy"/>
-            <figcaption class="g-cap"><p>Whitehouse Run Fest — DJ, dust, finish lines.</p><span class="g-tag">Jhapa</span></figcaption>
-        </figure>
+<!-- ═══ VI. ROBOTICS ═══ -->
+<section class="room" id="robotics">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">६<small>Room six</small></div>
+            <div>
+                <h2>Lab notes from <em>the robot bench.</em></h2>
+                <p class="wall-text">Before the robot moves, the maths moves on paper. Encoders, wheels, radii — by hand first.</p>
+            </div>
+        </div>
+        <div class="blueprint rv">
+            <figure>
+                <img src="/images/robotics/magnetic_ecoder_calculating_value_of_r.jpeg" alt="Magnetic encoder calibration notes" loading="lazy"/>
+                <figcaption><b>FIG. 1</b> — Magnetic encoder: calculating radius values by hand.</figcaption>
+            </figure>
+            <figure>
+                <img src="/images/robotics/finding_revolution_of_tyre.jpeg" alt="Tyre revolution calculation" loading="lazy"/>
+                <figcaption><b>FIG. 2</b> — Finding wheel revolutions for odometry.</figcaption>
+            </figure>
+        </div>
+    </div>
+</section>
 
-        <!-- ═══ ILAM DIARY ═══ -->
-        <figure class="g-item" data-cat="illam">
-            <img src="/images/illam_diary/me_at_kanyam.jpeg" alt="Me at Kanyam, Ilam" loading="lazy"/>
-            <figcaption class="g-cap"><p>Me at Kanyam.</p><span class="g-tag">Ilam</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="illam">
-            <img src="/images/illam_diary/me_kanaym_with_cloud.png" alt="Standing with the clouds at Kanyam" loading="lazy"/>
-            <figcaption class="g-cap"><p>Standing with the clouds at Kanyam.</p><span class="g-tag">Ilam</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="illam">
-            <img src="/images/illam_diary/hourseman_and_horse_illam.png" alt="Horseman and horse, Ilam" loading="lazy"/>
-            <figcaption class="g-cap"><p>Horseman and his horse, Ilam.</p><span class="g-tag">Ilam</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="illam">
-            <img src="/images/illam_diary/illam_community_view.png" alt="Community view, Ilam" loading="lazy"/>
-            <figcaption class="g-cap"><p>The community view, Ilam.</p><span class="g-tag">Ilam</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="illam">
-            <img src="/images/illam_diary/illam_daiery_nature_knaym.png" alt="Kanyam nature frames" loading="lazy"/>
-            <figcaption class="g-cap"><p>Kanyam nature frames.</p><span class="g-tag">Ilam</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="illam">
-            <img src="/images/illam_diary/team_back_view_sitting_hill.webp" alt="Team sitting on the hill" loading="lazy"/>
-            <figcaption class="g-cap"><p>The team, sitting on the hill.</p><span class="g-tag">Ilam</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="illam">
-            <img src="/images/illam_diary/team_visiting_illam.webp" alt="Team visiting Ilam" loading="lazy"/>
-            <figcaption class="g-cap"><p>Team visiting Ilam.</p><span class="g-tag">Ilam</span></figcaption>
-        </figure>
+<!-- ═══ VII. PORTRAITS ═══ -->
+<section class="room" id="portraits">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">७<small>Room seven</small></div>
+            <div>
+                <h2>Contact sheet, <em>mostly me.</em></h2>
+                <p class="wall-text">Black and white until you look closer. The red circle marks the keeper.</p>
+            </div>
+        </div>
+        <div class="contact rv" id="contact">
+            <figure><img src="/images/me01.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me03.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me3.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me1.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me2.jpg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me04.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me05.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me06.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure class="circled"><img src="/images/medals.jpg" alt="My medal collection" loading="lazy"/><figcaption hidden>The medal collection.</figcaption></figure>
+            <figure><img src="/images/me07.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me10.png" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me12.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me13.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me14.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me5.jpg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me7.jpeg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/me9.jpg" alt="Portrait" loading="lazy"/></figure>
+        </div>
+        <p class="contact-note">Circled: the medal collection. Every one of them came with a sunrise.</p>
+    </div>
+</section>
 
-        <!-- ═══ ROBOTICS ═══ -->
-        <figure class="g-item" data-cat="robotics">
-            <img src="/images/robotics/magnetic_ecoder_calculating_value_of_r.jpeg" alt="Magnetic encoder calibration notes" loading="lazy"/>
-            <figcaption class="g-cap"><p>Magnetic encoder — calculating radius values by hand.</p><span class="g-tag">Lab note</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="robotics">
-            <img src="/images/robotics/finding_revolution_of_tyre.jpeg" alt="Tyre revolution calculation" loading="lazy"/>
-            <figcaption class="g-cap"><p>Finding wheel revolutions for odometry.</p><span class="g-tag">Lab note</span></figcaption>
-        </figure>
+<!-- ═══ VIII. TRAVEL ═══ -->
+<section class="room" id="travel">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">८<small>Room eight</small></div>
+            <div>
+                <h2>Travel, <em>hung salon-style.</em></h2>
+                <p class="wall-text">Too many to label, too good to leave in the phone. Nepal, mostly — ridge after ridge.</p>
+            </div>
+        </div>
+        <div class="salon rv">
+            <figure><img src="/images/wallpapersden.com_nepal-mountain_wxl.jpg" alt="Nepal mountains" loading="lazy"/></figure>
+            <figure><img src="/images/n1.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/n2.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/n4.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/001.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/002.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/003.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/004.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/005.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/007.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/008.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/009.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/012.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/014.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/015.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/016.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/017.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/018.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/021.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/024.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/025.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/026.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/029.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/031.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/033.jpeg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/1.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/2.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/3.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/9.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/11.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/12.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/13.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/14.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/15.jpg" alt="Travel frame" loading="lazy"/></figure>
+        </div>
+    </div>
+</section>
 
-        <!-- ═══ PORTRAITS ═══ -->
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me01.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me03.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me3.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me1.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me2.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/pencil-sketchbook.jpg" alt="Pencil sketchbook sessions" loading="lazy"/>
-            <figcaption class="g-cap"><p>Pencil sketchbook sessions.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/sketch.jpg" alt="Quick sketch" loading="lazy"/>
-            <figcaption class="g-cap"><p>Quick sketch.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/anime-character.jpg" alt="Anime character study" loading="lazy"/>
-            <figcaption class="g-cap"><p>Anime character study.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/anime-character-2.jpg" alt="Another character study" loading="lazy"/>
-            <figcaption class="g-cap"><p>Another character study.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/canvas.jpg" alt="On canvas" loading="lazy"/>
-            <figcaption class="g-cap"><p>On canvas.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/diary-sketch.jpg" alt="Pages from the diary" loading="lazy"/>
-            <figcaption class="g-cap"><p>Pages from the diary.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/ipad-pencil-art.jpg" alt="iPad pencil study" loading="lazy"/>
-            <figcaption class="g-cap"><p>iPad pencil study.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/ipad-pencil-art-2.jpg" alt="iPad pencil study II" loading="lazy"/>
-            <figcaption class="g-cap"><p>iPad pencil study II.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/ipad-pencil-art-3.jpg" alt="iPad pencil study III" loading="lazy"/>
-            <figcaption class="g-cap"><p>iPad pencil study III.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/ipad-flower.jpg" alt="Flowers, on iPad" loading="lazy"/>
-            <figcaption class="g-cap"><p>Flowers, on iPad.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
-        
-        <figure class="g-item" data-cat="art">
-            <img src="/images/art/smart-board-doodle.jpg" alt="Smart-board doodle between meetings" loading="lazy"/>
-            <figcaption class="g-cap"><p>Smart-board doodle between meetings.</p><span class="g-tag">Art</span></figcaption>
-        </figure>
+<!-- ═══ IX. MOVING PICTURES ═══ -->
+<section class="room" id="moving">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">९<small>Room nine</small></div>
+            <div>
+                <h2>Moving <em>pictures.</em></h2>
+                <p class="wall-text">Lights down. Hover to play, tap for sound.</p>
+            </div>
+        </div>
+        <div class="cinema rv">
+            <figure class="vid"><video src="/images/jhapa_diary/jhapa_morning_with_carview.mov" muted loop playsinline preload="metadata"></video></figure>
+            <figure class="vid"><video src="/images/022.mp4" muted loop playsinline preload="metadata"></video></figure>
+            <figure class="vid"><video src="/images/17.mp4" muted loop playsinline preload="metadata"></video></figure>
+            <figure class="vid"><video src="/images/18.mp4" muted loop playsinline preload="metadata"></video></figure>
+            <figure class="vid"><video src="/images/n1.mp4" muted loop playsinline preload="metadata"></video></figure>
+        </div>
+    </div>
+</section>
 
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me04.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me05.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me06.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me07.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me10.png" alt="" loading="lazy"/></figure>
-        <figure class="g-item" data-cat="portraits">
-            <img src="/images/medals.jpg" alt="My medal collection" loading="lazy"/>
-            <figcaption class="g-cap"><p>The medal collection.</p><span class="g-tag">Portraits</span></figcaption>
-        </figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me12.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me13.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me14.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me5.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me7.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="portraits"><img src="/images/me9.jpg" alt="" loading="lazy"/></figure>
-
-        <!-- ═══ TRAVEL ═══ -->
-        <figure class="g-item plain" data-cat="travel"><img src="/images/wallpapersden.com_nepal-mountain_wxl.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/n1.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/n2.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/n4.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/001.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/002.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/003.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/004.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/005.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/007.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/008.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/009.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/012.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/014.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/015.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/016.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/017.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/018.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/021.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/024.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/025.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/026.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/029.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/031.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/033.jpeg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/1.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/2.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/3.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/9.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/11.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/12.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/13.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/14.jpg" alt="" loading="lazy"/></figure>
-        <figure class="g-item plain" data-cat="travel"><img src="/images/15.jpg" alt="" loading="lazy"/></figure>
-
-        <!-- ═══ VIDEOS ═══ -->
-        <figure class="g-item plain" data-cat="videos">
-            <video src="/images/022.mp4" muted loop playsinline preload="metadata"></video>
-        </figure>
-        <figure class="g-item plain" data-cat="videos">
-            <video src="/images/17.mp4" muted loop playsinline preload="metadata"></video>
-        </figure>
-        <figure class="g-item plain" data-cat="videos">
-            <video src="/images/18.mp4" muted loop playsinline preload="metadata"></video>
-        </figure>
-        <figure class="g-item plain" data-cat="videos">
-            <video src="/images/n1.mp4" muted loop playsinline preload="metadata"></video>
-        </figure>
-
+<!-- EXIT -->
+<div class="exit">
+    <div class="wrap">
+        <p>It is the spectator, and not life, that art really mirrors.</p>
+        <cite>Oscar Wilde — preface to The Picture of Dorian Gray</cite>
+        <a href="/#voices">→ three voices in the library</a>
     </div>
 </div>
 
@@ -472,17 +840,19 @@
     <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
     <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">←</button>
     <div class="lb-inner" id="lbInner"></div>
+    <div class="lb-cap" id="lbCap"></div>
     <button class="lb-btn lb-next" id="lbNext" aria-label="Next">→</button>
     <div class="lb-count" id="lbCount"></div>
 </div>
 
 <!-- FOOTER -->
+<div class="flags" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 <footer>
     <div class="wrap foot">
         <span>© 2026 Ram Kumar Tamang — Kathmandu, Nepal · <span id="npt">–:–– NPT</span></span>
         <span><a href="mailto:ram.tamang2058@gmail.com">Email</a> · <a href="https://github.com/Ramtamang-2058" target="_blank" rel="noopener">GitHub</a> · <a href="https://www.linkedin.com/in/ram-tamang-a73241198" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.instagram.com/ram_unlimited/" target="_blank" rel="noopener">Instagram</a></span>
     </div>
-
+</footer>
 
 <script>
     // Mobile nav
@@ -490,80 +860,105 @@
     const navLinks = document.getElementById('navLinks');
     burger.addEventListener('click', () => navLinks.classList.toggle('open'));
 
-    // Video hover-play
-    document.querySelectorAll('.g-item video').forEach(v => {
-        const item = v.closest('.g-item');
-        item.addEventListener('mouseenter', () => v.play().catch(() => {}));
-        item.addEventListener('mouseleave', () => { v.pause(); v.currentTime = 0; });
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Prayer flags strung across the hero
+    (function () {
+        const svg = document.getElementById('flagLine');
+        const colors = ['#2F5D8A', '#E9E4D8', '#A8392E', '#20503C', '#D9A93A'];
+        const ns = 'http://www.w3.org/2000/svg';
+        const P0 = [0, 18], P1 = [600, 78], P2 = [1200, 12];
+        const cord = document.createElementNS(ns, 'path');
+        cord.setAttribute('class', 'cord');
+        cord.setAttribute('d', `M${P0} Q${P1} ${P2}`);
+        svg.appendChild(cord);
+        const N = 34;
+        for (let i = 1; i < N; i++) {
+            const t = i / N, u = 1 - t;
+            const x = u * u * P0[0] + 2 * u * t * P1[0] + t * t * P2[0];
+            const y = u * u * P0[1] + 2 * u * t * P1[1] + t * t * P2[1];
+            const f = document.createElementNS(ns, 'rect');
+            f.setAttribute('x', x - 9); f.setAttribute('y', y);
+            f.setAttribute('width', 18); f.setAttribute('height', 20);
+            f.setAttribute('fill', colors[i % 5]); f.setAttribute('opacity', 0.75);
+            f.setAttribute('class', 'flag');
+            f.style.animationDelay = (-(i * 0.37) % 3.8) + 's';
+            svg.appendChild(f);
+        }
+    })();
+
+    // Reveal on scroll
+    const rvObs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); rvObs.unobserve(e.target); } });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
+
+    // Room nav — highlight the room you're standing in
+    const navA = Array.from(document.querySelectorAll('#roomsNav a'));
+    const roomObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            navA.forEach(a => {
+                const on = a.getAttribute('href') === '#' + e.target.id;
+                a.classList.toggle('on', on);
+                if (on) a.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduced ? 'auto' : 'smooth' });
+            });
+        });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('.room').forEach(r => roomObs.observe(r));
+
+    // Contact-sheet frame numbers
+    document.querySelectorAll('#contact figure').forEach((f, i) => {
+        const s = document.createElement('span');
+        s.className = 'fno';
+        s.textContent = String(i + 1).padStart(2, '0') + 'A ▸';
+        f.prepend(s);
     });
 
-    // Filtering
-    const items = Array.from(document.querySelectorAll('.g-item'));
-    const count = document.getElementById('fcount');
-    function applyFilter(f) {
-        let visible = 0;
-        items.forEach(it => {
-            const show = f === 'all' || it.dataset.cat.split(' ').includes(f);
-            it.classList.toggle('hidden', !show);
-            if (show) visible++;
-        });
-        count.textContent = visible + ' frames';
-    }
-    applyFilter('all');
-
-    document.querySelectorAll('.fbtn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            applyFilter(btn.dataset.f);
-        });
-    });
-
-    // Lightbox — photos only; videos play inline on click
-    const photoItems = items.filter(i => i.querySelector('img'));
-    const lb = document.getElementById('lightbox');
-    const lbInner = document.getElementById('lbInner');
-    const lbCount = document.getElementById('lbCount');
-    let cur = 0;
-
-    function visiblePhotos() {
-        return photoItems.filter(i => !i.classList.contains('hidden'));
-    }
-    function openLb(item) {
-        const vis = visiblePhotos();
-        cur = vis.indexOf(item);
-        render(vis);
-    }
-    function render(vis) {
-        const img = vis[cur].querySelector('img');
-        lbInner.innerHTML = '';
-        const clone = document.createElement('img');
-        clone.src = img.src;
-        lbInner.appendChild(clone);
-        lbCount.textContent = (cur + 1) + ' / ' + vis.length;
-        lb.classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    function step(dir) {
-        const vis = visiblePhotos();
-        cur = (cur + dir + vis.length) % vis.length;
-        render(vis);
-    }
-    function closeLb() {
-        lb.classList.remove('open');
-        lbInner.innerHTML = '';
-        document.body.style.overflow = '';
-    }
-
-    photoItems.forEach(item => item.addEventListener('click', () => openLb(item)));
-    items.filter(i => i.querySelector('video')).forEach(item => {
+    // Videos: hover plays muted, click adds sound + controls
+    document.querySelectorAll('figure.vid').forEach(item => {
+        const v = item.querySelector('video');
+        item.addEventListener('mouseenter', () => { if (!v.controls) v.play().catch(() => {}); });
+        item.addEventListener('mouseleave', () => { if (!v.controls) { v.pause(); } });
         item.addEventListener('click', () => {
-            const v = item.querySelector('video');
             v.muted = false; v.controls = true;
+            item.classList.add('playing');
             v.play().catch(() => {});
         });
     });
 
+    // Lightbox — every photo in the exhibition, in walking order
+    const photos = Array.from(document.querySelectorAll('figure:not(.vid)')).filter(f => f.querySelector('img'));
+    document.getElementById('frameCount').textContent = document.querySelectorAll('.room figure').length;
+    const lb = document.getElementById('lightbox');
+    const lbInner = document.getElementById('lbInner');
+    const lbCap = document.getElementById('lbCap');
+    const lbCount = document.getElementById('lbCount');
+    let cur = 0;
+
+    function caption(fig) {
+        const c = fig.querySelector('figcaption');
+        if (!c) return '';
+        const clone = c.cloneNode(true);
+        clone.querySelectorAll('.label, .guest').forEach(n => n.remove());
+        return clone.textContent.trim();
+    }
+    function render() {
+        const fig = photos[cur], img = fig.querySelector('img');
+        lbInner.innerHTML = '';
+        const clone = document.createElement('img');
+        clone.src = img.currentSrc || img.src;
+        clone.alt = img.alt;
+        lbInner.appendChild(clone);
+        lbCap.textContent = caption(fig);
+        lbCount.textContent = (cur + 1) + ' / ' + photos.length;
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function step(dir) { cur = (cur + dir + photos.length) % photos.length; render(); }
+    function closeLb() { lb.classList.remove('open'); lbInner.innerHTML = ''; document.body.style.overflow = ''; }
+
+    photos.forEach((f, i) => f.addEventListener('click', () => { cur = i; render(); }));
     document.getElementById('lbClose').addEventListener('click', closeLb);
     document.getElementById('lbPrev').addEventListener('click', () => step(-1));
     document.getElementById('lbNext').addEventListener('click', () => step(1));
