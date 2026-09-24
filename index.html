@@ -352,6 +352,125 @@
         .book span { font-size: 0.73rem; color: var(--ink-3); }
         .book.reading img { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+        /* ── THREE VOICES — Wilde · Camus · Dostoevsky ── */
+        .voices { padding: 104px 0; border-top: 1px solid var(--line); }
+        .voices-lede { color: var(--ink-2); max-width: 580px; line-height: 1.85; margin: -28px 0 52px; }
+        .voices-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .v-card {
+            position: relative; border: 1px solid var(--line); background: #fff;
+            padding: 26px 24px 24px; display: flex; flex-direction: column; min-height: 520px;
+        }
+        .v-no {
+            font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.14em;
+            text-transform: uppercase; color: var(--ink-3); display: flex; justify-content: space-between;
+        }
+        .v-no b { color: var(--accent); font-weight: 500; }
+        .v-stage { flex: 1; display: flex; align-items: center; justify-content: center; padding: 26px 0; }
+        .v-quote { font-family: var(--serif); font-size: 1.22rem; line-height: 1.4; letter-spacing: -0.01em; }
+        .v-quote em { color: var(--accent); }
+        .v-by { font-family: var(--mono); font-size: 0.66rem; color: var(--ink-3); letter-spacing: 0.06em; margin-top: 10px; }
+        .v-note { font-size: 0.82rem; color: var(--ink-2); line-height: 1.65; margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); }
+
+        /* I. the mirror */
+        .mirror {
+            position: relative; width: 200px; aspect-ratio: 3 / 4; border-radius: 50%;
+            border: 11px double #B08A43; cursor: pointer; overflow: hidden;
+            box-shadow: 0 0 0 3px #D9BE82, 0 0 0 4px #8C6A2E, 0 18px 40px rgba(28,26,23,0.18), inset 0 0 30px rgba(255,255,255,0.7);
+            background: linear-gradient(125deg, #F4F6F5 0%, #DDE4E1 38%, #F9FBFA 47%, #D3DBD8 58%, #EDF1EF 100%);
+            display: flex; align-items: center; justify-content: center; text-align: center;
+            transition: background .9s ease, box-shadow .9s ease;
+        }
+        .mirror::before {
+            content: ''; position: absolute; inset: -40%;
+            background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,0.75) 50%, transparent 58%);
+            animation: sheen 6s ease-in-out infinite;
+        }
+        @keyframes sheen { 0%, 60% { transform: translateX(-60%); } 100% { transform: translateX(60%); } }
+        .mirror p {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            padding: 0 26px; font-family: var(--serif); font-style: italic; font-size: 0.98rem; line-height: 1.45;
+            transition: opacity .7s ease, filter .7s ease;
+        }
+        .mirror .m-truth { opacity: 0; color: #E9DCC3; filter: blur(4px); }
+        .mirror svg { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity .6s ease .15s; }
+        .mirror.real, .v-card:hover .mirror {
+            background: radial-gradient(ellipse at 50% 40%, #4A3F33 0%, #2A231C 65%, #17130F 100%);
+            box-shadow: 0 0 0 3px #9C8456, 0 0 0 4px #5B4520, 0 18px 40px rgba(28,26,23,0.3), inset 0 0 40px rgba(0,0,0,0.8);
+        }
+        .mirror.real .m-face, .v-card:hover .mirror .m-face { opacity: 0; filter: blur(4px); }
+        .mirror.real .m-truth, .v-card:hover .mirror .m-truth { opacity: 1; filter: none; }
+        .mirror.real svg, .v-card:hover .mirror svg { opacity: 1; }
+        .mirror.real::before, .v-card:hover .mirror::before { animation: none; opacity: 0; }
+        .v-hint { font-family: var(--mono); font-size: 0.6rem; color: var(--ink-3); letter-spacing: 0.1em; text-transform: uppercase; text-align: center; margin-top: -10px; }
+
+        /* II. the boulder */
+        .hill { width: 100%; max-width: 300px; overflow: visible; }
+        .hill .slope { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linecap: round; }
+        .hill .ground { fill: var(--paper-2); }
+        .hill .rock { fill: #CFC6B6; stroke: var(--ink); stroke-width: 1.3; }
+        .hill .rock-line { stroke: var(--ink); stroke-width: 1; }
+        .hill .man { fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .hill .man circle { fill: var(--accent); stroke: none; }
+        .hill .sun { fill: none; stroke: #D9A93A; stroke-width: 1.2; }
+        .hill text { font-family: var(--mono); font-size: 7px; letter-spacing: 0.1em; fill: var(--ink-3); text-transform: uppercase; }
+        .boulder { transform: translate(51.6px, 134.2px); animation: roll 9s infinite; }
+        .spin { transform-box: fill-box; transform-origin: center; animation: spin 9s infinite; }
+        .walker { transform: translate(38px, 156.2px); animation: walk 9s infinite; }
+        @keyframes roll {
+            0%   { transform: translate(51.6px, 134.2px); animation-timing-function: cubic-bezier(.45,.05,.55,.95); }
+            58%  { transform: translate(219.5px, 53.9px); }
+            64%  { transform: translate(219.5px, 53.9px); animation-timing-function: cubic-bezier(.55,0,1,.45); }
+            74%, 100% { transform: translate(51.6px, 134.2px); }
+        }
+        @keyframes spin {
+            0%   { transform: rotate(0deg); animation-timing-function: cubic-bezier(.45,.05,.55,.95); }
+            58%, 64% { transform: rotate(760deg); animation-timing-function: cubic-bezier(.55,0,1,.45); }
+            74%, 100% { transform: rotate(0deg); }
+        }
+        @keyframes walk {
+            0%   { transform: translate(38px, 156.2px); animation-timing-function: cubic-bezier(.45,.05,.55,.95); }
+            58%, 68% { transform: translate(205.9px, 75.9px); }
+            100% { transform: translate(38px, 156.2px); }
+        }
+        .v-count { font-family: var(--mono); font-size: 0.64rem; color: var(--ink-3); letter-spacing: 0.06em; text-align: center; margin-top: -8px; }
+        .v-count b { color: var(--accent); font-weight: 500; }
+
+        /* III. the underground */
+        .v-card.under { background: #121110; border-color: #121110; color: #3A3530; cursor: none; overflow: hidden; }
+        .v-card.under .v-no { color: #5E5750; }
+        .v-card.under .v-no b { color: #C9A461; }
+        .under-text { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 24px 0; }
+        .under-text .v-quote { color: inherit; }
+        .under-text .v-by { color: inherit; }
+        .under-lit {
+            position: absolute; inset: 0; color: #F3E4C4; pointer-events: none;
+            display: flex; flex-direction: column; justify-content: center; gap: 26px; padding: 24px 0;
+            -webkit-mask-image: radial-gradient(circle var(--r, 120px) at var(--x, 50%) var(--y, 45%), #000 25%, transparent 100%);
+                    mask-image: radial-gradient(circle var(--r, 120px) at var(--x, 50%) var(--y, 45%), #000 25%, transparent 100%);
+        }
+        .under-lit .v-by { color: #C9A461; }
+        .under-glow {
+            position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(circle 190px at var(--gx, 50%) var(--gy, 45%), rgba(233,170,80,0.16), transparent 70%);
+        }
+        .flame {
+            position: absolute; width: 8px; height: 14px; left: var(--gx, 50%); top: var(--gy, 45%);
+            margin: -18px 0 0 -4px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            background: radial-gradient(circle at 50% 70%, #FFF3C8, #F2B24C 55%, rgba(242,120,40,0) 75%);
+            filter: blur(0.4px); pointer-events: none; animation: flicker 1.6s ease-in-out infinite alternate;
+        }
+        @keyframes flicker { 0% { transform: scale(1) rotate(-3deg); } 40% { transform: scale(1.08, 0.94) rotate(2deg); } 100% { transform: scale(0.95, 1.07) rotate(-1deg); } }
+        .v-card.under .v-note { border-top-color: #2A2622; color: #7A7168; position: relative; }
+        @media (hover: none) { .v-card.under { cursor: auto; } }
+
+        @media (max-width: 960px) { .voices-grid { grid-template-columns: 1fr 1fr; } .v-card.under { grid-column: span 2; } }
+        @media (max-width: 700px) {
+            .voices { padding: 72px 0; }
+            .voices-grid { grid-template-columns: 1fr; }
+            .v-card.under { grid-column: auto; }
+            .v-card { min-height: 0; }
+        }
+
         /* ── FIELD NOTES (JHAPA / ILLAM) ── */
         #journal { background: var(--paper-2); }
 
@@ -981,15 +1100,15 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         </div>
         <p class="lib-intro rv">
             A physical book goes everywhere I do — café corners, bus rides, lunch breaks. I read slowly,
-            argue with authors, and turn the best ideas into something usable. Here's the current shelf — thirty-six volumes and counting.
+            argue with authors, and turn the best ideas into something usable. Here's the current shelf — thirty-seven volumes and counting.
         </p>
 
         <div class="lib-status rv">Reading now</div>
         <div class="lib-row rv">
             <figure class="book reading">
-                <img src="images/books/antifragile.jpg" alt="Antifragile by Nassim Nicholas Taleb" loading="lazy"/>
-                <div class="takeaway">Be the fire, not the candle.</div>
-                <figcaption><b>Antifragile</b><span>Nassim Nicholas Taleb</span></figcaption>
+                <img src="images/books/myth-of-sisyphus.jpg" alt="The Myth of Sisyphus by Albert Camus" loading="lazy"/>
+                <div class="takeaway">One must imagine Sisyphus happy.</div>
+                <figcaption><b>The Myth of Sisyphus</b><span>Albert Camus</span></figcaption>
             </figure>
             <figure class="book reading">
                 <img src="images/books/dorian-gray.jpg" alt="The Picture of Dorian Gray by Oscar Wilde" loading="lazy"/>
@@ -1000,6 +1119,11 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
 
         <div class="lib-status rv">Finished</div>
         <div class="lib-row rv">
+            <figure class="book">
+                <img src="images/books/antifragile.jpg" alt="Antifragile by Nassim Nicholas Taleb" loading="lazy"/>
+                <div class="takeaway">Be the fire, not the candle.</div>
+                <figcaption><b>Antifragile</b><span>Nassim Nicholas Taleb</span><em class="met">just finished</em></figcaption>
+            </figure>
             <figure class="book">
                 <img src="images/books/nexus.jpg" alt="Nexus by Yuval Noah Harari" loading="lazy"/>
                 <figcaption><b>Nexus</b><span>Yuval Noah Harari</span></figcaption>
@@ -1164,6 +1288,95 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
     </div>
 </section>
 
+<!-- THREE VOICES -->
+<section class="voices" id="voices">
+    <div class="wrap">
+        <div class="sec-head rv">
+            <div class="sec-no">Interlude — three voices</div>
+            <h2 class="sec-title">The mirror, the boulder, <em>the underground.</em></h2>
+        </div>
+        <p class="voices-lede rv">
+            Wilde, Camus, Dostoevsky — the three I end up arguing with at 2&nbsp;a.m.
+            Look into the mirror, watch the boulder, carry a candle downstairs.
+        </p>
+
+        <div class="voices-grid rv">
+            <!-- I. Wilde -->
+            <article class="v-card">
+                <div class="v-no"><span><b>I.</b> The mirror</span><span>Oscar Wilde</span></div>
+                <div class="v-stage">
+                    <div class="mirror" id="mirror" role="button" tabindex="0" aria-label="Look into the mirror">
+                        <svg viewBox="0 0 100 133" preserveAspectRatio="none" aria-hidden="true">
+                            <path d="M50 58 L22 20 M50 58 L78 14 M50 58 L92 70 M50 58 L70 118 M50 58 L18 100 M50 58 L8 62 M36 39 L28 44 M64 36 L72 42 M72 66 L76 80 M34 80 L40 92"
+                                  fill="none" stroke="rgba(233,220,195,0.28)" stroke-width="0.6"/>
+                        </svg>
+                        <p class="m-face">We are all beautiful — until the mirror starts telling the truth.</p>
+                        <p class="m-truth">Behind every exquisite thing that existed, there was something tragic.</p>
+                    </div>
+                </div>
+                <div class="v-hint">hover · or tap · to see what it hides</div>
+                <div class="v-note">
+                    The first line is mine, after Wilde. The second is Lord Henry's, from
+                    <i>The Picture of Dorian Gray</i> — the portrait that kept the truth so the face didn't have to. Also underlined: <i>“We are all in the gutter, but some of us are
+                    looking at the stars.”</i>
+                </div>
+            </article>
+
+            <!-- II. Camus -->
+            <article class="v-card">
+                <div class="v-no"><span><b>II.</b> The boulder</span><span>Albert Camus</span></div>
+                <div class="v-stage">
+                    <svg class="hill" viewBox="0 0 300 180" aria-label="Sisyphus pushing a boulder up a hill, forever">
+                        <circle class="sun" cx="262" cy="26" r="11"/>
+                        <path class="ground" d="M20 166 L262 50 L290 50 L290 176 L20 176 Z"/>
+                        <path class="slope" d="M20 166 L262 50 L290 50"/>
+                        <text x="258" y="63">summit</text>
+                        <g class="walker" id="walker">
+                            <g class="man">
+                                <path d="M-6 0 L-1 -11 L3 0"/>
+                                <path d="M-1 -11 L7 -21"/>
+                                <path d="M5 -19 L13 -15"/>
+                                <circle cx="9" cy="-25" r="3.4"/>
+                            </g>
+                        </g>
+                        <g class="boulder" id="boulder">
+                            <g class="spin">
+                                <circle class="rock" cx="0" cy="0" r="14"/>
+                                <path class="rock-line" d="M-7 -5 Q0 -9 6 -3 M-4 6 Q2 3 7 7"/>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+                <div class="v-count">pushed <b id="pushes">0</b> times since you arrived · still happy</div>
+                <div class="v-quote" style="margin-top: 18px;">One must imagine Sisyphus <em>happy.</em></div>
+                <div class="v-by">Albert Camus — The Myth of Sisyphus</div>
+                <div class="v-note">
+                    Reading it now. <i>“The struggle itself toward the heights is enough to fill a man's heart.”</i>
+                    Camus finds him on the walk back down — so do I, usually after a deploy.
+                </div>
+            </article>
+
+            <!-- III. Dostoevsky -->
+            <article class="v-card under" id="under">
+                <div class="v-no"><span><b>III.</b> The underground</span><span>Fyodor Dostoevsky</span></div>
+                <div class="under-glow" aria-hidden="true"></div>
+                <div class="under-text">
+                    <div><div class="v-quote">I am a sick man… I am a spiteful man.</div><div class="v-by">Notes from Underground</div></div>
+                    <div><div class="v-quote">Man is sometimes extraordinarily, passionately, in love with suffering.</div><div class="v-by">Notes from Underground</div></div>
+                    <div><div class="v-quote">Above all, don't lie to yourself.</div><div class="v-by">The Brothers Karamazov</div></div>
+                    <div class="under-lit" aria-hidden="true">
+                        <div><div class="v-quote">I am a sick man… I am a spiteful man.</div><div class="v-by">Notes from Underground</div></div>
+                        <div><div class="v-quote">Man is sometimes extraordinarily, passionately, in love with suffering.</div><div class="v-by">Notes from Underground</div></div>
+                        <div><div class="v-quote">Above all, don't lie to yourself.</div><div class="v-by">The Brothers Karamazov</div></div>
+                    </div>
+                </div>
+                <span class="flame" aria-hidden="true"></span>
+                <div class="v-note">It's dark down here — move the candle. Wilde shows you the mirror; Dostoevsky makes you admit what's in it.</div>
+            </article>
+        </div>
+    </div>
+</section>
+
 <!-- JOURNAL -->
 <section id="journal">
     <div class="wrap">
@@ -1309,7 +1522,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         <dl class="now-grid rv">
             <div class="now-cell">
                 <dt>Reading</dt>
-                <dd><b>Antifragile</b><span>Taleb, slowly — arguing with half of it. Dorian Gray on the nightstand.</span></dd>
+                <dd><b>The Myth of Sisyphus</b><span>Camus, fresh off Antifragile — pushing the boulder, trying to enjoy it. Dorian Gray on the nightstand.</span></dd>
             </div>
             <div class="now-cell">
                 <dt>Building</dt>
@@ -1478,12 +1691,44 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             ['Wealth is what you don’t see.', 'Morgan Housel — The Psychology of Money'],
             ['He who fights with monsters should look to it that he himself does not become a monster.', 'Friedrich Nietzsche — Beyond Good and Evil'],
             ['All animals are equal, but some animals are more equal than others.', 'George Orwell — Animal Farm'],
+            ['One must imagine Sisyphus happy.', 'Albert Camus — The Myth of Sisyphus'],
+            ['The struggle itself toward the heights is enough to fill a man’s heart.', 'Albert Camus — The Myth of Sisyphus'],
+            ['Behind every exquisite thing that existed, there was something tragic.', 'Oscar Wilde — The Picture of Dorian Gray'],
+            ['We are all in the gutter, but some of us are looking at the stars.', 'Oscar Wilde — Lady Windermere’s Fan'],
+            ['Above all, don’t lie to yourself.', 'Fyodor Dostoevsky — The Brothers Karamazov'],
             ['What’s the ONE Thing I can do such that by doing it everything else will be easier or unnecessary?', 'Gary Keller — The ONE Thing']
         ];
         var day = Math.floor(Date.now() / 864e5);
         var n = notes[day % notes.length];
         var q = document.getElementById('dailyQ'), c = document.getElementById('dailyC');
         if (q && c) { q.textContent = n[0]; c.textContent = n[1]; }
+    })();
+
+    // Three voices — mirror tap, boulder counter, candle in the underground
+    (function () {
+        var mirror = document.getElementById('mirror');
+        if (mirror) {
+            var flip = function () { mirror.classList.toggle('real'); };
+            mirror.addEventListener('click', flip);
+            mirror.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); } });
+        }
+
+        var boulder = document.getElementById('boulder'), pushes = document.getElementById('pushes'), n = 0;
+        if (boulder && pushes) boulder.addEventListener('animationiteration', function () { pushes.textContent = ++n; });
+
+        var under = document.getElementById('under');
+        if (under) {
+            var lit = under.querySelector('.under-lit'), textBox = under.querySelector('.under-text');
+            var move = function (e) {
+                var c = under.getBoundingClientRect(), t = textBox.getBoundingClientRect();
+                under.style.setProperty('--gx', (e.clientX - c.left) + 'px');
+                under.style.setProperty('--gy', (e.clientY - c.top) + 'px');
+                lit.style.setProperty('--x', (e.clientX - t.left) + 'px');
+                lit.style.setProperty('--y', (e.clientY - t.top) + 'px');
+            };
+            under.addEventListener('pointermove', move);
+            under.addEventListener('pointerdown', move);
+        }
     })();
 
     // Ridgelines — stacked Himalayan ridges drifting slowly, with a river in front.
