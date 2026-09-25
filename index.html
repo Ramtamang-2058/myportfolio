@@ -505,6 +505,18 @@
             .st-pins span { font-size: 0.72rem; }
         }
 
+        /* ── BOUDHA — draws itself on scroll ── */
+        .stupa { max-width: 420px; margin: 64px auto 8px; text-align: center; }
+        .stupa svg { width: 100%; overflow: visible; }
+        .stupa path { fill: none; stroke: var(--ink); stroke-width: 1.3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: var(--o, 1); }
+        .stupa path.soft { stroke: var(--ink-3); stroke-width: 1; }
+        .stupa path.eye { stroke: var(--accent); stroke-width: 1.6; }
+        .stupa path.flag { stroke: var(--accent); stroke-width: 1; }
+        .stupa path.flag:nth-of-type(5n+1) { stroke: #2F5D8A; }
+        .stupa path.flag:nth-of-type(5n+2) { stroke: #A8392E; }
+        .stupa path.flag:nth-of-type(5n+3) { stroke: #D9A93A; }
+        .stupa figcaption { font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--ink-3); margin-top: 12px; }
+
         /* ── FIELD NOTES (JHAPA / ILLAM) ── */
         #journal { background: var(--paper-2); }
 
@@ -807,6 +819,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; }
             .li, .rv, .rv-img { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+            .stupa path { stroke-dashoffset: 0 !important; }
         }
     </style>
 </head>
@@ -1640,6 +1653,63 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
                 <p>The kora around Boudha settles more of my design decisions than any whiteboard does.</p>
             </article>
         </div>
+        <figure class="stupa" id="stupa" aria-label="Boudhanath stupa, drawn in pencil as you scroll">
+            <svg viewBox="0 0 400 310" aria-hidden="true">
+                <defs><filter id="pencil"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="1.6"/></filter></defs>
+                <g filter="url(#pencil)">
+                    <path d="M20 300 L380 300" pathLength="1"/>
+                    <path d="M40 300 L40 282 L360 282 L360 300" pathLength="1"/>
+                    <path d="M62 282 L62 264 L338 264 L338 282" pathLength="1"/>
+                    <path d="M84 264 L84 248 L316 248 L316 264" pathLength="1"/>
+                    <path d="M100 248 A100 78 0 0 1 300 248" pathLength="1"/>
+                    <path d="M112 236 Q200 222 288 236" class="soft" pathLength="1"/>
+                    <path d="M176 172 L176 140 L224 140 L224 172" pathLength="1"/>
+                    <path d="M184 157 Q190 151 196 157 Q190 161 184 157" class="eye" pathLength="1"/>
+                    <path d="M204 157 Q210 151 216 157 Q210 161 204 157" class="eye" pathLength="1"/>
+                    <path d="M200 160 Q204 164 199 168" class="eye" pathLength="1"/>
+                    <path d="M178 140 L192 72 M222 140 L208 72" pathLength="1"/>
+                    <path d="M179.1 134.8 L220.9 134.8" class="soft" pathLength="1"/>
+                    <path d="M180.2 129.5 L219.8 129.5" class="soft" pathLength="1"/>
+                    <path d="M181.2 124.3 L218.8 124.3" class="soft" pathLength="1"/>
+                    <path d="M182.3 119.1 L217.7 119.1" class="soft" pathLength="1"/>
+                    <path d="M183.4 113.8 L216.6 113.8" class="soft" pathLength="1"/>
+                    <path d="M184.5 108.6 L215.5 108.6" class="soft" pathLength="1"/>
+                    <path d="M185.5 103.4 L214.5 103.4" class="soft" pathLength="1"/>
+                    <path d="M186.6 98.2 L213.4 98.2" class="soft" pathLength="1"/>
+                    <path d="M187.7 92.9 L212.3 92.9" class="soft" pathLength="1"/>
+                    <path d="M188.8 87.7 L211.2 87.7" class="soft" pathLength="1"/>
+                    <path d="M189.8 82.5 L210.2 82.5" class="soft" pathLength="1"/>
+                    <path d="M190.9 77.2 L209.1 77.2" class="soft" pathLength="1"/>
+                    <path d="M182 72 Q200 58 218 72 Z" pathLength="1"/>
+                    <path d="M200 60 L200 38 M196 44 Q200 34 204 44" pathLength="1"/>
+                    <path d="M200 50 Q120 150 24 282" class="soft" pathLength="1"/>
+                    <path d="M185.3 68.4 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M170.4 87.4 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M155.2 106.9 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M139.7 127.0 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M124.0 147.5 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M108.0 168.6 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M91.7 190.2 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M75.2 212.4 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M58.4 235.1 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M41.3 258.3 l-3.0 9 l-6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M200 50 Q280 150 376 282" class="soft" pathLength="1"/>
+                    <path d="M214.7 68.4 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M229.6 87.4 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M244.8 106.9 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M260.3 127.0 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M276.0 147.5 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M292.0 168.6 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M308.3 190.2 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M324.8 212.4 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M341.6 235.1 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M358.7 258.3 l3.0 9 l6.0 -9" class="flag" pathLength="1"/>
+                    <path d="M70 70 q6 -6 12 0 q6 -6 12 0" class="soft" pathLength="1"/>
+                    <path d="M300 52 q5 -5 10 0 q5 -5 10 0" class="soft" pathLength="1"/>
+                </g>
+            </svg>
+            <figcaption>Boudha, drawn one kora at a time — keep scrolling.</figcaption>
+        </figure>
         <p class="principles-note">// subject to revision — like all good software.</p>
     </div>
 </section>
@@ -1790,6 +1860,24 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             under.addEventListener('pointermove', move);
             under.addEventListener('pointerdown', move);
         }
+    })();
+
+    // Boudha stupa — each stroke draws in order as the drawing scrolls through the viewport
+    (function () {
+        var fig = document.getElementById('stupa');
+        if (!fig || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var paths = Array.prototype.slice.call(fig.querySelectorAll('path')), n = paths.length, ticking = false;
+        function draw() {
+            ticking = false;
+            var r = fig.getBoundingClientRect();
+            var p = Math.min(1, Math.max(0, (innerHeight - r.top) / (innerHeight * 0.55 + r.height)));
+            paths.forEach(function (el, i) {
+                var local = Math.min(1, Math.max(0, p * n * 1.15 - i));
+                el.style.setProperty('--o', (1 - local).toFixed(3));
+            });
+        }
+        window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(draw); } }, { passive: true });
+        draw();
     })();
 
     // Ridgelines — stacked Himalayan ridges drifting slowly, with a river in front.
