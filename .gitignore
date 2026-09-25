@@ -4,3 +4,5 @@ gallery/*.jpeg
 gallery/*.png
 gallery/*.mov
 images/trainings/
+.idea/
+.work/

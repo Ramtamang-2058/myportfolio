@@ -260,7 +260,7 @@
         #robotics .room-no { color: #9CC3E4; }
         #robotics .room-no small, #robotics .wall-text { color: #9FB6C9; }
         #robotics h2 em { color: #9CC3E4; }
-        .blueprint { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+        .blueprint { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
         .blueprint figure { border: 1px solid rgba(220,232,242,0.45); padding: 10px; position: relative; }
         .blueprint figure::before, .blueprint figure::after {
             content: ''; position: absolute; width: 14px; height: 14px; border: 1px solid #DCE8F2;
@@ -291,7 +291,26 @@
         .chalk u { text-decoration-color: #F2E6A8; text-underline-offset: 6px; }
         .chalk span { display: block; margin-top: 22px; font-family: var(--mono); font-style: normal; font-size: 0.7rem; letter-spacing: 0.1em; color: #9FB3A7; text-transform: uppercase; }
 
-        /* ── VIII. PORTRAITS — contact sheet ── */
+        /* ── VIII. STAGES — newspaper ── */
+        #stages { background: #EEE9DE; }
+        .herald { background: #F7F3E9; border: 1px solid #D8D0BF; padding: 22px 22px 26px; box-shadow: 0 16px 40px rgba(28,26,23,0.08); }
+        .herald-mast {
+            display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+            border-top: 3px double var(--ink); border-bottom: 3px double var(--ink); padding: 10px 0; margin-bottom: 20px;
+            font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2);
+        }
+        .herald-mast b { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 3.6vw, 2.4rem); letter-spacing: -0.02em; text-transform: none; color: var(--ink); }
+        .herald img { width: 100%; display: block; filter: grayscale(1) contrast(1.1) sepia(0.15); transition: filter .5s; }
+        .herald figure:hover img { filter: none; }
+        .herald .lead { margin-bottom: 18px; }
+        .herald .lead img { aspect-ratio: 16/8; object-fit: cover; }
+        .herald .lead figcaption { font-family: var(--serif); font-size: 1rem; color: var(--ink); margin-top: 10px; }
+        .herald-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; border-top: 1px solid #CFC6B3; padding-top: 16px; grid-auto-flow: dense; }
+        .herald-grid img { aspect-ratio: 4/3; object-fit: cover; }
+        .herald-grid .w2 { grid-column: span 2; grid-row: span 2; }
+        .herald-grid .w2 img { height: 100%; }
+
+        /* ── IX. PORTRAITS — contact sheet ── */
         #portraits { background: #1C1A17; color: #F2EFE9; }
         #portraits .room-no { color: var(--gold); }
         #portraits .room-no small, #portraits .wall-text { color: #A39C92; }
@@ -307,13 +326,13 @@
         }
         .contact-note { font-family: var(--mono); font-size: 0.66rem; color: #8A837B; letter-spacing: 0.06em; margin-top: 14px; }
 
-        /* ── IX. TRAVEL — salon hang ── */
+        /* ── X. TRAVEL — salon hang ── */
         .salon { columns: 4 220px; column-gap: 14px; }
         .salon figure { break-inside: avoid; margin-bottom: 14px; overflow: hidden; }
         .salon img { width: 100%; transition: transform .7s cubic-bezier(.2,.7,.3,1), filter .5s; filter: saturate(0.9); }
         .salon figure:hover img { transform: scale(1.04); filter: saturate(1.05); }
 
-        /* ── X. MOVING PICTURES — cinema ── */
+        /* ── XI. MOVING PICTURES — cinema ── */
         #moving { background: #0E0D0C; color: #F2EFE9; }
         #moving .room-no { color: var(--gold); }
         #moving .room-no small, #moving .wall-text { color: #A39C92; }
@@ -409,6 +428,9 @@
             .blueprint { grid-template-columns: 1fr; }
             .board { grid-template-columns: 1fr; gap: 36px; }
             .contact { grid-template-columns: repeat(3, 1fr); padding: 14px 10px; }
+            .herald { padding: 14px; }
+            .herald-mast span { display: none; }
+            .herald-grid { grid-template-columns: repeat(2, 1fr); }
             .salon { columns: 2; }
             .cinema video { height: 240px; }
             .pin.feature { margin-bottom: 44px; }
@@ -449,13 +471,13 @@
             <h1>Frames from <em>my world.<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 120 18, 180 9 S 270 6, 296 12"/></svg></em></h1>
             <p class="page-lede">
                 Pencil lines from the pocket sketchbook, a stone road into Chitlang, diaries from Jhapa and Ilam,
-                café corners, lab notes from the robot bench, a classroom of researchers — life between the terminal and the mountains.
+                café corners, lab notes from the robot bench, a classroom of researchers, hackathon stages — life between the terminal and the mountains.
                 Walk through slowly; every frame opens.
             </p>
         </div>
         <div class="ticket">
             <b>Admit one — free, always.</b>
-            Ten rooms · <span id="frameCount">–</span> frames<br/>
+            Eleven rooms · <span id="frameCount">–</span> frames<br/>
             Open daily · Kathmandu, <span class="np">नेपाल</span><br/>
             Curator: the guy with the pencil
         </div>
@@ -472,9 +494,10 @@
         <a href="#cafes"><i>५</i>Cafés</a>
         <a href="#robotics"><i>६</i>Robotics</a>
         <a href="#classroom"><i>७</i>Classroom</a>
-        <a href="#portraits"><i>८</i>Portraits</a>
-        <a href="#travel"><i>९</i>Travel</a>
-        <a href="#moving"><i>१०</i>Moving pictures</a>
+        <a href="#stages"><i>८</i>Stages</a>
+        <a href="#portraits"><i>९</i>Portraits</a>
+        <a href="#travel"><i>१०</i>Travel</a>
+        <a href="#moving"><i>११</i>Moving pictures</a>
     </div>
 </nav>
 
@@ -719,6 +742,14 @@
                 <img src="/images/gallery/himalayan-java-ranipokhari.jpg" alt="Chess pieces in the foreground at Himalayan Java, Ranipokhari, wall reading Your cup of happiness" loading="lazy"/>
                 <figcaption>Himalayan Java, Ranipokhari<i>Your cup of happiness — and a chessboard.</i></figcaption>
             </figure>
+            <figure class="arch">
+                <img src="/images/me06.jpeg" alt="A pile of books including Screw Business as Usual and A Thousand Splendid Suns" loading="lazy"/>
+                <figcaption>The pile on the table<i>Branson, Hosseini, Nietzsche — all at once.</i></figcaption>
+            </figure>
+            <figure class="arch">
+                <img src="/images/me07.jpeg" alt="Salman Rushdie's Knife held open outdoors" loading="lazy"/>
+                <figcaption>Reading on the grass<i>Rushdie's Knife, out in the open air.</i></figcaption>
+            </figure>
         </div>
     </div>
 </section>
@@ -741,6 +772,10 @@
             <figure>
                 <img src="/images/robotics/finding_revolution_of_tyre.jpeg" alt="Tyre revolution calculation" loading="lazy"/>
                 <figcaption><b>FIG. 2</b> — Finding wheel revolutions for odometry.</figcaption>
+            </figure>
+            <figure>
+                <img src="/images/robotics/inmoov-hand.jpg" alt="3D-printed InMoov robot hand holding up two fingers" loading="lazy"/>
+                <figcaption><b>FIG. 3</b> — InMoov hand: printed, strung, and already making the peace sign.</figcaption>
             </figure>
         </div>
     </div>
@@ -773,11 +808,53 @@
     </div>
 </section>
 
-<!-- ═══ VIII. PORTRAITS ═══ -->
-<section class="room" id="portraits">
+<!-- ═══ VIII. STAGES ═══ -->
+<section class="room" id="stages">
     <div class="wrap">
         <div class="room-head rv">
             <div class="room-no">८<small>Room eight</small></div>
+            <div>
+                <h2>Stages, crowds &amp; <em>group photos.</em></h2>
+                <p class="wall-text">Hackathons, bootcamps, award nights, and the photo everyone squeezes into at the end.
+                    Printed like a newspaper, because these days made the news more than once.</p>
+            </div>
+        </div>
+        <div class="herald rv">
+            <div class="herald-mast">
+                <span>Vol. I · Kathmandu</span>
+                <b>The Hackathon Herald</b>
+                <span>Price: one sleepless night</span>
+            </div>
+            <figure class="lead">
+                <img src="/images/stages/udhyam-team-everest.jpg" alt="Team Everest holding the winner's cheque at Udhyam, The Innovation Challenge" loading="lazy"/>
+                <figcaption><b>Winner: Team Everest.</b> Udhyam — The Innovation Challenge, with a bungee jump as the prize.</figcaption>
+            </figure>
+            <div class="herald-grid">
+            <figure><img src="/images/stages/stage-01.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure class="w2"><img src="/images/stages/stage-02.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-03.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-04.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-05.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-06.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure class="w2"><img src="/images/stages/stage-07.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-08.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-09.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-10.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-11.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-12.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure class="w2"><img src="/images/stages/stage-13.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-14.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            <figure><img src="/images/stages/stage-15.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ IX. PORTRAITS ═══ -->
+<section class="room" id="portraits">
+    <div class="wrap">
+        <div class="room-head rv">
+            <div class="room-no">९<small>Room nine</small></div>
             <div>
                 <h2>Contact sheet, <em>mostly me.</em></h2>
                 <p class="wall-text">Black and white until you look closer. The red circle marks the keeper.</p>
@@ -791,9 +868,7 @@
             <figure><img src="/images/me2.jpg" alt="Portrait" loading="lazy"/></figure>
             <figure><img src="/images/me04.jpeg" alt="Portrait" loading="lazy"/></figure>
             <figure><img src="/images/me05.jpeg" alt="Portrait" loading="lazy"/></figure>
-            <figure><img src="/images/me06.jpeg" alt="Portrait" loading="lazy"/></figure>
             <figure class="circled"><img src="/images/medals.jpg" alt="My medal collection" loading="lazy"/><figcaption hidden>The medal collection.</figcaption></figure>
-            <figure><img src="/images/me07.jpeg" alt="Portrait" loading="lazy"/></figure>
             <figure><img src="/images/me10.jpg" alt="Portrait" loading="lazy"/></figure>
             <figure><img src="/images/me12.jpeg" alt="Portrait" loading="lazy"/></figure>
             <figure><img src="/images/me13.jpeg" alt="Portrait" loading="lazy"/></figure>
@@ -801,16 +876,20 @@
             <figure><img src="/images/me5.jpg" alt="Portrait" loading="lazy"/></figure>
             <figure><img src="/images/me7.jpeg" alt="Portrait" loading="lazy"/></figure>
             <figure><img src="/images/me9.jpg" alt="Portrait" loading="lazy"/></figure>
+            <figure><img src="/images/portrait-cream-suit.jpg" alt="Portrait in a cream suit" loading="lazy"/></figure>
+            <figure><img src="/images/portrait-convocation-podium.jpg" alt="Speaking at the Virinchi College convocation podium" loading="lazy"/></figure>
+            <figure><img src="/images/portrait-convocation-selfie.jpg" alt="Convocation selfie with friends in gowns" loading="lazy"/></figure>
+            <figure><img src="/images/portrait-group-steps.jpg" alt="Group photo on the steps" loading="lazy"/></figure>
         </div>
         <p class="contact-note">Circled: the medal collection. Every one of them came with a sunrise.</p>
     </div>
 </section>
 
-<!-- ═══ IX. TRAVEL ═══ -->
+<!-- ═══ X. TRAVEL ═══ -->
 <section class="room" id="travel">
     <div class="wrap">
         <div class="room-head rv">
-            <div class="room-no">९<small>Room nine</small></div>
+            <div class="room-no">१०<small>Room ten</small></div>
             <div>
                 <h2>Travel, <em>hung salon-style.</em></h2>
                 <p class="wall-text">Too many to label, too good to leave in the phone. Nepal, mostly — ridge after ridge.</p>
@@ -851,15 +930,23 @@
             <figure><img src="/images/13.jpg" alt="Travel frame" loading="lazy"/></figure>
             <figure><img src="/images/14.jpg" alt="Travel frame" loading="lazy"/></figure>
             <figure><img src="/images/15.jpg" alt="Travel frame" loading="lazy"/></figure>
+            <figure><img src="/images/travel-boudha-friends.jpg" alt="Friends looking out at Boudhanath stupa" loading="lazy"/></figure>
+            <figure><img src="/images/travel-waterfall.jpg" alt="Waterfall over mossy rocks" loading="lazy"/></figure>
+            <figure><img src="/images/travel-sea-of-clouds.jpg" alt="Clouds settling over green hills" loading="lazy"/></figure>
+            <figure><img src="/images/travel-hillside-smoke.jpg" alt="Hillside house with prayer flags and rising smoke" loading="lazy"/></figure>
+            <figure><img src="/images/travel-village-huts.jpg" alt="Village huts on a hillside" loading="lazy"/></figure>
+            <figure><img src="/images/travel-lakeside-lunch.jpg" alt="Lunch by the lake" loading="lazy"/></figure>
+            <figure><img src="/images/travel-canopy-walk.jpg" alt="Canopy walk above the forest" loading="lazy"/></figure>
+            <figure><img src="/images/travel-canopy-walk-2.jpg" alt="On the canopy walk" loading="lazy"/></figure>
         </div>
     </div>
 </section>
 
-<!-- ═══ X. MOVING PICTURES ═══ -->
+<!-- ═══ XI. MOVING PICTURES ═══ -->
 <section class="room" id="moving">
     <div class="wrap">
         <div class="room-head rv">
-            <div class="room-no">१०<small>Room ten</small></div>
+            <div class="room-no">११<small>Room eleven</small></div>
             <div>
                 <h2>Moving <em>pictures.</em></h2>
                 <p class="wall-text">Lights down. Hover to play, tap for sound.</p>
