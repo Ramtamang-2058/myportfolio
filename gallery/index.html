@@ -302,9 +302,28 @@
         .herald-mast b { font-family: var(--serif); font-weight: 600; font-size: clamp(1.4rem, 3.6vw, 2.4rem); letter-spacing: -0.02em; text-transform: none; color: var(--ink); }
         .herald img { width: 100%; display: block; filter: grayscale(1) contrast(1.1) sepia(0.15); transition: filter .5s; }
         .herald figure:hover img { filter: none; }
-        .herald .lead { margin-bottom: 18px; }
-        .herald .lead img { aspect-ratio: 16/8; object-fit: cover; }
-        .herald .lead figcaption { font-family: var(--serif); font-size: 1rem; color: var(--ink); margin-top: 10px; }
+        .herald .front { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; margin-bottom: 20px; }
+        .herald .lead { border-right: 1px solid #CFC6B3; padding-right: 28px; }
+        .herald .kick { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: #A8392E; margin-bottom: 6px; }
+        .herald .lead h3 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.3rem, 2.6vw, 1.9rem); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
+        .herald .lead img { aspect-ratio: 3/2; object-fit: cover; }
+        .herald figcaption { font-family: var(--serif); font-size: 0.92rem; color: var(--ink-2); margin-top: 10px; line-height: 1.5; }
+        .herald figcaption a { color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; white-space: nowrap; }
+        .clipping {
+            position: relative; background: #fff; padding: 10px 10px 12px; transform: rotate(1.8deg);
+            box-shadow: 0 8px 22px rgba(28,26,23,0.14); margin-top: 18px;
+        }
+        .clipping::before {
+            content: ''; position: absolute; top: -10px; left: 50%; width: 80px; height: 22px; margin-left: -40px;
+            background: rgba(217,169,58,0.45); transform: rotate(-4deg);
+        }
+        .clipping img { filter: none !important; }
+        .stamp {
+            position: absolute; right: -8px; top: 26px; z-index: 2; transform: rotate(9deg);
+            font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: #A8392E; border: 2px solid #A8392E; padding: 3px 8px; background: rgba(247,243,233,0.9);
+        }
+        .side-note { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink-2); margin-top: 22px; border-top: 1px solid #CFC6B3; padding-top: 12px; }
         .herald-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; border-top: 1px solid #CFC6B3; padding-top: 16px; grid-auto-flow: dense; }
         .herald-grid img { aspect-ratio: 4/3; object-fit: cover; }
         .herald-grid .w2 { grid-column: span 2; grid-row: span 2; }
@@ -430,6 +449,8 @@
             .contact { grid-template-columns: repeat(3, 1fr); padding: 14px 10px; }
             .herald { padding: 14px; }
             .herald-mast span { display: none; }
+            .herald .front { grid-template-columns: 1fr; }
+            .herald .lead { border-right: 0; padding-right: 0; }
             .herald-grid { grid-template-columns: repeat(2, 1fr); }
             .salon { columns: 2; }
             .cinema video { height: 240px; }
@@ -825,11 +846,27 @@
                 <b>The Hackathon Herald</b>
                 <span>Price: one sleepless night</span>
             </div>
-            <figure class="lead">
-                <img src="/images/stages/udhyam-team-everest.jpg" alt="Team Everest holding the winner's cheque at Udhyam, The Innovation Challenge" loading="lazy"/>
-                <figcaption><b>Winner: Team Everest.</b> Udhyam — The Innovation Challenge, with a bungee jump as the prize.</figcaption>
-            </figure>
+            <div class="front">
+                <figure class="lead">
+                    <p class="kick">Kuri Village, Kalinchowk · 3,447&nbsp;m · 2023</p>
+                    <h3>Team Everest takes Code Brisk — the first hackathon ever held this high.</h3>
+                    <img src="/images/hackathon/code-brisk-winning.jpg" alt="Winning moment at Code Brisk Hackathon 2023, Kuri Village, Kalinchowk" loading="lazy"/>
+                    <figcaption>The winning moment — Virinchi College&rsquo;s Team Everest takes it with &lsquo;Tidy Town&rsquo;.
+                        <a href="https://www.b360nepal.com/detail/837/students-community-at-herald-college-kathmandu-hosts-hackathon-in-dolakha" target="_blank" rel="noopener">via Business 360° ↗</a></figcaption>
+                </figure>
+                <aside class="side">
+                    <figure class="clipping">
+                        <span class="stamp">Made the news</span>
+                        <img src="/images/hackathon/ronb-code-brisk.jpg" alt="Code Brisk Hackathon 2023 as shared by Routine of Nepal Banda" loading="lazy"/>
+                        <figcaption>Picked up by Nepal&rsquo;s biggest news page —
+                            <a href="https://www.facebook.com/share/p/1Z3V8XWV3M/" target="_blank" rel="noopener">via Routine of Nepal Banda ↗</a></figcaption>
+                    </figure>
+                    <p class="side-note">13 colleges · 24 hours nonstop · prototypes for Kalinchowk&rsquo;s tourism and hospitality.</p>
+                </aside>
+            </div>
             <div class="herald-grid">
+            <figure class="w2"><img src="/images/hackathon/code-brisk-kuri.jpg" alt="Top three teams demoing at Code Brisk, Kalinchowk" loading="lazy"/></figure>
+            <figure><img src="/images/stages/udhyam-team-everest.jpg" alt="Team Everest with the winner's cheque at Udhyam, The Innovation Challenge" loading="lazy"/></figure>
             <figure><img src="/images/stages/stage-01.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
             <figure class="w2"><img src="/images/stages/stage-02.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
             <figure><img src="/images/stages/stage-03.jpg" alt="Hackathon and event moment" loading="lazy"/></figure>
