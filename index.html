@@ -714,7 +714,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
 
         /* ── NOW ── */
         .now-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr);
+            display: grid; grid-template-columns: repeat(3, 1fr);
             border-top: 1px solid var(--line); border-left: 1px solid var(--line);
         }
         .now-cell {
@@ -848,6 +848,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             .hero-photo { max-width: 290px; margin: 0 auto; }
             .hero-lede { font-size: 1rem; margin-bottom: 32px; }
             .now-grid { grid-template-columns: 1fr 1fr; }
+            .now-cell:last-child:nth-child(odd) { grid-column: 1 / -1; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -888,7 +889,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
                 <div class="kicker li" style="--d:.05s">Backend Engineer — Kathmandu, Nepal</div>
                 <h1 class="display li" style="--d:.15s">I build systems that warn<br>before the <em>flood arrives.</em></h1>
                 <p class="hero-lede li" style="--d:.28s">
-                    Python backend engineer with three years of production experience who built
+                    Python backend engineer with three years of production experience — who built
                     Nepal's national weather forecast and flood early-warning platforms at NAXA,
                     serving governments and humanitarian teams across three countries.
                 </p>
@@ -904,7 +905,7 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         </div>
 
         <dl class="hero-meta li" style="--d:.55s">
-            <div class="hm"><dt>Currently</dt><dd>Open to geospatial &amp; backend roles</dd></div>
+            <div class="hm"><dt>Currently</dt><dd>Open to geospatial backend work</dd></div>
             <div class="hm"><dt>Focus</dt><dd>Geospatial · Disaster Risk · APIs</dd></div>
             <div class="hm"><dt>Say hello</dt><dd><a href="mailto:ram.tamang2058@gmail.com">ram.tamang2058@gmail.com</a></dd></div>
         </dl>
@@ -1518,10 +1519,6 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             <div class="now-cell">
                 <dt>Building</dt>
                 <dd><b>InMoov robot</b><span>Software lead at HTP Lab — teaching it to see, listen, and answer.</span></dd>
-            </div>
-            <div class="now-cell">
-                <dt>Studying</dt>
-                <dd><b>Applied Data Science</b><span>WorldQuant University, 2025 — evenings and weekends.</span></dd>
             </div>
             <div class="now-cell">
                 <dt>Running</dt>
