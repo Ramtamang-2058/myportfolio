@@ -322,35 +322,74 @@
         }
         .lib-status::after { content: ''; flex: 1; height: 1px; background: var(--line); }
         .lib-status:first-of-type { margin-top: 0; }
-        .lib-row { display: flex; gap: 22px; flex-wrap: wrap; }
-        .book { width: 128px; }
-        .book img {
-            width: 128px; height: 192px; object-fit: cover; display: block;
-            box-shadow: 0 1px 2px rgba(28,26,23,0.12), 0 8px 20px rgba(28,26,23,0.10);
-            transition: transform .25s ease, box-shadow .25s ease;
+        /* bookshelf: spines on wooden planks, a reading stand, and a desk to pull books onto */
+        .library { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 48px; align-items: start; }
+        .shelves .lib-status:first-child { margin-top: 0; }
+        .shelf-note { color: var(--ink-3); font-size: 0.86rem; font-style: italic; font-family: var(--serif); margin: -8px 0 14px; }
+        .stand { width: fit-content; min-width: 260px; max-width: 100%; display: flex; gap: 26px; align-items: flex-end; padding: 6px 0 16px; border-bottom: 14px solid #8C6644; box-shadow: 0 10px 14px -8px rgba(28,26,23,0.3); }
+        .face { border: 0; padding: 0; background: none; cursor: pointer; transform: rotate(-3deg); transition: transform .4s cubic-bezier(.2,.7,.3,1); }
+        .face:nth-child(2) { transform: rotate(2.5deg); }
+        .face img { width: 118px; height: 178px; object-fit: cover; display: block; box-shadow: 0 2px 3px rgba(28,26,23,0.15), 0 12px 24px rgba(28,26,23,0.16); }
+        .face:hover, .face.on { transform: rotate(0) translateY(-8px); }
+        .face.on img { outline: 2px solid var(--accent); outline-offset: 4px; }
+        .shelf {
+            display: flex; flex-wrap: wrap; align-items: flex-end; padding: 0 10px;
+            width: fit-content; min-width: 160px; max-width: 100%;
+            background: repeating-linear-gradient(180deg, transparent 0 200px, #8C6644 200px 212px, #6E4D30 212px 214px);
+            box-shadow: inset 0 -2px 0 #6E4D30;
         }
-        .book:hover img { transform: translateY(-5px); box-shadow: 0 2px 3px rgba(28,26,23,0.12), 0 16px 32px rgba(28,26,23,0.14); }
-
-        .book { position: relative; }
-        .book .takeaway {
-            position: absolute; top: 0; left: 0; right: 0; height: 192px;
-            background: linear-gradient(180deg, rgba(28,26,23,0.86), rgba(22,56,42,0.94));
-            color: #F2EFE9; font-family: var(--serif); font-style: italic;
-            font-size: 0.78rem; line-height: 1.55; padding: 13px 12px;
-            display: flex; align-items: flex-end;
-            opacity: 0; transform: translateY(10px);
-            transition: opacity .25s ease, transform .25s ease;
-            pointer-events: none; border-radius: 2px;
+        .spine {
+            width: var(--w); height: var(--h); margin: calc(200px - var(--h)) 2px 14px 0;
+            background-color: var(--c); color: var(--t); border: 0; cursor: pointer; position: relative;
+            background-image: linear-gradient(90deg, rgba(0,0,0,0.22), rgba(255,255,255,0.10) 28%, rgba(255,255,255,0) 55%, rgba(0,0,0,0.16));
+            border-radius: 2px 2px 1px 1px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.12);
+            display: flex; align-items: center; justify-content: center; padding: 14px 0;
+            transition: transform .35s cubic-bezier(.2,.7,.3,1), box-shadow .35s;
         }
-        .book:hover .takeaway { opacity: 1; transform: translateY(0); }
-        @media (hover: none) { .book .takeaway { display: none; } }
-
-        .book b {
-            display: block; font-size: 0.8rem; font-weight: 600;
-            line-height: 1.35; margin-top: 12px;
+        .spine::before, .spine::after { content: ''; position: absolute; left: 4px; right: 4px; height: 2px; background: currentColor; opacity: 0.35; }
+        .spine::before { top: 9px; }
+        .spine::after { bottom: 9px; }
+        .spine .st {
+            writing-mode: vertical-rl; font-family: var(--serif); font-weight: 500; font-size: 0.72rem; letter-spacing: 0.02em;
+            line-height: 1.1; max-height: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
         }
-        .book span { font-size: 0.73rem; color: var(--ink-3); }
-        .book.reading img { outline: 2px solid var(--accent); outline-offset: 3px; }
+        .spine:hover, .spine:focus-visible { transform: translateY(-12px); box-shadow: 0 10px 16px rgba(28,26,23,0.25); outline: none; }
+        .spine.on { transform: translateY(-22px); box-shadow: 0 14px 20px rgba(28,26,23,0.3); }
+        .spine.lean { transform: rotate(4deg); transform-origin: bottom left; margin-right: 12px; }
+        .spine.lean:hover, .spine.lean.on { transform: rotate(0) translateY(-12px); }
+        .spine.ghost { background: transparent; background-image: none; color: var(--ink-3); box-shadow: inset 0 0 0 1.5px var(--ink-3); border-radius: 2px; }
+        .spine.ghost { outline: 1.5px dashed transparent; }
+        .desk {
+            position: sticky; top: 96px; background: #fff; border: 1px solid var(--line); padding: 22px 22px 20px;
+            box-shadow: 0 18px 40px rgba(28,26,23,0.08); text-align: center;
+        }
+        .desk img { width: 150px; height: 225px; object-fit: cover; margin: 12px auto 16px; display: block; box-shadow: 0 2px 3px rgba(28,26,23,0.15), 0 14px 28px rgba(28,26,23,0.18); transform: rotate(-1.5deg); }
+        .desk.pull img { animation: pull .5s cubic-bezier(.2,.7,.3,1); }
+        @keyframes pull { from { opacity: 0; transform: translateY(18px) rotate(-6deg); } to { opacity: 1; transform: rotate(-1.5deg); } }
+        .desk-status { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+        .desk h3 { font-family: var(--serif); font-weight: 500; font-size: 1.2rem; line-height: 1.25; letter-spacing: -0.01em; }
+        .desk-author { font-size: 0.82rem; color: var(--ink-3); margin-top: 2px; }
+        .desk-take { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--ink); line-height: 1.5; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--line); }
+        .desk-take:empty { display: none; }
+        .desk .met { margin-top: 10px; }
+        .desk .met[hidden] { display: none; }
+        .desk-hint { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--ink-3); margin-top: 16px; text-transform: uppercase; }
+        .desk-close { display: none; }
+        @media (max-width: 900px) {
+            .library { grid-template-columns: 1fr; }
+            .desk {
+                position: fixed; top: auto; left: 12px; right: 12px; bottom: 12px; z-index: 200;
+                display: grid; grid-template-columns: 84px 1fr; gap: 4px 16px; text-align: left; align-items: center;
+                padding: 16px; transform: translateY(calc(100% + 24px)); transition: transform .45s cubic-bezier(.2,.7,.3,1);
+                box-shadow: 0 -10px 40px rgba(28,26,23,0.2);
+            }
+            .desk.open { transform: none; }
+            .desk img { grid-row: 1 / span 5; grid-column: 1; width: 84px; height: 126px; margin: 0; }
+            .desk > *:not(img):not(.desk-close) { grid-column: 2; }
+            .desk-take { margin-top: 6px; padding-top: 8px; font-size: 0.9rem; }
+            .desk-hint { display: none; }
+            .desk-close { display: block; position: absolute; top: 8px; right: 8px; width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 50%; background: #fff; cursor: pointer; }
+        }
 
         /* ── THREE VOICES — Wilde · Camus · Dostoevsky ── */
         .voices { padding: 104px 0; border-top: 1px solid var(--line); }
@@ -622,12 +661,7 @@
         }
         .hero-photo:hover::before { transform: translate(8px, 8px); }
 
-        /* book shelf — hand-placed feel */
-        .lib-row .book:nth-child(odd) img { transform: rotate(-1.6deg); }
-        .lib-row .book:nth-child(even) img { transform: rotate(1.3deg); }
-        .lib-row .book:hover img { transform: rotate(0) translateY(-6px); }
-
-        .book .met {
+        .met {
             display: inline-block; font-family: var(--mono); font-style: normal;
             font-size: 0.6rem; letter-spacing: 0.06em; color: var(--accent);
             border: 1px solid var(--accent); border-radius: 999px;
@@ -1150,188 +1184,71 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
             argue with authors, and turn the best ideas into something usable. Here's the current shelf — thirty-seven volumes and counting.
         </p>
 
-        <div class="lib-status rv">Reading now</div>
-        <div class="lib-row rv">
-            <figure class="book reading">
-                <img src="images/books/myth-of-sisyphus.jpg" alt="The Myth of Sisyphus by Albert Camus" loading="lazy"/>
-                <div class="takeaway">One must imagine Sisyphus happy.</div>
-                <figcaption><b>The Myth of Sisyphus</b><span>Albert Camus</span></figcaption>
-            </figure>
-            <figure class="book reading">
-                <img src="images/books/dorian-gray.jpg" alt="The Picture of Dorian Gray by Oscar Wilde" loading="lazy"/>
-                <div class="takeaway">Warnings that sound like invitations.</div>
-                <figcaption><b>The Picture of Dorian Gray</b><span>Oscar Wilde</span></figcaption>
-            </figure>
+        <div class="library rv">
+            <div class="shelves">
+            <div class="lib-status">Reading now</div>
+            <div class="stand">
+                <button class="face" data-i="0" aria-label="The Myth of Sisyphus by Albert Camus"><img src="images/books/myth-of-sisyphus.jpg" alt="" loading="lazy"/></button>
+                <button class="face" data-i="1" aria-label="The Picture of Dorian Gray by Oscar Wilde"><img src="images/books/dorian-gray.jpg" alt="" loading="lazy"/></button>
+            </div>
+            <div class="lib-status">Finished · 31</div>
+            <div class="shelf">
+                <button class="spine" data-i="2" style="--c:#8d3a34;--t:#FAF6EC;--w:49px;--h:159px" aria-label="Antifragile by Nassim Nicholas Taleb"><span class="st">Antifragile</span></button>
+                <button class="spine" data-i="3" style="--c:#EDE5D3;--t:#1C1A17;--w:54px;--h:189px" aria-label="Nexus by Yuval Noah Harari"><span class="st">Nexus</span></button>
+                <button class="spine" data-i="4" style="--c:#226275;--t:#FAF6EC;--w:39px;--h:164px" aria-label="The Lessons of History by Will &amp; Ariel Durant"><span class="st">The Lessons of History</span></button>
+                <button class="spine lean" data-i="5" style="--c:#030708;--t:#FAF6EC;--w:44px;--h:181px" aria-label="Meditations by Marcus Aurelius"><span class="st">Meditations</span></button>
+                <button class="spine" data-i="6" style="--c:#951319;--t:#FAF6EC;--w:39px;--h:190px" aria-label="Animal Farm by George Orwell"><span class="st">Animal Farm</span></button>
+                <button class="spine" data-i="7" style="--c:#000000;--t:#FAF6EC;--w:39px;--h:190px" aria-label="Man&#x27;s Search for Meaning by Viktor E. Frankl"><span class="st">Man's Search for Meaning</span></button>
+                <button class="spine" data-i="8" style="--c:#1b4047;--t:#FAF6EC;--w:49px;--h:178px" aria-label="Beyond Good and Evil by Friedrich Nietzsche"><span class="st">Beyond Good and Evil</span></button>
+                <button class="spine" data-i="9" style="--c:#143233;--t:#FAF6EC;--w:44px;--h:164px" aria-label="Notes from Underground by Fyodor Dostoevsky"><span class="st">Notes from Underground</span></button>
+                <button class="spine" data-i="10" style="--c:#7092b8;--t:#FAF6EC;--w:54px;--h:160px" aria-label="Zero to One by Peter Thiel"><span class="st">Zero to One</span></button>
+                <button class="spine" data-i="11" style="--c:#827f78;--t:#FAF6EC;--w:34px;--h:180px" aria-label="The Psychology of Money by Morgan Housel"><span class="st">The Psychology of Money</span></button>
+                <button class="spine" data-i="12" style="--c:#fcee4f;--t:#1C1A17;--w:49px;--h:164px" aria-label="Socrates Express by Eric Weiner"><span class="st">Socrates Express</span></button>
+                <button class="spine" data-i="13" style="--c:#ed1f2b;--t:#FAF6EC;--w:39px;--h:178px" aria-label="The 48 Laws of Power by Robert Greene"><span class="st">The 48 Laws of Power</span></button>
+                <button class="spine lean" data-i="14" style="--c:#b99172;--t:#1C1A17;--w:44px;--h:160px" aria-label="You Can Win by Shiv Khera"><span class="st">You Can Win</span></button>
+                <button class="spine" data-i="15" style="--c:#2b322f;--t:#FAF6EC;--w:39px;--h:192px" aria-label="The Diary of a CEO by Steven Bartlett"><span class="st">The Diary of a CEO</span></button>
+                <button class="spine" data-i="16" style="--c:#f39f21;--t:#1C1A17;--w:39px;--h:191px" aria-label="The 4-Hour Workweek by Tim Ferriss"><span class="st">The 4-Hour Workweek</span></button>
+                <button class="spine" data-i="17" style="--c:#d9352d;--t:#FAF6EC;--w:44px;--h:184px" aria-label="Tools of Titans by Tim Ferriss"><span class="st">Tools of Titans</span></button>
+                <button class="spine" data-i="18" style="--c:#241e1f;--t:#FAF6EC;--w:44px;--h:171px" aria-label="The Richest Man in Babylon by George S. Clason"><span class="st">The Richest Man in Babylon</span></button>
+                <button class="spine" data-i="19" style="--c:#cbaa81;--t:#1C1A17;--w:49px;--h:173px" aria-label="The Everything Store by Brad Stone"><span class="st">The Everything Store</span></button>
+                <button class="spine" data-i="20" style="--c:#EDE5D3;--t:#1C1A17;--w:34px;--h:167px" aria-label="21 Lessons for the 21st Century by Yuval Noah Harari"><span class="st">21 Lessons for the 21st Century</span></button>
+                <button class="spine" data-i="21" style="--c:#645243;--t:#FAF6EC;--w:44px;--h:174px" aria-label="Awaken the Giant Within by Tony Robbins"><span class="st">Awaken the Giant Within</span></button>
+                <button class="spine" data-i="22" style="--c:#d9b320;--t:#1C1A17;--w:34px;--h:192px" aria-label="Unlimited Power by Tony Robbins"><span class="st">Unlimited Power</span></button>
+                <button class="spine lean" data-i="23" style="--c:#EDE5D3;--t:#1C1A17;--w:49px;--h:186px" aria-label="The ONE Thing by Gary Keller &amp; Jay Papasan"><span class="st">The ONE Thing</span></button>
+                <button class="spine" data-i="24" style="--c:#1975b8;--t:#FAF6EC;--w:44px;--h:164px" aria-label="The Lean Startup by Eric Ries"><span class="st">The Lean Startup</span></button>
+                <button class="spine" data-i="25" style="--c:#a36568;--t:#FAF6EC;--w:39px;--h:171px" aria-label="Screw Business as Usual by Richard Branson"><span class="st">Screw Business as Usual</span></button>
+                <button class="spine" data-i="26" style="--c:#023a6d;--t:#FAF6EC;--w:54px;--h:172px" aria-label="The Geography of Bliss by Eric Weiner"><span class="st">The Geography of Bliss</span></button>
+                <button class="spine" data-i="27" style="--c:#962e12;--t:#FAF6EC;--w:54px;--h:162px" aria-label="The 80/20 Principle by Richard Koch"><span class="st">The 80/20 Principle</span></button>
+                <button class="spine" data-i="28" style="--c:#2ed432;--t:#1C1A17;--w:34px;--h:183px" aria-label="Million Dollar Weekend by Noah Kagan"><span class="st">Million Dollar Weekend</span></button>
+                <button class="spine" data-i="29" style="--c:#6b3f6e;--t:#FAF6EC;--w:54px;--h:179px" aria-label="Rich Dad Poor Dad by Robert T. Kiyosaki"><span class="st">Rich Dad Poor Dad</span></button>
+                <button class="spine" data-i="30" style="--c:#5c5757;--t:#FAF6EC;--w:39px;--h:193px" aria-label="To Sell Is Human by Daniel H. Pink"><span class="st">To Sell Is Human</span></button>
+                <button class="spine" data-i="31" style="--c:#fde72f;--t:#1C1A17;--w:39px;--h:182px" aria-label="Side Hustle by Chris Guillebeau"><span class="st">Side Hustle</span></button>
+                <button class="spine lean" data-i="32" style="--c:#197071;--t:#FAF6EC;--w:49px;--h:163px" aria-label="Foolproof: Judge by its Cover by Mahendra P. Joshi"><span class="st">Foolproof: Judge by its Cover</span></button>
+            </div>
+            <div class="lib-status">The Nepal shelf &nbsp;&middot;&nbsp; <span class="np-label">&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; &#2323;&#2335;</span></div>
+            <p class="shelf-note">Home ground &mdash; hills, saints, and stories from right here.</p>
+            <div class="shelf">
+                <button class="spine" data-i="33" style="--c:#8e9793;--t:#FAF6EC;--w:44px;--h:187px" aria-label="Rockin&#x27; Rollin&#x27; Rolpa by Mahendra P. Joshi"><span class="st">Rockin' Rollin' Rolpa</span></button>
+                <button class="spine" data-i="34" style="--c:#f7941d;--t:#1C1A17;--w:39px;--h:182px" aria-label="खप्तडबाबा by Arjun Gyawali"><span class="st">खप्तडबाबा</span></button>
+                <button class="spine" data-i="35" style="--c:#5e0a0a;--t:#FAF6EC;--w:34px;--h:192px" aria-label="Forget Kathmandu by Manjushree Thapa"><span class="st">Forget Kathmandu</span></button>
+            </div>
+            <div class="lib-status">Up next</div>
+            <div class="shelf">
+                <button class="spine ghost" data-i="36" style="--c:#EDE5D3;--t:#1C1A17;--w:39px;--h:179px" aria-label="Sapiens by Yuval Noah Harari"><span class="st">Sapiens</span></button>
+            </div>
+            </div>
+            <aside class="desk" id="desk" aria-live="polite">
+                <button class="desk-close" id="deskClose" aria-label="Put the book back">✕</button>
+                <small class="desk-status" id="deskStatus">Reading now</small>
+                <img id="deskCover" src="images/books/myth-of-sisyphus.jpg" alt="The Myth of Sisyphus by Albert Camus"/>
+                <h3 id="deskTitle">The Myth of Sisyphus</h3>
+                <p class="desk-author" id="deskAuthor">Albert Camus</p>
+                <p class="desk-take" id="deskTake">One must imagine Sisyphus happy.</p>
+                <em class="met" id="deskMet" hidden></em>
+                <p class="desk-hint">Pull any spine off the shelf.</p>
+            </aside>
         </div>
-
-        <div class="lib-status rv">Finished</div>
-        <div class="lib-row rv">
-            <figure class="book">
-                <img src="images/books/antifragile.jpg" alt="Antifragile by Nassim Nicholas Taleb" loading="lazy"/>
-                <div class="takeaway">Be the fire, not the candle.</div>
-                <figcaption><b>Antifragile</b><span>Nassim Nicholas Taleb</span><em class="met">just finished</em></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/nexus.jpg" alt="Nexus by Yuval Noah Harari" loading="lazy"/>
-                <figcaption><b>Nexus</b><span>Yuval Noah Harari</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/lessons-of-history.jpg" alt="The Lessons of History by Will and Ariel Durant" loading="lazy"/>
-                <figcaption><b>The Lessons of History</b><span>Will &amp; Ariel Durant</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/meditations.jpg" alt="Meditations by Marcus Aurelius" loading="lazy"/>
-                <div class="takeaway">What stands in the way becomes the way.</div>
-                <figcaption><b>Meditations</b><span>Marcus Aurelius</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/animal-farm.jpg" alt="Animal Farm by George Orwell" loading="lazy"/>
-                <figcaption><b>Animal Farm</b><span>George Orwell</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/mans-search-for-meaning.jpg" alt="Man's Search for Meaning by Viktor E. Frankl" loading="lazy"/>
-                <div class="takeaway">The last freedom: choosing your attitude.</div>
-                <figcaption><b>Man's Search for Meaning</b><span>Viktor E. Frankl</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/beyond-good-and-evil.jpg" alt="Beyond Good and Evil by Friedrich Nietzsche" loading="lazy"/>
-                <div class="takeaway">The abyss also reads pull requests.</div>
-                <figcaption><b>Beyond Good and Evil</b><span>Friedrich Nietzsche</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/notes-from-underground.jpg" alt="Notes from Underground by Fyodor Dostoevsky" loading="lazy"/>
-                <div class="takeaway">The most honest opening line in literature.</div>
-                <figcaption><b>Notes from Underground</b><span>Fyodor Dostoevsky</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/zero-to-one.jpg" alt="Zero to One by Peter Thiel" loading="lazy"/>
-                <div class="takeaway">Every moment happens only once.</div>
-                <figcaption><b>Zero to One</b><span>Peter Thiel</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/psychology-of-money.jpg" alt="The Psychology of Money by Morgan Housel" loading="lazy"/>
-                <div class="takeaway">Wealth is what you don’t see.</div>
-                <figcaption><b>The Psychology of Money</b><span>Morgan Housel</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/socrates-express.jpg" alt="Socrates Express by Eric Weiner" loading="lazy"/>
-                <figcaption><b>Socrates Express</b><span>Eric Weiner</span><em class="met">met the author at Boudha</em></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/48-laws-of-power.jpg" alt="The 48 Laws of Power by Robert Greene" loading="lazy"/>
-                <figcaption><b>The 48 Laws of Power</b><span>Robert Greene</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/you-can-win.jpg" alt="You Can Win by Shiv Khera" loading="lazy"/>
-                <figcaption><b>You Can Win</b><span>Shiv Khera</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/diary-of-a-ceo.jpg" alt="The Diary of a CEO by Steven Bartlett" loading="lazy"/>
-                <figcaption><b>The Diary of a CEO</b><span>Steven Bartlett</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/4-hour-workweek.jpg" alt="The 4-Hour Workweek by Tim Ferriss" loading="lazy"/>
-                <figcaption><b>The 4-Hour Workweek</b><span>Tim Ferriss</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/tools-of-titans.jpg" alt="Tools of Titans by Tim Ferriss" loading="lazy"/>
-                <figcaption><b>Tools of Titans</b><span>Tim Ferriss</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/richest-man-in-babylon.jpg" alt="The Richest Man in Babylon by George S. Clason" loading="lazy"/>
-                <figcaption><b>The Richest Man in Babylon</b><span>George S. Clason</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/everything-store.jpg" alt="The Everything Store by Brad Stone" loading="lazy"/>
-                <figcaption><b>The Everything Store</b><span>Brad Stone</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/21-lessons.jpg" alt="21 Lessons for the 21st Century by Yuval Noah Harari" loading="lazy"/>
-                <figcaption><b>21 Lessons for the 21st Century</b><span>Yuval Noah Harari</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/awaken-giant-within.jpg" alt="Awaken the Giant Within by Tony Robbins" loading="lazy"/>
-                <figcaption><b>Awaken the Giant Within</b><span>Tony Robbins</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/unlimited-power.jpg" alt="Unlimited Power by Tony Robbins" loading="lazy"/>
-                <figcaption><b>Unlimited Power</b><span>Tony Robbins</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/one-thing.jpg" alt="The ONE Thing by Gary Keller and Jay Papasan" loading="lazy"/>
-                <figcaption><b>The ONE Thing</b><span>Gary Keller &amp; Jay Papasan</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/lean-startup.jpg" alt="The Lean Startup by Eric Ries" loading="lazy"/>
-                <figcaption><b>The Lean Startup</b><span>Eric Ries</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/screw-business-as-usual.jpg" alt="Screw Business as Usual by Richard Branson" loading="lazy"/>
-                <figcaption><b>Screw Business as Usual</b><span>Richard Branson</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/geography-of-bliss.jpg" alt="The Geography of Bliss by Eric Weiner" loading="lazy"/>
-                <figcaption><b>The Geography of Bliss</b><span>Eric Weiner</span><em class="met">met the author at Boudha</em></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/80-20-principle.jpg" alt="The 80/20 Principle by Richard Koch" loading="lazy"/>
-                <div class="takeaway">Twenty percent of the code, eighty percent of the incidents.</div>
-                <figcaption><b>The 80/20 Principle</b><span>Richard Koch</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/million-dollar-weekend.jpg" alt="Million Dollar Weekend by Noah Kagan" loading="lazy"/>
-                <div class="takeaway">Ask first, build second.</div>
-                <figcaption><b>Million Dollar Weekend</b><span>Noah Kagan</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/rich-dad-poor-dad.jpg" alt="Rich Dad Poor Dad by Robert T. Kiyosaki" loading="lazy"/>
-                <div class="takeaway">Assets put money in your pocket &mdash; liabilities take it out.</div>
-                <figcaption><b>Rich Dad Poor Dad</b><span>Robert T. Kiyosaki</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/to-sell-is-human.jpg" alt="To Sell Is Human by Daniel H. Pink" loading="lazy"/>
-                <div class="takeaway">Selling is moving people — we all do it, every day.</div>
-                <figcaption><b>To Sell Is Human</b><span>Daniel H. Pink</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/side-hustle.jpg" alt="Side Hustle by Chris Guillebeau" loading="lazy"/>
-                <div class="takeaway">Twenty-seven days from idea to income.</div>
-                <figcaption><b>Side Hustle</b><span>Chris Guillebeau</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/foolproof.jpg" alt="Foolproof: Judge by its Cover by Mahendra P. Joshi" loading="lazy"/>
-                <div class="takeaway">My teacher&rsquo;s second novel &mdash; judge this one by its cover.</div>
-                <figcaption><b>Foolproof: Judge by its Cover</b><span>Mahendra P. Joshi</span><em class="met">written by my teacher</em></figcaption>
-            </figure>
-        </div>
-
-        <div class="lib-status rv" style="margin-top: 56px;">The Nepal shelf &nbsp;&middot;&nbsp; <span class="np-label">&#2344;&#2375;&#2346;&#2366;&#2354;&#2368; &#2323;&#2335;</span></div>
-        <p class="lib-intro rv" style="margin-top: -8px;">Home ground &mdash; hills, saints, and stories from right here.</p>
-        <div class="lib-row rv">
-            <figure class="book">
-                <img src="images/books/rockin-rollin-rolpa.jpg" alt="Rockin' Rollin' Rolpa by Mahendra P. Joshi" loading="lazy"/>
-                <div class="takeaway">America meets rural Nepal &mdash; one mishap at a time.</div>
-                <figcaption><b>Rockin' Rollin' Rolpa</b><span>Mahendra P. Joshi</span><em class="met">also by my teacher</em></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/khaptad-baba.jpg" alt="खप्तडबाबा by Arjun Gyawali" loading="lazy"/>
-                <div class="takeaway">Allopathic doctor to saint &mdash; fifty years in the Khaptad hills.</div>
-                <figcaption><b>खप्तडबाबा</b><span>Arjun Gyawali</span></figcaption>
-            </figure>
-            <figure class="book">
-                <img src="images/books/forget-kathmandu.jpg" alt="Forget Kathmandu by Manjushree Thapa" loading="lazy"/>
-                <div class="takeaway">An elegy for Nepali democracy &mdash; required reading from home.</div>
-                <figcaption><b>Forget Kathmandu</b><span>Manjushree Thapa</span></figcaption>
-            </figure>
-        </div>
-
-        <div class="lib-status rv">Up next</div>
-        <div class="lib-row rv">
-            <figure class="book">
-                <img src="images/books/sapiens.jpg" alt="Sapiens by Yuval Noah Harari" loading="lazy"/>
-                <figcaption><b>Sapiens</b><span>Yuval Noah Harari</span></figcaption>
-            </figure>
-        </div>
+        <script>window.SHELF = [{"img": "images/books/myth-of-sisyphus.jpg", "title": "The Myth of Sisyphus", "author": "Albert Camus", "take": "One must imagine Sisyphus happy.", "met": "", "status": "Reading now", "alt": "The Myth of Sisyphus by Albert Camus"}, {"img": "images/books/dorian-gray.jpg", "title": "The Picture of Dorian Gray", "author": "Oscar Wilde", "take": "Warnings that sound like invitations.", "met": "", "status": "Reading now", "alt": "The Picture of Dorian Gray by Oscar Wilde"}, {"img": "images/books/antifragile.jpg", "title": "Antifragile", "author": "Nassim Nicholas Taleb", "take": "Be the fire, not the candle.", "met": "just finished", "status": "Finished", "alt": "Antifragile by Nassim Nicholas Taleb"}, {"img": "images/books/nexus.jpg", "title": "Nexus", "author": "Yuval Noah Harari", "take": "", "met": "", "status": "Finished", "alt": "Nexus by Yuval Noah Harari"}, {"img": "images/books/lessons-of-history.jpg", "title": "The Lessons of History", "author": "Will & Ariel Durant", "take": "", "met": "", "status": "Finished", "alt": "The Lessons of History by Will and Ariel Durant"}, {"img": "images/books/meditations.jpg", "title": "Meditations", "author": "Marcus Aurelius", "take": "What stands in the way becomes the way.", "met": "", "status": "Finished", "alt": "Meditations by Marcus Aurelius"}, {"img": "images/books/animal-farm.jpg", "title": "Animal Farm", "author": "George Orwell", "take": "", "met": "", "status": "Finished", "alt": "Animal Farm by George Orwell"}, {"img": "images/books/mans-search-for-meaning.jpg", "title": "Man's Search for Meaning", "author": "Viktor E. Frankl", "take": "The last freedom: choosing your attitude.", "met": "", "status": "Finished", "alt": "Man's Search for Meaning by Viktor E. Frankl"}, {"img": "images/books/beyond-good-and-evil.jpg", "title": "Beyond Good and Evil", "author": "Friedrich Nietzsche", "take": "The abyss also reads pull requests.", "met": "", "status": "Finished", "alt": "Beyond Good and Evil by Friedrich Nietzsche"}, {"img": "images/books/notes-from-underground.jpg", "title": "Notes from Underground", "author": "Fyodor Dostoevsky", "take": "The most honest opening line in literature.", "met": "", "status": "Finished", "alt": "Notes from Underground by Fyodor Dostoevsky"}, {"img": "images/books/zero-to-one.jpg", "title": "Zero to One", "author": "Peter Thiel", "take": "Every moment happens only once.", "met": "", "status": "Finished", "alt": "Zero to One by Peter Thiel"}, {"img": "images/books/psychology-of-money.jpg", "title": "The Psychology of Money", "author": "Morgan Housel", "take": "Wealth is what you don’t see.", "met": "", "status": "Finished", "alt": "The Psychology of Money by Morgan Housel"}, {"img": "images/books/socrates-express.jpg", "title": "Socrates Express", "author": "Eric Weiner", "take": "", "met": "met the author at Boudha", "status": "Finished", "alt": "Socrates Express by Eric Weiner"}, {"img": "images/books/48-laws-of-power.jpg", "title": "The 48 Laws of Power", "author": "Robert Greene", "take": "", "met": "", "status": "Finished", "alt": "The 48 Laws of Power by Robert Greene"}, {"img": "images/books/you-can-win.jpg", "title": "You Can Win", "author": "Shiv Khera", "take": "", "met": "", "status": "Finished", "alt": "You Can Win by Shiv Khera"}, {"img": "images/books/diary-of-a-ceo.jpg", "title": "The Diary of a CEO", "author": "Steven Bartlett", "take": "", "met": "", "status": "Finished", "alt": "The Diary of a CEO by Steven Bartlett"}, {"img": "images/books/4-hour-workweek.jpg", "title": "The 4-Hour Workweek", "author": "Tim Ferriss", "take": "", "met": "", "status": "Finished", "alt": "The 4-Hour Workweek by Tim Ferriss"}, {"img": "images/books/tools-of-titans.jpg", "title": "Tools of Titans", "author": "Tim Ferriss", "take": "", "met": "", "status": "Finished", "alt": "Tools of Titans by Tim Ferriss"}, {"img": "images/books/richest-man-in-babylon.jpg", "title": "The Richest Man in Babylon", "author": "George S. Clason", "take": "", "met": "", "status": "Finished", "alt": "The Richest Man in Babylon by George S. Clason"}, {"img": "images/books/everything-store.jpg", "title": "The Everything Store", "author": "Brad Stone", "take": "", "met": "", "status": "Finished", "alt": "The Everything Store by Brad Stone"}, {"img": "images/books/21-lessons.jpg", "title": "21 Lessons for the 21st Century", "author": "Yuval Noah Harari", "take": "", "met": "", "status": "Finished", "alt": "21 Lessons for the 21st Century by Yuval Noah Harari"}, {"img": "images/books/awaken-giant-within.jpg", "title": "Awaken the Giant Within", "author": "Tony Robbins", "take": "", "met": "", "status": "Finished", "alt": "Awaken the Giant Within by Tony Robbins"}, {"img": "images/books/unlimited-power.jpg", "title": "Unlimited Power", "author": "Tony Robbins", "take": "", "met": "", "status": "Finished", "alt": "Unlimited Power by Tony Robbins"}, {"img": "images/books/one-thing.jpg", "title": "The ONE Thing", "author": "Gary Keller & Jay Papasan", "take": "", "met": "", "status": "Finished", "alt": "The ONE Thing by Gary Keller and Jay Papasan"}, {"img": "images/books/lean-startup.jpg", "title": "The Lean Startup", "author": "Eric Ries", "take": "", "met": "", "status": "Finished", "alt": "The Lean Startup by Eric Ries"}, {"img": "images/books/screw-business-as-usual.jpg", "title": "Screw Business as Usual", "author": "Richard Branson", "take": "", "met": "", "status": "Finished", "alt": "Screw Business as Usual by Richard Branson"}, {"img": "images/books/geography-of-bliss.jpg", "title": "The Geography of Bliss", "author": "Eric Weiner", "take": "", "met": "met the author at Boudha", "status": "Finished", "alt": "The Geography of Bliss by Eric Weiner"}, {"img": "images/books/80-20-principle.jpg", "title": "The 80/20 Principle", "author": "Richard Koch", "take": "Twenty percent of the code, eighty percent of the incidents.", "met": "", "status": "Finished", "alt": "The 80/20 Principle by Richard Koch"}, {"img": "images/books/million-dollar-weekend.jpg", "title": "Million Dollar Weekend", "author": "Noah Kagan", "take": "Ask first, build second.", "met": "", "status": "Finished", "alt": "Million Dollar Weekend by Noah Kagan"}, {"img": "images/books/rich-dad-poor-dad.jpg", "title": "Rich Dad Poor Dad", "author": "Robert T. Kiyosaki", "take": "Assets put money in your pocket — liabilities take it out.", "met": "", "status": "Finished", "alt": "Rich Dad Poor Dad by Robert T. Kiyosaki"}, {"img": "images/books/to-sell-is-human.jpg", "title": "To Sell Is Human", "author": "Daniel H. Pink", "take": "Selling is moving people — we all do it, every day.", "met": "", "status": "Finished", "alt": "To Sell Is Human by Daniel H. Pink"}, {"img": "images/books/side-hustle.jpg", "title": "Side Hustle", "author": "Chris Guillebeau", "take": "Twenty-seven days from idea to income.", "met": "", "status": "Finished", "alt": "Side Hustle by Chris Guillebeau"}, {"img": "images/books/foolproof.jpg", "title": "Foolproof: Judge by its Cover", "author": "Mahendra P. Joshi", "take": "My teacher’s second novel — judge this one by its cover.", "met": "written by my teacher", "status": "Finished", "alt": "Foolproof: Judge by its Cover by Mahendra P. Joshi"}, {"img": "images/books/rockin-rollin-rolpa.jpg", "title": "Rockin' Rollin' Rolpa", "author": "Mahendra P. Joshi", "take": "America meets rural Nepal — one mishap at a time.", "met": "also by my teacher", "status": "The Nepal shelf", "alt": "Rockin' Rollin' Rolpa by Mahendra P. Joshi"}, {"img": "images/books/khaptad-baba.jpg", "title": "खप्तडबाबा", "author": "Arjun Gyawali", "take": "Allopathic doctor to saint — fifty years in the Khaptad hills.", "met": "", "status": "The Nepal shelf", "alt": "खप्तडबाबा by Arjun Gyawali"}, {"img": "images/books/forget-kathmandu.jpg", "title": "Forget Kathmandu", "author": "Manjushree Thapa", "take": "An elegy for Nepali democracy — required reading from home.", "met": "", "status": "The Nepal shelf", "alt": "Forget Kathmandu by Manjushree Thapa"}, {"img": "images/books/sapiens.jpg", "title": "Sapiens", "author": "Yuval Noah Harari", "take": "", "met": "", "status": "Up next", "alt": "Sapiens by Yuval Noah Harari"}];</script>
     </div>
 </section>
 
@@ -1878,6 +1795,37 @@ body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-eve
         }
         window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(draw); } }, { passive: true });
         draw();
+    })();
+
+    // Bookshelf — pull a spine onto the desk
+    (function () {
+        var books = window.SHELF || [], desk = document.getElementById('desk');
+        if (!desk || !books.length) return;
+        var cover = document.getElementById('deskCover'), title = document.getElementById('deskTitle'),
+            author = document.getElementById('deskAuthor'), take = document.getElementById('deskTake'),
+            met = document.getElementById('deskMet'), status = document.getElementById('deskStatus');
+        var buttons = Array.prototype.slice.call(document.querySelectorAll('.spine, .face'));
+        function show(i, open) {
+            var b = books[i];
+            cover.src = b.img; cover.alt = b.alt;
+            title.textContent = b.title; author.textContent = b.author;
+            take.textContent = b.take || '';
+            status.textContent = b.status;
+            met.hidden = !b.met; met.textContent = b.met;
+            buttons.forEach(function (el) { el.classList.toggle('on', +el.dataset.i === i); });
+            desk.classList.remove('pull'); void desk.offsetWidth; desk.classList.add('pull');
+            if (open) desk.classList.add('open');
+        }
+        buttons.forEach(function (el) { el.addEventListener('click', function () { show(+el.dataset.i, true); }); });
+        document.getElementById('deskClose').addEventListener('click', function () {
+            desk.classList.remove('open');
+            buttons.forEach(function (el) { el.classList.remove('on'); });
+        });
+        show(0, false);
+        // On phones the desk is a bottom sheet — tuck it away once you leave the library
+        new IntersectionObserver(function (e) {
+            if (!e[0].isIntersecting) desk.classList.remove('open');
+        }).observe(document.getElementById('library'));
     })();
 
     // Ridgelines — stacked Himalayan ridges drifting slowly, with a river in front.
