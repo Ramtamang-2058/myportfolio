@@ -8,6 +8,8 @@ Last updated: 2026-09-25.
 ## ✅ Done
 
 - **Library:** *The Myth of Sisyphus* moved to "Reading now", *Antifragile* to "Finished" (37 volumes).
+- **Bookshelf:** the library is now a wooden shelf of spines (coloured from each cover). Click a spine to pull the book onto the desk; on phones it slides up from the bottom.
+- **Hackathon Herald:** the Code Brisk 2023 win leads the front page, with the Routine of Nepal Banda clipping.
 - **Three voices section** (`/#voices`): Wilde's mirror (hover shows the "reality" side), Camus's boulder (animated, with a push counter), Dostoevsky's underground (read by candlelight).
 - **Gallery** is now an exhibition in 11 rooms: Sketchbook · Chitlang · Jhapa · Ilam · Cafés · Robotics · Classroom · Stages (*The Hackathon Herald*) · Portraits · Travel · Moving pictures.
 - **Home page:** sketchbook teaser linking into the gallery, plus a Boudha stupa that draws itself as you scroll (under Principles).
@@ -24,9 +26,10 @@ Last updated: 2026-09-25.
    - the same view without the drawing
    
    Send the pair and the slider gets built: drag a handle to wipe between your pencil version and the real scene. The resort drawing is the perfect first candidate if you still have the view photo.
-3. **Captions for Travel and Stages:** 40+ frames have generic alt text. A place name or event name per photo is enough ("Rara, 2024", "ICT Award night").
-4. **Confirm names:** guest artists are credited as "Nistha" and "Biddya". Add "didi" or surnames if you prefer.
-5. **Portraits room:** check that `me05.jpeg` (pencil portrait) belongs there. If it's your drawing, move it to the Sketchbook room.
+3. **Dorian Gray cover:** the old image was a wrong book, now replaced with the Penguin Classics cover. Swap it if your copy is a different edition.
+4. **Captions for Travel and Stages:** 40+ frames have generic alt text. A place name or event name per photo is enough ("Rara, 2024", "ICT Award night").
+5. **Confirm names:** guest artists are credited as "Nistha" and "Biddya". Add "didi" or surnames if you prefer.
+6. **Portraits room:** check that `me05.jpeg` (pencil portrait) belongs there. If it's your drawing, move it to the Sketchbook room.
 
 ---
 
