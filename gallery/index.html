@@ -121,7 +121,7 @@
             background: rgba(250,249,246,0.94); backdrop-filter: blur(10px);
             border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
         }
-        .rooms-nav .wrap { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-top: 12px; padding-bottom: 12px; }
+        .rooms-nav .wrap { position: relative; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-top: 12px; padding-bottom: 12px; }
         .rooms-nav .wrap::-webkit-scrollbar { display: none; }
         .rooms-nav a {
             flex: none; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em;
@@ -943,14 +943,16 @@
     document.querySelectorAll('.rv').forEach(el => rvObs.observe(el));
 
     // Room nav — highlight the room you're standing in
-    const navA = Array.from(document.querySelectorAll('#roomsNav a'));
+    // Only the nav strip scrolls sideways — scrollIntoView() would also move the page and fight touch scrolling.
+    const roomsNav = document.getElementById('roomsNav');
+    const navA = Array.from(roomsNav.querySelectorAll('a'));
     const roomObs = new IntersectionObserver(entries => {
         entries.forEach(e => {
             if (!e.isIntersecting) return;
             navA.forEach(a => {
                 const on = a.getAttribute('href') === '#' + e.target.id;
                 a.classList.toggle('on', on);
-                if (on) a.scrollIntoView({ block: 'nearest', inline: 'center', behavior: reduced ? 'auto' : 'smooth' });
+                if (on) roomsNav.scrollTo({ left: a.offsetLeft - (roomsNav.clientWidth - a.offsetWidth) / 2, behavior: reduced ? 'auto' : 'smooth' });
             });
         });
     }, { rootMargin: '-45% 0px -50% 0px' });
